@@ -1,293 +1,407 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>El Patriarca – Arroz envejecido, rendidor y de calidad</title>
-  <meta name="description" content="El Patriarca: arroz envejecido, nutritivo y rendidor. Cueva & Asociados, legado familiar con más de 50 años." />
-
-  <!--
-    Instrucciones:
-    1) Reemplaza las rutas de imágenes:
-       - /assets/patriarca-logo.png
-       - /assets/cueva-asociados-logo.png
-       - /assets/sello-producto-seleccionado.png
-       - /assets/hecho-en-ecuador.png
-       - /assets/mascota-patriarca.png
-    2) No alteres los logos. Ya están con object-fit: contain para respetar proporciones.
-    3) Colores: verde profundo + marfil + dorado (#C9A227).
-  -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>El Patriarca — Arroz envejecido</title>
+  <meta name="description" content="El Patriarca — Arroz envejecido, rendidor y de calidad. Distribución y cotizaciones vía WhatsApp." />
 
   <style>
     :root{
-      --bg-deep-1:#052e2b;
-      --bg-deep-2:#063a34;
-      --bg-deep-3:#052e2b;
-      --text-deep:#06251b;
-      --text-soft:#275c4d;
-      --accent:#C9A227; /* dorado elegante */
-      --soft:#ecfdf5;   /* marfil/verde muy claro */
-      --white:#ffffff;
+      --bg-deep-1: #052014;
+      --bg-deep-2: #073221;
+      --accent: #C9A227;
+      --white-trans-10: rgba(255,255,255,0.10);
+      --emerald-100: #E6F4EF;
+      --text-deep: #07261b;
+      --text-soft: #2f6a57;
+      --max-width: 1100px;
+      --radius-xl: 24px;
+      --glass: rgba(255,255,255,0.04);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
+
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
+    html,body{height:100%}
     body{
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
-      color:#fff;
-      background: linear-gradient(to bottom, var(--bg-deep-1), var(--bg-deep-2), var(--bg-deep-3));
-      line-height:1.6;
+      margin:0;
+      color: #fff;
+      background: linear-gradient(180deg, var(--bg-deep-1) 0%, var(--bg-deep-2) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
     }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-    /* Navbar */
-    .nav{
-      position:sticky;top:0;z-index:40;
-      backdrop-filter: blur(8px);
-      background: rgba(4, 37, 31, 0.65);
-      border-bottom:1px solid rgba(255,255,255,.08);
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:28px 20px;
     }
-    .nav-inner{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 0;
-    }
-    .nav-brand{display:flex;align-items:center;gap:18px}
-    .nav-brand small{opacity:.8;letter-spacing:.4px;display:none}
-    @media (min-width:768px){ .nav-brand small{display:inline-block} }
-    .logo{height:40px;width:auto;object-fit:contain}
 
-    /* Hero */
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 20px;
+      background: rgba(0,0,0,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand img.logo{ height:48px; width:auto; display:block; }
+    .brand img.cia{ height:40px; width:auto; border-radius:8px; box-shadow: 0 6px 18px rgba(0,0,0,0.45); }
+
+    /* Hero grid */
     .hero{
-      position:relative;overflow:hidden;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:28px;
+      align-items:center;
+      padding:40px 0;
+      position:relative;
     }
-    .hero::before{
-      content:"";position:absolute;inset:0;pointer-events:none;
-      background: radial-gradient(700px 400px at 85% 10%, rgba(201,162,39,.13), transparent 60%);
-      opacity:.9;
+
+    @media(min-width:900px){
+      .hero{ grid-template-columns: 1fr 480px; gap:36px; }
     }
-    .hero-grid{
-      display:grid;gap:40px;align-items:center;
-      grid-template-columns:1fr;
-      padding:96px 0 110px;
+
+    /* accent radial */
+    .accent-radial{
+      position:absolute;
+      right:6%;
+      top:-6%;
+      width:800px;
+      height:500px;
+      pointer-events:none;
+      background: radial-gradient(700px 400px at 85% 10%, rgba(201,162,39,0.14), transparent 60%);
+      filter: blur(10px);
+      z-index:0;
     }
-    @media (min-width:900px){ .hero-grid{grid-template-columns:1fr 1fr} }
-    .headline{
-      font-size:40px;font-weight:600;line-height:1.1;margin:0;
+
+    .hero-left{ position:relative; z-index:1; }
+    h1{
+      margin:0 0 18px 0;
+      font-weight:700;
+      font-size:32px;
+      line-height:1.05;
+      color: #fff;
     }
-    @media (min-width:900px){ .headline{font-size:64px} }
-    .headline strong{display:block;color:var(--accent);font-weight:900}
-    .lead{margin-top:18px;max-width:640px;opacity:.9;font-size:18px}
-    .btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+    h1 .accent-line{
+      display:block;
+      font-weight:800;
+      color: var(--accent);
+      font-size:28px;
+      margin-top:6px;
+    }
+    p.lead{
+      margin:0 0 20px 0;
+      color: rgba(230,244,239,0.95);
+      max-width:56ch;
+      font-size:16px;
+    }
+
+    .buttons{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
     .btn{
-      padding:12px 20px;border-radius:16px;border:1px solid rgba(255,255,255,.2);
-      background:rgba(255,255,255,.06);transition:.2s;
-      box-shadow:0 4px 20px rgba(0,0,0,.08);
-      font-weight:600
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease;
+      border: none;
     }
-    .btn:hover{background:rgba(255,255,255,.14)}
-    .btn-primary{
-      background:rgba(255,255,255,.1);border:none;
+    .btn:active{ transform:translateY(1px) }
+    .btn-whatsapp{
+      background:#0f8a53;
+      color:#fff;
+      box-shadow: 0 8px 20px rgba(15,138,83,0.15);
     }
-    .badges{display:flex;align-items:center;gap:18px;margin-top:20px}
-    .badge-img{height:40px;width:auto;object-fit:contain}
-    .note{font-size:14px;opacity:.85}
-
-    .card-wrap{
-      position:relative;border-radius:28px;background:#fff;color:var(--text-deep);
-      padding:26px;box-shadow:0 30px 60px rgba(0,0,0,.25);
-      isolation:isolate;
-    }
-    .card-wrap::after{
-      content:"";position:absolute;inset:-14px;border-radius:36px;background:rgba(255,255,255,.06);
-      filter:blur(20px);z-index:-1;
-    }
-    .card-grid{display:grid;gap:20px;align-items:center}
-    @media (min-width:900px){ .card-grid{grid-template-columns:1fr 1fr} }
-    .illustration{width:100%;height:260px;object-fit:contain}
-    .card-title{font-size:24px;font-weight:700;margin:0}
-    .list{margin:14px 0 0 0;padding:0;list-style:none;color:var(--text-soft);font-size:16px}
-    .list li{margin:8px 0}
-    .product{
-      margin-top:22px;border:1px solid #d5e9e3;border-radius:22px;
-      padding:18px;background:linear-gradient(135deg, #ffffff, #eefaf2);
-      display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
-    }
-    .product h4{margin:0;color:var(--text-deep);font-size:20px}
-    .product p{margin:6px 0 0 0;color:var(--text-soft)}
-    .cta{
-      background:var(--accent);color:#132d1f;border:none;border-radius:14px;
-      padding:12px 18px;font-weight:700
+    .btn-outline{
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
     }
 
-    /* Features */
-    .features{padding:86px 0}
-    .features-grid{
-      display:grid;gap:18px;grid-template-columns:1fr;
+    .seals{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:20px;
+      flex-wrap:wrap;
     }
-    @media (min-width:900px){ .features-grid{grid-template-columns:repeat(3,1fr)} }
-    .feature{
-      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);
-      border-radius:24px;padding:22px
+    .seals img{ height:40px; display:block; }
+
+    .contact-note{ margin-top:14px; color: rgba(230,244,239,0.75); font-size:14px; }
+
+    /* Card on the right */
+    .card{
+      position:relative;
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(232,249,241,0.95));
+      color:var(--text-deep);
+      padding:18px;
+      box-shadow: 0 20px 60px rgba(2,20,12,0.5);
     }
-    .feature h4{margin:0 0 6px 0;color:var(--accent);font-size:20px}
+    .card-inner{ display:grid; grid-template-columns: 1fr; gap:12px; align-items:center; }
+    @media(min-width:700px){ .card-inner{ grid-template-columns: 1fr 1fr; } }
+    .card img{ width:100%; height:220px; object-fit:contain; display:block; }
+    .card h4{ margin:0 0 6px 0; font-size:18px; }
+    .card p{ margin:0; color:var(--text-soft); font-size:14px; }
 
-    /* Quiénes somos (soft section) */
-    .about{
-      background:var(--soft);color:var(--text-deep);padding:86px 0;
+    .quote-area{
+      margin-top:14px;
+      border-radius:18px;
+      padding:14px;
+      background: linear-gradient(180deg, #fff, #f3fbf6);
+      border: 1px solid rgba(16,120,90,0.06);
     }
-    .about h3{font-size:32px;margin:0 0 12px 0}
-    .about p{max-width:860px;font-size:18px;margin:16px 0;color:#0a3a2d}
-
-    /* Distribución */
-    .dist{padding:86px 0;text-align:center}
-    .dist h3{font-size:32px;margin:0}
-    .dist p{max-width:720px;margin:16px auto 0;opacity:.92}
-    .contact{
-      margin-top:22px;display:inline-flex;gap:10px;align-items:center;
-      background:#fff;color:var(--text-deep);padding:12px 16px;border-radius:16px;
-      box-shadow:0 8px 30px rgba(0,0,0,.18);font-weight:600
+    .quote-area .cta{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
     }
-    .sep{opacity:.5}
 
-    /* Footer */
-    .footer{border-top:1px solid rgba(255,255,255,.12);padding:26px 0;margin-top:20px}
-    .foot-inner{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .foot-logos{display:flex;gap:14px;align-items:center}
-    .foot-text{font-size:14px;opacity:.8}
-    .logo-small{height:32px;width:auto;object-fit:contain}
+    /* modal */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,0.66);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      z-index:60;
+    }
+    .modal{
+      background:#fff;
+      color:var(--text-deep);
+      max-width:920px;
+      width:100%;
+      border-radius:16px;
+      padding:28px;
+      max-height:90vh;
+      overflow:auto;
+      position:relative;
+    }
+    .modal .close{
+      position:absolute;
+      right:14px;
+      top:12px;
+      background:transparent;
+      border:none;
+      font-size:18px;
+      cursor:pointer;
+      color:var(--text-deep);
+      padding:8px;
+    }
 
-    /* Animaciones simples */
-    .fade-up{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease}
-    .fade-up.show{opacity:1;transform:translateY(0)}
+    .modal h2{ margin-top:6px; margin-bottom:12px; font-size:22px; }
+    .modal p{ color: #134234; line-height:1.7; margin-bottom:12px; }
+
+    /* footer small */
+    footer{ margin-top:36px; padding:26px 0; text-align:center; color:rgba(255,255,255,0.6); font-size:13px; }
+
+    /* small utilities */
+    .icon{ display:inline-block; vertical-align:middle; }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="nav-brand">
-        <img class="logo" src="/img/logo-arroz.png" alt="El Patriarca – Logo" />
-        <small>Arroz envejecido • 100% rendidor</small>
-      </div>
-      <img class="logo" src="img/cia.jpeg" alt="Cueva &amp; Asociados – Logo" />
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <h1 class="headline">
-          El Patriarca:
-          <strong>el arroz que rinde y se disfruta</strong>
-        </h1>
-        <p class="lead">Arroz envejecido, nutritivo y cuidadosamente seleccionado. Calidad premium para una mesa exigente.</p>
-        <div class="btns">
-          <a class="btn btn-primary" href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca%2025lb">Quiero distribuir</a>
-          <a class="btn" href="#producto">Conocer el producto</a>
-        </div>
-        <div class="badges">
-          <img class="badge-img" src="/assets/sello-producto-seleccionado.png" alt="Producto seleccionado">
-          <img class="badge-img" src="/assets/hecho-en-ecuador.png" alt="Hecho en Ecuador">
-          <div class="note">Grano largo • Tipo exportación • 25 lb</div>
+  <header>
+    <div class="brand container" style="max-width:var(--max-width);">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="/img/logo-arroz.png" alt="Logo El Patriarca" class="logo" />
+        <div style="display:flex;flex-direction:column;">
+          <strong style="font-size:15px;letter-spacing:0.2px">El Patriarca</strong>
+          <small style="color:rgba(255,255,255,0.6);font-size:12px">Arroz envejecido • Grano largo</small>
         </div>
       </div>
 
-      <div>
-        <div class="card-wrap fade-up" id="cardIntro">
-          <div class="card-grid">
-            <img class="illustration" src="/assets/mascota-patriarca.png" alt="El Patriarca – Ilustración" />
-            <div>
-              <h3 class="card-title">Nuestro arroz</h3>
-              <ul class="list">
-                <li>• Envejecido para un grano más suelto y sabroso.</li>
-                <li>• Selección estricta: rendimiento superior en cocción.</li>
-                <li>• Nutritivo y consistente en cada lote.</li>
-                <li>• Disponible para Costa y Sierra.</li>
-              </ul>
-
-              <div class="product" id="producto">
-                <div>
-                  <h4>El Patriarca 25 lb – Grano largo</h4>
-                  <p>Presentación ideal para familias y Horeca. Consistencia y sabor que marcan la diferencia.</p>
-                </div>
-                <a class="cta" href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca%2025lb">Solicitar cotización</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>      
+      <img src="img/cia.jpeg" alt="Cueva & Asociados" class="cia" />
     </div>
   </header>
 
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="container features-grid">
-      <div class="feature fade-up"><h4>Envejecido premium</h4><p>Maduración que mejora textura, aroma y soltura en el plato.</p></div>
-      <div class="feature fade-up"><h4>Selección y control</h4><p>Tecnología y personal especializado para lotes uniformes y de alto rendimiento.</p></div>
-      <div class="feature fade-up"><h4>Confianza y legado</h4><p>Un legado familiar que continúa con la nueva generación, proyectando tradición y calidad.</p></div>
-    </div>
-  </section>
+  <main class="container" style="max-width:var(--max-width);">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="accent-radial" aria-hidden="true"></div>
 
-  <!-- QUIÉNES SOMOS -->
-  <section class="about">
-    <div class="container">
-      <h3>¿Quiénes somos?</h3>
-      <p>
-        <strong>Cueva &amp; Asociados</strong> fue fundada hace más de 50 años por
-        <strong>Luis Alberto Cueva Echeverría</strong>, un hombre visionario que dedicó su vida al comercio y alquiler de materiales
-        de alta resistencia para barcos de importación y exportación.
-      </p>
-      <p>
-        Hoy, como su nieto —a quien formó como un hijo—, tomo con orgullo ese legado y, junto a mi familia
-        <strong>Cueva González</strong>, damos un nuevo rumbo a la empresa, proyectándola hacia la
-        <strong>producción, distribución y exportación de alimentos de primera necesidad</strong>, especialmente el arroz bajo nuestra marca <strong>El Patriarca</strong>.
-      </p>
-      <p>
-        Este cambio no es solo una evolución empresarial: es la manera de honrar nuestra historia y convertirla en futuro,
-        llevando a más familias un producto que representa tradición, confianza y calidad.
-      </p>
-    </div>
-  </section>
+      <div class="hero-left">
+        <h1 id="hero-title">
+          El Patriarca:
+          <span class="accent-line">arroz envejecido, rendidor y de calidad</span>
+        </h1>
 
-  <!-- DISTRIBUCIÓN -->
-  <section id="distribucion" class="dist">
-    <div class="container">
-      <h3>Distribuye El Patriarca en tu ciudad</h3>
-      <p>Cobertura Costa y Sierra. Entrega desde planta o dentro de ciudad, asistencia inmediata y múltiples formas de pago.</p>
-      <div class="contact">
-        <span>Contacto directo:</span>
-        <a href="tel:+593992210706">+593 99 221 0706</a>
-        <span class="sep">|</span>
-        <a href="mailto:cueva_asociados@outlook.com">cueva_asociados@outlook.com</a>
+        <p class="lead">
+          Arroz envejecido, nutritivo y cuidadosamente seleccionado de calidad prémium para una mesa exigente.
+          Procesos controlados para ofrecer rendimiento en la cocción, aroma y consistencia en cada lote.
+        </p>
+
+        <div class="buttons" role="group" aria-label="Acciones principales">
+          <a class="btn btn-whatsapp" href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca%2025lb" target="_blank" rel="noopener noreferrer">
+            <!-- package icon -->
+            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 16V8a1 1 0 0 0-.553-.894l-8-4a1 1 0 0 0-.894 0l-8 4A1 1 0 0 0 3 8v8a1 1 0 0 0 .553.894l8 4a1 1 0 0 0 .894 0l8-4A1 1 0 0 0 21 16z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M7 7.5v9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M17 7.5v9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            Quiero distribuir
+          </a>
+
+          <button class="btn btn-outline" id="openModalBtn" type="button" aria-haspopup="dialog" aria-controls="modal">
+            <img src="/assets/arroz-patriarca.png" alt="" style="height:18px;width:18px;object-fit:contain" />
+            Conocer el producto
+          </button>
+        </div>
+
+        <div class="seals" aria-hidden="false">
+          <img src="/assets/sello-producto-seleccionado.png" alt="Producto seleccionado" />
+          <img src="/assets/hecho-en-ecuador.png" alt="Hecho en Ecuador" />
+          <div style="color:rgba(230,244,239,0.9); font-size:14px">Grano largo • Proceso de selección • Tipo exportación</div>
+        </div>
+
+        <div class="contact-note">
+          📧 Escríbenos: <span style="text-decoration:underline">cueva_asociados@outlook.com</span>
+        </div>
+      </div>
+
+      <!-- RIGHT CARD -->
+      <aside class="card" aria-label="Información del producto">
+        <div class="card-inner">
+          <div>
+            <img src="/assets/mascota-patriarca.png" alt="Mascota El Patriarca" />
+          </div>
+
+          <div>
+            <h4>El Patriarca 25 lb – Grano largo</h4>
+            <p>Consistencia, sabor y rendimiento en cada saco. Perfecto para familias y negocios Horeca.</p>
+
+            <ul style="margin-top:12px;color:var(--text-soft);padding-left:16px;">
+              <li>Envejecido para un grano más suelto y sabroso.</li>
+              <li>Selección estricta: rendimiento superior en cocción.</li>
+              <li>Nutritivo y consistente en cada lote.</li>
+              <li>Disponible en Costa y Sierra.</li>
+            </ul>
+
+            <div class="quote-area" style="margin-top:14px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+              <div>
+                <strong style="display:block">¿Quieres cotizar?</strong>
+                <small style="color:var(--text-soft)">Solicita precio y condiciones por WhatsApp</small>
+              </div>
+
+              <a class="cta" href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca%2025lb" target="_blank" rel="noopener noreferrer"
+                 style="background:var(--accent); color:#132d1f; padding:10px 14px; border-radius:12px; text-decoration:none; font-weight:700;">
+                <!-- message icon -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M21 12.5A8.5 8.5 0 1 0 6 19l-3 1 1-3A8.5 8.5 0 0 0 21 12.5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Solicitar cotización
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      © <strong>Cueva & Asociados</strong> — El Patriarca. Hecho con tradición y calidad. <br />
+      Derechos reservados.
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" id="modal" role="document" aria-labelledby="modalTitle">
+      <button class="close" id="closeModalBtn" aria-label="Cerrar ventana">
+        <!-- X icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <h2 id="modalTitle">Nuestro arroz</h2>
+
+      <p>
+        Nuestro arroz es el resultado de años de experiencia y perfeccionamiento en la industria arrocera. Cada grano pasa por un <strong>proceso de selección minuciosa</strong>,
+        donde solo se eligen los mejores lotes. Posteriormente es <strong>envejecido bajo condiciones controladas</strong>, lo que permite que adquiera una textura suelta, un sabor más intenso y un aroma que lo diferencia claramente de un arroz común.
+      </p>
+
+      <h2 style="margin-top:18px">¿Quiénes somos?</h2>
+      <p>
+        Cueva & Asociados nació hace más de 50 años gracias a la visión de un fundador que dedicó su vida al comercio y alquiler de materiales de alta resistencia para la industria marítima.
+        Su esfuerzo y compromiso marcaron el inicio de una historia basada en valores sólidos: trabajo, honestidad y excelencia.
+      </p>
+
+      <p>
+        Hoy, ese legado se mantiene vivo y ha tomado un nuevo rumbo bajo la dirección exclusiva de sus actuales representantes, quienes junto con su familia han transformado la empresa hacia la producción, distribución y exportación de alimentos de primera necesidad, con especial énfasis en el arroz, bajo la marca <strong>El Patriarca</strong>.
+      </p>
+
+      <p>
+        Este cambio no es solo una evolución empresarial, sino la reafirmación de una herencia que se convierte en futuro, ofreciendo a los hogares un producto que simboliza tradición, confianza y calidad.
+      </p>
+
+      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca%2025lb" target="_blank" rel="noopener noreferrer" style="background:var(--accent); color:#132d1f; padding:10px 14px; border-radius:12px; text-decoration:none; font-weight:700;">
+          Solicitar cotización
+        </a>
+
+        <button id="closeModalBtn2" style="background:transparent; border:1px solid rgba(0,0,0,0.06); padding:10px 14px; border-radius:12px; cursor:pointer;">
+          Cerrar
+        </button>
       </div>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container foot-inner">
-      <div class="foot-logos">
-        <img class="logo-small" src="/img/logo-arroz.png" alt="El Patriarca – Logo" />
-        <img class="logo-small" src="/img/cia.jpeg" alt="Cueva &amp; Asociados – Logo" />
-      </div>
-      <div class="foot-text">Guayaquil, Ecuador • © <span id="year"></span> Cueva &amp; Asociados</div>
-    </div>
-  </footer>
+  </div>
 
   <script>
-    // Año dinámico en footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Modal logic (vanilla JS)
+    (function(){
+      var openBtn = document.getElementById('openModalBtn');
+      var backdrop = document.getElementById('modalBackdrop');
+      var closeBtn = document.getElementById('closeModalBtn');
+      var closeBtn2 = document.getElementById('closeModalBtn2');
 
-    // Animaciones simples al hacer scroll (sin librerías)
-    const faders = document.querySelectorAll('.fade-up');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){ entry.target.classList.add('show'); io.unobserve(entry.target); }
+      function openModal(){
+        backdrop.style.display = 'flex';
+        backdrop.setAttribute('aria-hidden','false');
+        // trap focus simple
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal(){
+        backdrop.style.display = 'none';
+        backdrop.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        openBtn.focus();
+      }
+
+      openBtn && openBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        openModal();
       });
-    }, { threshold:.18 });
-    faders.forEach(el => io.observe(el));
+      closeBtn && closeBtn.addEventListener('click', closeModal);
+      closeBtn2 && closeBtn2.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', function(e){
+        if(e.target === backdrop) closeModal();
+      });
+
+      // keyboard escape to close
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && backdrop.style.display === 'flex'){
+          closeModal();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
