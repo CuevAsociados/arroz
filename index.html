@@ -160,23 +160,30 @@
     .card h4{ margin:0 0 6px 0; font-size:18px; }
     .card p{ margin:0; color:var(--text-soft); font-size:14px; }
 
-    .quote-area{
-      margin-top:14px;
-      border-radius:18px;
-      padding:14px;
-      background: linear-gradient(180deg, #fff, #f3fbf6);
-      border: 1px solid rgba(16,120,90,0.06);
-    }
-    .quote-area .cta{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:12px;
-      font-weight:700;
-      cursor:pointer;
-      text-decoration:none;
-    }
+    .quote-area {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-radius: 14px;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, #fff9e6, #fbe8a1); /* amarillo suave */
+  border: 1px solid #e2c55a;
+}
+
+.quote-area .cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  background: var(--accent);
+  color: #132d1f;
+}
 
     /* modal */
     .modal-backdrop{
