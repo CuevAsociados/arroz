@@ -59,7 +59,7 @@
       cursor:pointer;
       transition: transform .12s ease, box-shadow .12s ease;
       border: none;
-      min-width:160px; /* ancho mínimo para móviles */
+      min-width:160px;
       justify-content:center;
     }
     .btn:active{ transform:translateY(1px) }
@@ -102,4 +102,24 @@
   </style>
 </head>
 <body>
-  <!-- resto del código igual... -->
+  <div class="container">
+    <h1>El Patriarca</h1>
+    <p>Arroz envejecido, rendidor y de calidad.</p>
+
+    <!-- Botones principales -->
+    <div class="buttons">
+      <a href="#" class="btn btn-whatsapp">Quiero distribuir</a>
+      <button id="openModalBtn" class="btn btn-outline">Conocer el producto</button>
+    </div>
+
+    <!-- Cuadro amarillo cotización -->
+    <div class="quote-area">
+      <div>
+        <strong>¿Quieres cotizar?</strong><br>
+        Solicita precio y condiciones por WhatsApp
+      </div>
+      <a href="#" class="cta">Solicitar cotización</a>
+    </div>
+  </div>
+</body>
+</html>
