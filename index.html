@@ -215,17 +215,17 @@
     .card p{ margin:0; color:var(--text-soft); font-size:14px; }
 
     .quote-area{
-      margin-top:14px;
+      /*margin-top:14px;
       border-radius:18px;
       padding:14px;
       background: linear-gradient(180deg, #fff, #f3fbf6);
-      border: 1px solid rgba(16,120,90,0.06);
+      border: 1px solid rgba(16,120,90,0.06);*/
 
-      margin-top: 14px;
-      display: flex;
-      justify-content: flex-start; /* Alinea todo al inicio */
-      align-items: center;
-      gap: 12px; /* separación entre texto y botón */
+        margin-top: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
     }
     
     /*.quote-area .cta{
@@ -272,6 +272,13 @@
       .cta svg {
         width: 16px;
         height: 16px;
+      }
+
+      .quote-area {
+        justify-content: flex-start; /* se junta el botón al texto */
+        flex-direction: column;      /* opcional: texto arriba, botón abajo */
+        align-items: flex-start;
+        gap: 8px;
       }
     }
     
@@ -401,7 +408,7 @@
           
           <div class="quote-area" style="margin-top:14px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
             <div>
-              <strong style="display:block">¿Quieres cotizar?</strong>
+              <strong style="display:block">¿Quieres cotizar?.</strong>
               <small style="color:var(--text-soft)">Solicita precio y condiciones <span style="text-decoration:underline">cueva_asociados@outlook.com</span></small>
             </div>
       
