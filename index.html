@@ -221,7 +221,8 @@
       background: linear-gradient(180deg, #fff, #f3fbf6);
       border: 1px solid rgba(16,120,90,0.06);
     }
-    .quote-area .cta{
+    
+    /*.quote-area .cta{
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -230,7 +231,44 @@
       font-weight:700;
       cursor:pointer;
       text-decoration:none;
+    }*/
+
+    .cta{
+      background: var(--accent);
+      color: #132d1f;
+      padding: 6px 12px; /* menos alto */
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      transition: background 0.2s ease-in-out;
     }
+
+    .cta svg {
+      flex-shrink: 0;
+    }
+    
+    .cta:hover {
+      background: #e3c94f; /* ejemplo: tono más claro al hover */
+    }
+
+    /* Responsive en móviles */
+    @media (max-width: 480px) {
+      .cta {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        border-radius: 10px;
+      }
+    
+      .cta svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    
 
     /* modal */
     .modal-backdrop{
