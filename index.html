@@ -326,6 +326,42 @@
 
     /* footer small */
     footer{ margin-top:36px; padding:26px 0; text-align:center; color:rgba(255,255,255,0.6); font-size:13px; }
+    /* Sellos o insignias del producto */
+.seals {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.seals img {
+  height: 48px;
+  width: auto;
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+
+.seals img:hover {
+  transform: scale(1.05);
+  opacity: 0.95;
+}
+
+/* Versión móvil */
+@media screen and (max-width: 768px) {
+  .seals {
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .seals img {
+    height: 34px;
+  }
+}
+
 
     /* small utilities */
     .icon{ display:inline-block; vertical-align:middle; }
@@ -338,7 +374,7 @@
         <img src="/img/logo-arroz.png" alt="Logo El Patriarca" class="logo" />
         <div style="display:flex;flex-direction:column;">
           <strong style="font-size:15px;letter-spacing:0.2px">El Patriarca®</strong>
-          <small style="color:rgba(255,255,255,0.6);font-size:12px">Arroz envejecido • Grano largo</small>
+          <small style="color:rgba(255,255,255,0.6);font-size:11px">Arroz envejecido - Grano largo</small>
         </div>
       </div>
 
