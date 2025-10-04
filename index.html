@@ -417,19 +417,114 @@
   }
 }
 
+/* Header principal */
+.main-header {
+  background: transparent;
+  padding: 18px 5%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Logo + texto */
+.brand-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-info img.logo {
+  height: clamp(40px, 6vw, 72px);
+  width: auto;
+  display: block;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-text strong {
+  font-size: clamp(14px, 2vw, 20px);
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+.brand-text small {
+  color: rgba(255,255,255,0.7);
+  font-size: clamp(11px, 1.5vw, 14px);
+}
+
+/* Sellos de calidad */
+.seals {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.seals img {
+  height: clamp(30px, 4vw, 60px);
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.seals img:hover {
+  transform: scale(1.05);
+  opacity: 0.95;
+}
+
+/* Responsividad */
+@media (max-width: 900px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .seals {
+    justify-content: center;
+    margin-top: 12px;
+  }
+
+  .brand-info {
+    justify-content: center;
+  }
+}    
     /* small utilities */
     .icon{ display:inline-block; vertical-align:middle; }
   </style>
 </head>
 <body>
   <header>
-    <div class="brand container" style="max-width:var(--max-width);">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <img src="/img/logo-arroz.png" alt="Logo El Patriarca" class="logo" />
-        <div style="display:flex;flex-direction:column;">
-        <strong style="font-size:15px;letter-spacing:0.2px">El Patriarca®</strong>
-        <small style="color:rgba(255,255,255,0.6);font-size:10px">Arroz envejecido - Grano largo</small>
-        </div>
+    <header class="main-header">
+  <div class="header-content">
+    <div class="brand-info">
+      <img src="/img/logo-arroz.png" alt="Logo El Patriarca" class="logo" />
+      <div class="brand-text">
+        <strong>El Patriarca®</strong>
+        <small>Arroz envejecido – Grano largo</small>
+      </div>
+    </div>
+
+    <div class="seals">
+      <img src="/img/producto6.png" alt="Certificado 1" />
+      <img src="/img/logo9.png" alt="Certificado 2" />
+    </div>
+  </div>
+</header>
+
       </div>
 
       <img src="img/cia3.png" alt="Cueva & Asociados" class="cia" />
