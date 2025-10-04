@@ -362,21 +362,25 @@
   }
 }
 
-/* Sellos responsive */
+/* Sellos responsive universales — Android + iPhone + Desktop */
 .seals {
   display: flex;
   align-items: center;
-  justify-content: center; /* centra horizontalmente */
-  gap: 18px;
-  margin-top: 24px;
-  flex-wrap: wrap; /* permite que bajen si no caben */
+  justify-content: center;
+  gap: 16px;
+  margin-top: 22px;
+  flex-wrap: wrap;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .seals img {
-  height: clamp(32px, 4vw, 60px); /* se adapta según tamaño de pantalla */
-  width: auto;
   display: block;
+  width: auto;
+  height: auto;
+  max-height: 60px;
+  max-width: 30vw;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
   transition: transform 0.25s ease, opacity 0.25s ease;
@@ -387,33 +391,52 @@
   opacity: 0.95;
 }
 
-/* Ajustes finos por tamaño de pantalla */
-@media (max-width: 1024px) {
+/* Tablets horizontales o pantallas medianas */
+@media screen and (max-width: 1024px) {
   .seals {
     gap: 14px;
     margin-top: 20px;
   }
+
+  .seals img {
+    max-height: 50px;
+    max-width: 25vw;
+  }
 }
 
-@media (max-width: 768px) {
+/* Teléfonos medianos (Android, iPhone 14/15) */
+@media screen and (max-width: 768px) {
   .seals {
-    gap: 10px;
+    gap: 12px;
     margin-top: 18px;
   }
 
   .seals img {
-    height: clamp(28px, 8vw, 40px);
+    max-height: 42px;
+    max-width: 35vw;
   }
 }
 
-@media (max-width: 480px) {
+/* Teléfonos pequeños (iPhone SE, Android compactos) */
+@media screen and (max-width: 480px) {
   .seals {
     flex-direction: row;
     justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
   }
 
   .seals img {
-    height: 34px;
+    max-height: 36px;
+    max-width: 42vw;
+  }
+}
+
+/* Ultra pequeños o pantallas anchas tipo “fold” */
+@media screen and (max-width: 360px) {
+  .seals img {
+    max-height: 32px;
+    max-width: 48vw;
   }
 }
 
