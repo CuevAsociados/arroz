@@ -226,7 +226,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 11px;
+        gap: 12px;
         background: linear-gradient(180deg, #fff, #f3fbf6);
         border: 1px solid rgba(16,120,90,0.06);
         border-radius:18px;
@@ -362,6 +362,60 @@
   }
 }
 
+/* Sellos responsive */
+.seals {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centra horizontalmente */
+  gap: 18px;
+  margin-top: 24px;
+  flex-wrap: wrap; /* permite que bajen si no caben */
+  width: 100%;
+}
+
+.seals img {
+  height: clamp(32px, 4vw, 60px); /* se adapta según tamaño de pantalla */
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.seals img:hover {
+  transform: scale(1.06);
+  opacity: 0.95;
+}
+
+/* Ajustes finos por tamaño de pantalla */
+@media (max-width: 1024px) {
+  .seals {
+    gap: 14px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .seals {
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .seals img {
+    height: clamp(28px, 8vw, 40px);
+  }
+}
+
+@media (max-width: 480px) {
+  .seals {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .seals img {
+    height: 34px;
+  }
+}
 
     /* small utilities */
     .icon{ display:inline-block; vertical-align:middle; }
