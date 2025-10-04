@@ -502,6 +502,64 @@
     justify-content: center;
   }
 }    
+/* Ajuste responsive general (sin alterar el diseño actual) */
+
+/* Bloque del logo y texto "El Patriarca" */
+header > div[style*="display:flex"] {
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+header img.logo {
+  height: clamp(45px, 6vw, 70px);
+  width: auto;
+}
+
+header strong {
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+header small {
+  font-size: clamp(11px, 1.6vw, 13px);
+}
+
+/* Sellos (logos de calidad) */
+.seals {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.seals img {
+  height: clamp(30px, 4vw, 60px);
+  width: auto;
+  display: block;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+
+.seals img:hover {
+  transform: scale(1.05);
+  opacity: 0.95;
+}
+
+/* Versión móvil más estrecha */
+@media (max-width: 480px) {
+  .seals {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  header img.logo {
+    height: 50px;
+  }
+}
+    
     /* small utilities */
     .icon{ display:inline-block; vertical-align:middle; }
   </style>
