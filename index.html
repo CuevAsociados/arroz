@@ -57,6 +57,66 @@
       flex-direction: column;
       gap: 10px;
     }
+    /* ================================
+   AJUSTE FINAL RESPONSIVE (MÓVIL)
+   ================================ */
+
+@media (max-width: 768px) {
+
+  /* Texto */
+  h1 {
+    font-size: 24px;
+  }
+
+  h1 .accent-line {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Botones */
+  .buttons,
+  .quote-area {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .btn,
+  .cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Imágenes */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Sellos */
+  .seals {
+    justify-content: center;
+  }
+
+  .seals img {
+    max-height: 36px;
+    max-width: 70%;
+  }
+
+  /* Modal */
+  .modal {
+    width: 100%;
+    max-width: 95%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 20px;
+  }
+}
+
   }
 </style>
 
@@ -458,6 +518,7 @@
 
       <img src="img/cia3.png" alt="Cueva & Asociados" class="cia" />
     </div>
+    
   </header>
 
   <main class="container" style="max-width:var(--max-width);">
