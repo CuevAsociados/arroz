@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>El Patriarca — Arroz envejecido</title>
+  <meta name="description" content="El Patriarca — Arroz envejecido, rendidor y de calidad. Distribución y cotizaciones vía WhatsApp." />
+
+  <style>
+  /* ... Tu CSS actual ... */
+
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 24px;
+    }
+
+    h1 .accent-line {
+      font-size: 20px;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .card {
+      padding: 14px;
+    }
+
+    .card-inner {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      height: 160px;
+    }
+
+    .hero {
+      gap: 18px;
+    }
+
+    .seals img {
+      height: 30px;
+    }
+
+    .modal {
+      padding: 20px;
+    }
+
+    .quote-area {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+@media (max-width: 768px) {
+
+  /* Texto */
+  h1 {
+    font-size: 24px;
+  }
+
+  h1 .accent-line {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Botones */
+  .buttons,
+  .quote-area {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .btn,
+  .cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Imágenes */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Sellos */
+  .seals {
+    justify-content: center;
+  }
+
+  .seals img {
+    max-height: 36px;
+    max-width: 70%;
+  }
+
+  /* Modal */
+  .modal {
+    width: 100%;
+    max-width: 95%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 20px;
+  }
+}
+  }
+</style>
+
+  <style>
+    :root{
+      --bg-deep-1: #052014;
+      --bg-deep-2: #073221;
+      --accent: #C9A227;
+      --white-trans-10: rgba(255,255,255,0.10);
+      --emerald-100: #E6F4EF;
+      --text-deep: #07261b;
+      --text-soft: #2f6a57;
+      --max-width: 1100px;
+      --radius-xl: 24px;
+      --glass: rgba(255,255,255,0.04);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color: #fff;
+      background: linear-gradient(180deg, var(--bg-deep-1) 0%, var(--bg-deep-2) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:28px 20px;
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      /*padding:14px 20px;*/
+      background: #07261b; /*rgba(0,0,0,0.12);*/
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand img.logo{ height:80px; width:auto; display:block; }
+    .brand img.cia{ height:40px; width:auto; border-radius:8px; box-shadow: 0 6px 18px rgba(0,0,0,0.45); }
+
+    /* Hero grid */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:28px;
+      align-items:center;
+      padding:15px 0;
+      position:relative;
+    }
+
+    @media(min-width:900px){
+      .hero{ grid-template-columns: 1fr 480px; gap:36px; }
+    }
+
+    /* accent radial */
+    .accent-radial{
+      position:absolute;
+      right:6%;
+      top:-6%;
+      width:800px;
+      height:500px;
+      pointer-events:none;
+      background: radial-gradient(700px 400px at 85% 10%, rgba(201,162,39,0.14), transparent 60%);
+      filter: blur(10px);
+      z-index:0;
+    }
+
+    .hero-left{ position:relative; z-index:1; }
+    h1{
+      margin:0 0 18px 0;
+      font-weight:700;
+      font-size:32px;
+      line-height:1.05;
+      color: #fff;
+    }
+    h1 .accent-line{
+      display:block;
+      font-weight:800;
+      color: var(--accent);
+      font-size:28px;
+      margin-top:6px;
+    }
+    p.lead{
+      margin:0 0 20px 0;
+      color: rgba(230,244,239,0.95);
+      max-width:56ch;
+      font-size:14px;
+      text-align: justify;
+    }
+
+    .buttons{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease;
+      border: none;
+    }
+    .btn:active{ transform:translateY(1px) }
+    .btn-whatsapp{
+      background:#0f8a53;
+      color:#fff;
+      box-shadow: 0 8px 20px rgba(15,138,83,0.15);
+    }
+    .btn-outline{
+      font-size: 16px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+    }
+
+    .seals{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+    .seals img{ height:40px; display:block; }
+
+    .contact-note{ margin-top:14px; color: rgba(230,244,239,0.75); font-size:14px; }
+
+    /* Card on the right */
+    .card{
+      position:relative;
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(232,249,241,0.95));
+      color:var(--text-deep);
+      padding:18px;
+      box-shadow: 0 20px 60px rgba(2,20,12,0.5);
+    }
+    .card-inner{  grid-template-columns: 1fr; gap:12px; align-items:center; }
+    @media(min-width:700px){ .card-inner{ grid-template-columns: 1fr 1fr; } }
+    .card img{ width:100%; height:220px; object-fit:contain; display:block; }
+    .card h4{ margin:0 0 6px 0; font-size:18px; }
+    .card p{ margin:0; color:var(--text-soft); font-size:14px; }
+
+    .quote-area{
+      /*margin-top:14px;
+      border-radius:18px;
+      padding:14px;
+      background: linear-gradient(180deg, #fff, #f3fbf6);
+      border: 1px solid rgba(16,120,90,0.06);*/
+
+        margin-top: 14px;
+      padding:14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        background: linear-gradient(180deg, #fff, #f3fbf6);
+        border: 1px solid rgba(16,120,90,0.06);
+        border-radius:18px;
+    }
+    
+    /*.quote-area .cta{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+    }*/
+
+    .cta{
+      background: var(--accent);
+      color: #132d1f;
+      padding: 6px 12px; /* menos alto */
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      transition: background 0.2s ease-in-out;
+    }
+
+    .cta svg {
+      flex-shrink: 0;
+    }
+    
+    .cta:hover {
+      background: #e3c94f; /* ejemplo: tono más claro al hover */
+    }
+
+    /* Responsive en móviles */
+    @media (max-width: 480px) {
+      .cta {
+        padding: 20px 10px;
+        font-size: 0.85rem;
+        border-radius: 10px;
+      }
+    
+      .cta svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .quote-area {
+        justify-content: flex-start; /* se junta el botón al texto */
+        flex-direction: column;      /* opcional: texto arriba, botón abajo */
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+    
+
+    /* modal */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,0.66);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      z-index:60;
+    }
+    .modal{
+      background:#fff;
+      color:var(--text-deep);
+      max-width:920px;
+      width:100%;
+      border-radius:16px;
+      padding:28px;
+      max-height:90vh;
+      overflow:auto;
+      position:relative;
+    }
+    .modal .close{
+      position:absolute;
+      right:14px;
+      top:12px;
+      background:transparent;
+      border:none;
+      font-size:18px;
+      cursor:pointer;
+      color:var(--text-deep);
+      padding:8px;
+    }
+
+    .modal h2{ margin-top:6px; margin-bottom:12px; font-size:22px; }
+    .modal p{ color: #134234; line-height:1.7; margin-bottom:12px; }
+
+    /* footer small */
+    footer{ margin-top:36px; padding:26px 0; text-align:center; color:rgba(255,255,255,0.6); font-size:13px; }
+    /* Sellos o insignias del producto */
+.seals {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.seals img {
+  height: 48px;
+  width: auto;
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+
+.seals img:hover {
+  transform: scale(1.05);
+  opacity: 0.95;
+}
+
+/* Versión móvil */
+@media screen and (max-width: 768px) {
+  .seals {
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .seals img {
+    height: 34px;
+  }
+}
+
+/* Sellos responsive universales — Android + iPhone + Desktop */
+.seals {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.seals img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 60px;
+  max-width: 30vw;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.seals img:hover {
+  transform: scale(1.06);
+  opacity: 0.95;
+}
+
+/* Tablets horizontales o pantallas medianas */
+@media screen and (max-width: 1024px) {
+  .seals {
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .seals img {
+    max-height: 50px;
+    max-width: 25vw;
+  }
+}
+
+/* Teléfonos medianos (Android, iPhone 14/15) */
+@media screen and (max-width: 768px) {
+  .seals {
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .seals img {
+    max-height: 42px;
+    max-width: 35vw;
+  }
+}
+
+/* Teléfonos pequeños (iPhone SE, Android compactos) */
+@media screen and (max-width: 480px) {
+  .seals {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .seals img {
+    max-height: 36px;
+    max-width: 42vw;
+  }
+}
+
+/* Ultra pequeños o pantallas anchas tipo “fold” */
+@media screen and (max-width: 360px) {
+  .seals img {
+    max-height: 32px;
+    max-width: 48vw;
+  }
+}
+
+    /* small utilities */
+    .icon{ display:inline-block; vertical-align:middle; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand container" style="max-width:var(--max-width);">
+      <div style="display:flex;align-items:center">
+        <img src="/img/logo-arroz.png" alt="Logo El Patriarca" class="logo" />
+        <div style="display:flex;flex-direction:column;">
+        <strong style="font-size:15px;letter-spacing:0.2px">El Patriarca®</strong>
+        <small style="color:rgba(255,255,255,0.6);font-size:10px">Arroz envejecido - Grano largo</small>
+        </div>
+      </div>
+
+      <img src="img/cia3.png" alt="Cueva & Asociados" class="cia" />
+    </div>
+    
+  </header>
+
+  <main class="container" style="max-width:var(--max-width);">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="accent-radial" aria-hidden="true"></div>
+
+      <div class="hero-left">
+        <h1 id="hero-title">
+          El Patriarca:
+          <span class="accent-line">Arroz envejecido, rendidor y de calidad</span>
+        </h1>
+
+        <p class="lead">
+          Arroz envejecido, nutritivo y seleccionado electronicamente, Garantizando calidad premium para una mesa exigente.
+          Procesos controlados aseguran excelente rendimiento en la cocción, aroma y consistencia en cada lote.
+        </p>
+
+        <div class="buttons" role="group" aria-label="Acciones principales">
+          <a class="btn btn-whatsapp" href="https://wa.me/593992210706?text=Hola%20quiero%20Distribuir%20El%20Patriarca%20" target="_blank" rel="noopener noreferrer">
+            <!-- package icon -->
+            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 16V8a1 1 0 0 0-.553-.894l-8-4a1 1 0 0 0-.894 0l-8 4A1 1 0 0 0 3 8v8a1 1 0 0 0 .553.894l8 4a1 1 0 0 0 .894 0l8-4A1 1 0 0 0 21 16z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M7 7.5v9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M17 7.5v9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            Quiero distribuir
+          </a>
+
+          <button class="btn btn-outline" id="openModalBtn" type="button" aria-haspopup="dialog" aria-controls="modal">
+            <img src="/img/logo-arroz.png" alt="" style="height:20px;width:20px;object-fit:contain" />
+            Conocer el producto
+          </button>
+        </div>
+
+        <div class="seals" aria-hidden="false">
+          <img src="/img/producto6.png" alt="Producto seleccionado" />
+          <img src="/img/logo9.png" alt="Producto seleccionado" />
+        </div>
+  
+
+
+      </div>
+
+      <!-- RIGHT CARD -->
+      <aside class="card" aria-label="Información del producto">
+        <div class="card-inner">
+          <div>
+            <img src="/img/logo-arroz.png" alt="Mascota El Patriarca" />
+          </div>
+
+          <div>
+            <h4>El Patriarca – Grano largo</h4>
+            <p>Consistencia, sabor y rendimiento en cada saco. Perfecto para familias y negocios.</p>
+
+            <ul style="margin-top:12px;color:var(--text-soft);padding-left:16px;">
+              <li>Envejecido para un grano más suelto y sabroso.</li>
+              <li>Calidad garantizada: rendimiento superior en cocción.</li>
+              <li>Nutritivo y consistente en cada lote.</li>
+              <li>Disponible en la Costa.</li>
+            </ul>
+
+
+
+
+            
+          </div>
+          
+          <div class="quote-area" style="margin-top:14px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+            <div>
+              <strong style="display:block">¿Quieres cotizar?</strong>
+              <small style="color:var(--text-soft)">Para más información, precios y condiciones, contáctanos mediante nuestros canales oficiales. <span style="text-decoration:underline"></span></small>
+            </div>
+      <a class="btn btn-whatsapp"
+     href="https://linktr.ee/elpatriarcaec"
+     target="_blank"
+     rel="noopener noreferrer">
+    Canales de contacto
+  </a>
+</div>
+            <a class="cta" href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca%2025lb" target="_blank" rel="noopener noreferrer">
+              <!-- Icono WhatsApp -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.52 3.48A11.9 11.9 0 0 0 12.01 0C5.38 0 .01 5.37.01 12c0 2.11.55 4.18 1.6 6.01L0 24l6.18-1.61A12.02 12.02 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.2-3.48-8.52zm-8.51 18a9.8 9.8 0 0 1-4.98-1.37l-.36-.21-3.67.96.98-3.58-.23-.37A9.83 9.83 0 0 1 2.2 12c0-5.39 4.41-9.8 9.81-9.8 2.62 0 5.08 1.02 6.93 2.87a9.7 9.7 0 0 1 2.87 6.93c0 5.39-4.42 9.8-9.8 9.8zm5.39-7.34c-.29-.15-1.72-.85-1.98-.95-.27-.1-.46-.15-.65.15-.2.29-.75.95-.92 1.14-.17.2-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.44a8.67 8.67 0 0 1-1.6-1.97c-.17-.29-.02-.45.13-.6.14-.14.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.52-.08-.15-.65-1.56-.89-2.14-.23-.56-.47-.49-.65-.5h-.56c-.19 0-.5.07-.76.37-.26.29-1 1-1 2.45s1.02 2.84 1.16 3.04c.14.2 2.01 3.06 4.88 4.29.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.72-.7 1.97-1.38.24-.68.24-1.27.17-1.39-.07-.12-.26-.19-.55-.34z"/>
+              </svg>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+
+
+
+          
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+       <strong>Cueva & Asociados</strong> — El Patriarca. <br />
+      Hecho con tradición y calidad. <br />
+      Derechos reservados® <br />
+      Since 2025
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" id="modal" role="document" aria-labelledby="modalTitle">
+      <button class="close" id="closeModalBtn" aria-label="Cerrar ventana">
+        <!-- X icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+     <h2 id="modalTitle">Nuestro arroz</h2>
+
+<p>
+  Nuestro arroz es el resultado de un proceso riguroso enfocado en calidad, rendimiento y consistencia.
+  Cada grano pasa por un <strong>proceso de selección electrónica</strong>,
+  donde se eligen únicamente los mejores lotes. Posteriormente es
+  <strong>envejecido bajo condiciones controladas</strong>, lo que permite obtener
+  una textura suelta, un sabor equilibrado y un aroma definido que lo diferencia
+  claramente de un arroz común.
+</p>
+
+<h2 style="margin-top:18px">¿Quiénes somos?</h2>
+
+<p>
+  <strong>El Patriarca</strong> es una marca de arroz creada con visión empresarial y un enfoque claro
+  en calidad y responsabilidad. Nace del interés por ofrecer un producto bien trabajado,
+  que cumpla estándares altos y mantenga coherencia en cada entrega.
+</p>
+
+<p>
+  Nuestra marca se construye sobre decisiones firmes, control de procesos y un compromiso real
+  con el cliente. No buscamos improvisar, sino consolidar una propuesta seria que represente
+  confianza, autoridad y respeto por el consumidor.
+</p>
+
+<p>
+  <strong>El Patriarca</strong> es una marca pensada para crecer con orden y sostener su reputación
+  en el tiempo.
+</p>
+
+
+      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20arroz%20El%20Patriarca%20" target="_blank" rel="noopener noreferrer" style="background:var(--accent); color:#132d1f; padding:10px 14px; border-radius:12px; text-decoration:none; font-weight:700;">
+          Solicitar cotización
+        </a>
+
+        <button id="closeModalBtn2" style="background:transparent; border:1px solid rgba(0,0,0,0.06); padding:10px 14px; border-radius:12px; cursor:pointer;">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal logic (vanilla JS)
+    (function(){
+      var openBtn = document.getElementById('openModalBtn');
+      var backdrop = document.getElementById('modalBackdrop');
+      var closeBtn = document.getElementById('closeModalBtn');
+      var closeBtn2 = document.getElementById('closeModalBtn2');
+
+      function openModal(){
+        backdrop.style.display = 'flex';
+        backdrop.setAttribute('aria-hidden','false');
+        // trap focus simple
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal(){
+        backdrop.style.display = 'none';
+        backdrop.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        openBtn.focus();
+      }
+
+      openBtn && openBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        openModal();
+      });
+      closeBtn && closeBtn.addEventListener('click', closeModal);
+      closeBtn2 && closeBtn2.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', function(e){
+        if(e.target === backdrop) closeModal();
+      });
+
+      // keyboard escape to close
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && backdrop.style.display === 'flex'){
+          closeModal();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
