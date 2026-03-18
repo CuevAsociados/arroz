@@ -484,7 +484,26 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <p class="pcard-sub">Papas prefritas premium</p>
       <div class="pcard-line"></div>
       <span class="papas-tag" style="margin-top:0">Nueva línea 2026</span>
-    </div>
+      
+</div>/* ===== CENTRAR IMAGEN PRODUCTO ===== */
+.pcard-img-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  overflow: hidden;
+}
+
+.pcard-img-wrap img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* opcional premium */
+.pcard-img-wrap img {
+  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
+}
   </div>
   <div>
     <span class="slbl">Línea 02</span>
