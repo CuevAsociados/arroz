@@ -221,13 +221,19 @@ section{padding:100px 64px}
 }
 /* Para arroz: recortamos la mitad DERECHA del logo (mascota de arroz blanca) */
 .pcard-img-wrap.arroz img{
-  width:520px; /* doble del ancho del wrap para mostrar solo mitad */
-  max-width:none;
-  position:absolute;
-  right:0; top:50%;transform:translateY(-50%);
-  mix-blend-mode:lighten;
-  filter:drop-shadow(0 4px 20px rgba(201,150,42,0.3));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 260px;
+  overflow: hidden;
 }
+
+  .pcard-img-wrap.arroz img{
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}    
 /* Para papas: centrado del logo (mascota papa amarilla) */
 .pcard-img-wrap.papas {
   display: flex;
