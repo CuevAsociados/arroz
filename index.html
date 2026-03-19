@@ -98,7 +98,6 @@ nav.scrolled .nav-brand img{height:32px}
   color:var(--au);margin-bottom:32px;position:relative;z-index:2;
 }
 .dot{width:4px;height:4px;border-radius:50%;background:var(--au);display:inline-block}
-/* Logo hero — mix-blend-mode lighten oculta el fondo negro del JPEG */
 .hero-logo{
   width:min(700px,88vw);
   position:relative;z-index:2;
@@ -163,6 +162,43 @@ nav.scrolled .nav-brand img{height:32px}
 }
 .stab-arr svg{width:13px;height:13px;stroke:var(--al);fill:none;stroke-width:2}
 
+/* STRIP ACCORDION */
+.stab-parent{
+  border-right:1px solid rgba(7,15,8,0.15);
+  display:flex;flex-direction:column;
+}
+.stab-parent .stab{border-right:none;border-bottom:none}
+.stab-parent .stab.open{background:rgba(0,0,0,0.08)}
+.stab-parent .stab-arr svg{transition:transform .3s}
+.stab-parent .stab.open .stab-arr svg{transform:rotate(90deg)}
+.stab-sub{
+  display:none;
+  flex-direction:column;
+  border-top:1px solid rgba(7,15,8,0.12);
+  background:rgba(0,0,0,0.06);
+}
+.stab-sub.visible{display:flex}
+.stab-sub a{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 48px 14px 78px;
+  text-decoration:none;
+  border-bottom:1px solid rgba(7,15,8,0.08);
+  transition:background .2s;
+}
+.stab-sub a:last-child{border-bottom:none}
+.stab-sub a:hover{background:rgba(0,0,0,0.08)}
+.stab-sub-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gd);opacity:0.35;flex-shrink:0;
+}
+.stab-sub a strong{font-family:var(--fs);font-size:14px;font-weight:700;color:var(--gd)}
+.stab-sub a span{font-size:12px;color:rgba(7,15,8,0.5);font-weight:300;margin-left:4px}
+.stab-sub-arr{
+  margin-left:auto;width:22px;height:22px;border-radius:50%;
+  background:rgba(7,15,8,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.stab-sub-arr svg{width:10px;height:10px;stroke:var(--gd);fill:none;stroke-width:2;opacity:0.6}
+
 /* SECCIONES */
 section{padding:100px 64px}
 .slbl{
@@ -200,7 +236,6 @@ section{padding:100px 64px}
 .ck svg{width:11px;height:11px;stroke:white;fill:none;stroke-width:2.5}
 .feats li strong{color:var(--gd)}
 
-/* Tarjeta visual de producto — usa clip-path para mostrar mitad del logo */
 .pcard{
   background:linear-gradient(145deg,var(--gd),var(--g1));
   border-radius:16px;padding:52px 36px 40px;
@@ -213,13 +248,11 @@ section{padding:100px 64px}
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,transparent,var(--au),transparent);
 }
-/* Imagen recortada del logo principal */
 .pcard-img-wrap{
   width:260px;height:200px;
   margin:0 auto 20px;
   overflow:hidden;position:relative;
 }
-/* Para arroz: centrado del logo (mascota de arroz blanca) */
 .pcard-img-wrap.arroz {
   display: flex;
   justify-content: center;
@@ -227,15 +260,12 @@ section{padding:100px 64px}
   height: 260px;
   overflow: hidden;
 }
-
-/* IMAGEN */
 .pcard-img-wrap.arroz img{
   max-height: 100%;
   width: auto;
   object-fit: contain;
   display: block;
 }    
-/* Para papas: centrado del logo (mascota papa amarilla) */
 .pcard-img-wrap.papas {
   display: flex;
   justify-content: center;
@@ -243,7 +273,6 @@ section{padding:100px 64px}
   height: 260px;
   overflow: hidden;
 }
-
 .pcard-img-wrap.papas img {
   max-height: 100%;
   width: auto;
@@ -263,13 +292,90 @@ section{padding:100px 64px}
   box-shadow:0 6px 20px rgba(201,150,42,.5);
 }
 .pbadge strong{font-size:19px;display:block}
-/* Cert badge en sección arroz */
 .cert-wrap{display:flex;justify-content:center;gap:12px;align-items:center}
 .cert-img{height:58px;filter:brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(3deg);opacity:.8}
 
+/* PRESENTACION 2 LIBRAS */
+#dos-libras{
+  background:var(--cr);
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.pcard-img-wrap.dos-libras {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 320px;
+  overflow: hidden;
+}
+.pcard-img-wrap.dos-libras img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: lighten;
+}
+.grade-badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  background:var(--au);color:var(--gd);
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  padding:6px 18px;border-radius:2px;font-weight:500;
+}
+
+/* PAPITO RICO */
+#papito{
+  background:var(--wh);
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.pcard-img-wrap.papito {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 280px;
+  overflow: hidden;
+}
+.pcard-img-wrap.papito img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: lighten;
+}
+.coccion-box{
+  background:var(--cr);border:1px solid var(--cd);border-left:3px solid var(--g2);
+  padding:18px 22px;border-radius:3px;margin-bottom:20px;
+}
+.coccion-box h4{font-family:var(--fs);font-size:13px;font-weight:700;color:var(--au);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px}
+.coccion-box p{font-size:14px;color:var(--gy);line-height:1.6}
+
+/* CHOLITO */
+#cholito{
+  background:var(--cr);
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.pcard-img-wrap.cholito {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 280px;
+  overflow: hidden;
+}
+.pcard-img-wrap.cholito img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: lighten;
+}
+.linea-tag{
+  display:inline-block;margin-top:16px;
+  background:var(--gy);color:var(--wh);
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  padding:6px 18px;border-radius:2px;font-weight:500;
+}
+
 /* PAPAS */
 #papas{
-  background:var(--cr);
+  background:var(--wh);
   display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
 }
 .papas-tag{
@@ -376,8 +482,8 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   .strip{grid-template-columns:1fr}
   .stab{border-right:none;border-bottom:1px solid rgba(7,15,8,.12)}
   section{padding:64px 20px}
-  #arroz,#papas,#nosotros,.nos-grid,.cto-grid,.proc-head{grid-template-columns:1fr;gap:40px}
-  #papas .pcard{order:-1}
+  #arroz,#dos-libras,#papito,#cholito,#papas,#nosotros,.nos-grid,.cto-grid,.proc-head{grid-template-columns:1fr;gap:40px}
+  #papas .pcard,#papito .pcard,#dos-libras .pcard{order:-1}
   .pasos{grid-template-columns:1fr}
   .ft{grid-template-columns:1fr;gap:24px}
   footer{padding:36px 20px 20px}
@@ -386,6 +492,9 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   .vals{grid-template-columns:1fr}
   .pcard-img-wrap{width:200px;height:160px}
   .pcard-img-wrap.arroz img,.pcard-img-wrap.papas img{width:400px}
+}
+@media(max-width:640px){
+  .strip{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -428,7 +537,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   <div class="hero-stats">
     <div class="hline"></div>
     <div class="hstats">
-      <div style="text-align:center"><div class="hstat-n">2</div><div class="hstat-l">Líneas</div></div>
+      <div style="text-align:center"><div class="hstat-n">4</div><div class="hstat-l">Líneas</div></div>
       <div style="text-align:center"><div class="hstat-n">100%</div><div class="hstat-l">Premium</div></div>
       <div style="text-align:center"><div class="hstat-n">2025</div><div class="hstat-l">Since</div></div>
     </div>
@@ -436,13 +545,42 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   </div>
 </section>
 
-<!-- STRIP -->
+<!-- STRIP — 2 columnas: Arroz (acordeón) + Papas -->
 <div class="strip">
-  <a href="#arroz" class="stab">
-    <div class="stab-n">01</div>
-    <div class="stab-t"><strong>Arroz Envejecido</strong><span>Grano largo · Selección electrónica · Tipo exportación</span></div>
-    <div class="stab-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-  </a>
+  <!-- Ítem 01: Línea Arroz con sub-líneas -->
+  <div class="stab-parent">
+    <div class="stab" id="strip-arroz-toggle" onclick="toggleArrozStrip(this)">
+      <div class="stab-n">01</div>
+      <div class="stab-t">
+        <strong>Línea Arroz</strong>
+        <span>4 presentaciones · Envejecido &amp; natural</span>
+      </div>
+      <div class="stab-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <div class="stab-sub" id="stab-sub-arroz">
+      <a href="#arroz">
+        <span class="stab-sub-dot"></span>
+        <div><strong>El Patriarca 25lb</strong> <span>· Grano largo · Grado I · Tipo exportación</span></div>
+        <div class="stab-sub-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="#dos-libras">
+        <span class="stab-sub-dot"></span>
+        <div><strong>El Patriarca 2lb</strong> <span>· Grano largo fino · Premium · Hogares</span></div>
+        <div class="stab-sub-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="#papito">
+        <span class="stab-sub-dot"></span>
+        <div><strong>Papito Rico</strong> <span>· Arroz especial · Grado II · Grano normal</span></div>
+        <div class="stab-sub-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="#cholito">
+        <span class="stab-sub-dot"></span>
+        <div><strong>Cholito Sabroso</strong> <span>· Línea diaria · Natural · Accesible</span></div>
+        <div class="stab-sub-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+    </div>
+  </div>
+  <!-- Ítem 02: Papas Prefritas -->
   <a href="#papas" class="stab">
     <div class="stab-n">02</div>
     <div class="stab-t"><strong>Papas Prefritas</strong><span>Papa premium · Lista para freír · Nueva línea 2025</span></div>
@@ -450,11 +588,11 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   </a>
 </div>
 
-<!-- ARROZ -->
+<!-- ARROZ 25LB -->
 <section id="arroz">
   <div>
     <span class="slbl">Línea 01</span>
-    <h2 class="stit">Arroz El Patriarca<br><span class="it">Grano Largo</span></h2>
+    <h2 class="stit">Arroz El Patriarca<br><span class="it">Grano Largo · 25 lb</span></h2>
     <p class="pdesc">Arroz envejecido, nutritivo y seleccionado electrónicamente. Garantizamos calidad premium para una mesa exigente con procesos que aseguran rendimiento, aroma y consistencia en cada lote.</p>
     <ul class="feats">
       <li><span class="ck ck-g"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Grano suelto y sabroso</strong> — envejecimiento bajo condiciones controladas</div></li>
@@ -464,13 +602,12 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
     </ul>
     <a href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca%2025lb" class="btn-gold" target="_blank">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
-      Cotizar arroz
+      Cotizar arroz 25lb
     </a>
   </div>
   <div>
     <div class="pcard">
       <div class="pbadge"><strong>25lb</strong>Saco<br>disponible</div>
-      <!-- Mitad derecha del logo = mascota del arroz (grano blanco con lentes) -->
       <div class="pcard-img-wrap arroz">
         <img src="img/logo-arroz.png" alt="El Patriarca Arroz">
       </div>
@@ -478,9 +615,117 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <p class="pcard-sub">Arroz envejecido · Grano Tipo Exportación</p>
       <div class="pcard-line"></div>
       <div class="cert-wrap">
-        <img src= "img/producto6.png"img.logo9.png" alt="Grano Tipo Exportación" class="cert-img">
+        <img src="img/producto6.png" alt="Grano Tipo Exportación" class="cert-img">
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PRESENTACIÓN 2 LIBRAS -->
+<section id="dos-libras">
+  <div>
+    <div class="pcard">
+      <div class="pbadge"><strong>2lb</strong>Bolsa<br>premium</div>
+      <div class="pcard-img-wrap dos-libras">
+        <img src="img/2libras.png" alt="El Patriarca 2 Libras">
+      </div>
+      <p class="pcard-name">El Patriarca®</p>
+      <p class="pcard-sub">Arroz envejecido · Grado I · Grano Largo Fino</p>
+      <div class="pcard-line"></div>
+      <div class="cert-wrap">
+        <span class="grade-badge" style="margin-top:0;background:var(--au);color:var(--gd)">Grado I · Premium</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <span class="slbl">Línea 02</span>
+    <h2 class="stit">Arroz <span class="it">2 Libras</span><br><span class="go">Premium Grado I</span></h2>
+    <p class="pdesc">Arroz envejecido premium Grado I de grano largo fino, con mayor porcentaje de granos enteros. La presentación de 2 libras combina practicidad y exclusividad, ideal para hogares que buscan calidad premium en una cantidad conveniente.</p>
+    <ul class="feats">
+      <li><span class="ck ck-g"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Grano largo fino</strong> — selección bajo altos estándares de calidad</div></li>
+      <li><span class="ck ck-g"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Mayor porcentaje de granos enteros</strong> — presentación impecable en cada plato</div></li>
+      <li><span class="ck ck-g"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Cocción superior</strong> — grano suelto, firme y bien definido</div></li>
+      <li><span class="ck ck-g"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Formato conveniente</strong> — practicidad y exclusividad para el hogar</div></li>
+    </ul>
+    <p style="font-family:var(--fs);font-style:italic;color:var(--au);font-size:16px;margin-bottom:32px;">"Excelencia que se elige en cada comida."</p>
+    <a href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca%202%20Libras" class="btn-gold" target="_blank">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
+      Cotizar 2 Libras
+    </a>
+  </div>
+</section>
+
+<!-- PAPITO RICO -->
+<section id="papito">
+  <div>
+    <span class="slbl">Línea 03</span>
+    <h2 class="stit">Papito <span class="it">Rico</span><br><span class="go">Arroz Envejecido Especial</span></h2>
+    <p class="pdesc">Arroz envejecido especial Grado II de grano normal, ideal para quienes prefieren un grano tradicional con mejor consistencia y rendimiento. Calidad constante en cada cocción.</p>
+    <ul class="feats">
+      <li><span class="ck ck-a"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Grano normal medio</strong> — proceso de envejecimiento que mejora su cocción</div></li>
+      <li><span class="ck ck-a"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Buena uniformidad</strong> — calidad constante en cada lote</div></li>
+      <li><span class="ck ck-a"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Textura suave</strong> — cocción uniforme con ligera cohesión natural</div></li>
+      <li><span class="ck ck-a"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Buen rendimiento</strong> — ideal para consumo diario familiar</div></li>
+    </ul>
+    <div class="coccion-box">
+      <h4>Proporción de cocción</h4>
+      <p>1 taza de arroz + 2 tazas de agua — resultado suave, uniforme y rendidor</p>
+    </div>
+    <a href="https://wa.me/593992210706?text=Hola%20quiero%20info%20sobre%20Papito%20Rico" class="btn-gold" target="_blank">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
+      Cotizar Papito Rico
+    </a>
+  </div>
+  <div>
+    <div class="pcard">
+      <div class="pbadge" style="background:var(--g3);color:var(--wh);box-shadow:0 6px 20px rgba(42,107,49,.5)"><strong style="font-size:14px">GII</strong>Especial</div>
+      <div class="pcard-img-wrap papito">
+        <img src="img/papito.png" alt="Papito Rico">
+      </div>
+      <p class="pcard-name">Papito Rico®</p>
+      <p class="pcard-sub">Arroz envejecido especial · Grado II</p>
+      <div class="pcard-line"></div>
+      <div class="cert-wrap">
+        <span style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:0.1em;text-transform:uppercase">Equilibrio entre calidad y precio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHOLITO SABROSO -->
+<section id="cholito">
+  <div>
+    <div class="pcard">
+      <div class="pbadge" style="background:var(--gy);color:var(--wh);box-shadow:0 6px 20px rgba(122,114,96,.5)"><strong style="font-size:11px">DIARIO</strong>Línea</div>
+      <div class="pcard-img-wrap cholito">
+        <img src="img/cholito.png" alt="Mi Cholo — Cholito Sabroso">
+      </div>
+      <p class="pcard-name">Mi Cholo®</p>
+      <p class="pcard-sub">Cholito Sabroso · Arroz Natural Estándar</p>
+      <div class="pcard-line"></div>
+      <div class="cert-wrap">
+        <span style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:0.1em;text-transform:uppercase">Accesible · Práctico · Cotidiano</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <span class="slbl">Línea 04</span>
+    <h2 class="stit">Mi Cholo<br><span class="it">Cholito Sabroso</span></h2>
+    <p class="pdesc">Arroz natural estándar Grado II diseñado para el consumo diario del hogar. Sin proceso de envejecimiento, conserva mayor humedad natural y ofrece una cocción práctica y accesible.</p>
+    <ul class="feats">
+      <li><span class="ck ck-g"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Grano tipo Grado II</strong> — grano normal / medio para uso diario</div></li>
+      <li><span class="ck ck-g"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Mayor humedad natural</strong> — sin proceso de envejecimiento</div></li>
+      <li><span class="ck ck-g"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Producto accesible</strong> — funcional y práctico para el hogar</div></li>
+      <li><span class="ck ck-g"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Diseñado para consumo cotidiano</strong> — rendimiento confiable cada día</div></li>
+    </ul>
+    <div class="coccion-box">
+      <h4>Proporción de cocción</h4>
+      <p>1 taza de arroz + 1 taza de agua — rápido, práctico y rendidor</p>
+    </div>
+    <a href="https://wa.me/593992210706?text=Hola%20quiero%20info%20sobre%20Mi%20Cholo%20Cholito%20Sabroso" class="btn-gold" target="_blank">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
+      Cotizar Mi Cholo
+    </a>
   </div>
 </section>
 
@@ -489,7 +734,6 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   <div>
     <div class="pcard">
       <div class="pbadge" style="background:var(--g2);color:var(--al);box-shadow:0 6px 20px rgba(27,74,32,.5)"><strong style="font-size:14px">NEW</strong>2026</div>
-      <!-- Mitad izquierda del logo = mascota de la papa (amarilla con sombrero) -->
       <div class="pcard-img-wrap papas">
         <img src="img/papa.png" alt="El Patriarca Papas">
       </div>
@@ -497,10 +741,10 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <p class="pcard-sub">Papas prefritas premium</p>
       <div class="pcard-line"></div>
       <span class="papas-tag" style="margin-top:0">Nueva línea 2026</span>
-</div>
+    </div>
   </div>
   <div>
-    <span class="slbl">Línea 02</span>
+    <span class="slbl">Línea 05</span>
     <h2 class="stit">Papas <span class="it">Prefritas</span><br><span class="go">El Patriarca</span></h2>
     <p class="pdesc">Una nueva línea de papas prefritas premium que mantiene el mismo estándar de calidad que caracteriza a la marca. Producto seleccionado, listo para preparar en restaurantes, negocios y hogares.</p>
     <ul class="feats">
@@ -566,7 +810,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
     <div>
       <span class="slbl">Hablemos</span>
       <h2 class="stit wh">¿Listo para <span class="it" style="color:var(--al)">distribuir</span>?</h2>
-      <p class="cto-p">Para precios, condiciones y disponibilidad de ambas líneas, contáctanos directamente. Respondemos rápido.</p>
+      <p class="cto-p">Para precios, condiciones y disponibilidad de todas las líneas, contáctanos directamente. Respondemos rápido.</p>
       <div class="cto-cards">
         <a href="https://wa.me/593992210706?text=Hola%20quiero%20distribuir%20El%20Patriarca" class="cto-card" target="_blank">
           <div class="cto-icon">
@@ -592,9 +836,12 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
         <label>Producto de interés</label>
         <select>
           <option value="">Selecciona...</option>
-          <option value="Arroz envejecido El Patriarca">Arroz envejecido</option>
+          <option value="Arroz envejecido El Patriarca 25lb">Arroz envejecido 25lb</option>
+          <option value="El Patriarca 2 Libras Premium">El Patriarca 2 Libras</option>
+          <option value="Papito Rico">Papito Rico</option>
+          <option value="Mi Cholo Cholito Sabroso">Mi Cholo (Cholito Sabroso)</option>
           <option value="Papas Prefritas El Patriarca">Papas Prefritas</option>
-          <option value="Ambas líneas">Ambas líneas</option>
+          <option value="Todas las líneas">Todas las líneas</option>
         </select>
       </div>
       <div class="fg">
@@ -622,13 +869,15 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   <div class="ft">
     <div class="fb">
       <img src="img/cia3.png" alt="Cueva & Asociados" style="filter:brightness(0) invert(1)">
-      <p>El Patriarca® es una marca de Cueva &amp; Asociados®. Arroz envejecido y papas prefritas de calidad premium para Ecuador.</p>
+      <p>El Patriarca® es una marca de Cueva &amp; Asociados®. Arroz envejecido, papas prefritas y más líneas de calidad premium para Ecuador.</p>
     </div>
     <div class="fc">
       <h5>Productos</h5>
-      <a href="#arroz">Arroz envejecido</a>
+      <a href="#arroz">Arroz envejecido 25lb</a>
+      <a href="#dos-libras">El Patriarca 2 Libras</a>
+      <a href="#papito">Papito Rico</a>
+      <a href="#cholito">Mi Cholo (Cholito Sabroso)</a>
       <a href="#papas">Papas prefritas</a>
-      <a href="#proceso">Proceso de calidad</a>
     </div>
     <div class="fc">
       <h5>Empresa</h5>
@@ -648,6 +897,10 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').classList.toggle('scrolled',scrollY>50);
 });
+function toggleArrozStrip(el){
+  el.classList.toggle('open');
+  document.getElementById('stab-sub-arroz').classList.toggle('visible');
+}
 function handleSubmit(e){
   e.preventDefault();
   const f=e.target;
