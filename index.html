@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<!-- PayPhone PPaymentButtonBox v1.1 -->
+<link rel="stylesheet" href="https://cdn.payphonetodoesposible.com/box/v1.1/payphone-payment-box.css">
+<script type="module" src="https://cdn.payphonetodoesposible.com/box/v1.1/payphone-payment-box.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -235,7 +238,6 @@ section{padding:100px 64px}
 .ck-a{background:var(--au)}
 .ck svg{width:11px;height:11px;stroke:white;fill:none;stroke-width:2.5}
 .feats li strong{color:var(--gd)}
-
 .pcard{
   background:linear-gradient(145deg,var(--gd),var(--g1));
   border-radius:16px;padding:52px 36px 40px;
@@ -248,37 +250,11 @@ section{padding:100px 64px}
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,transparent,var(--au),transparent);
 }
-.pcard-img-wrap{
-  width:260px;height:200px;
-  margin:0 auto 20px;
-  overflow:hidden;position:relative;
-}
-.pcard-img-wrap.arroz {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 260px;
-  overflow: hidden;
-}
-.pcard-img-wrap.arroz img{
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}    
-.pcard-img-wrap.papas {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 260px;
-  overflow: hidden;
-}
-.pcard-img-wrap.papas img {
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
+.pcard-img-wrap{width:260px;height:200px;margin:0 auto 20px;overflow:hidden;position:relative;}
+.pcard-img-wrap.arroz{display:flex;justify-content:center;align-items:center;height:260px;overflow:hidden;}
+.pcard-img-wrap.arroz img{max-height:100%;width:auto;object-fit:contain;display:block;}
+.pcard-img-wrap.papas{display:flex;justify-content:center;align-items:center;height:260px;overflow:hidden;}
+.pcard-img-wrap.papas img{max-height:100%;width:auto;object-fit:contain;display:block;}
 .pcard-name{font-family:var(--fs);font-size:26px;font-weight:900;color:var(--al);margin-bottom:4px}
 .pcard-sub{font-size:12px;color:rgba(255,255,255,.35);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px}
 .pcard-line{height:1px;background:rgba(201,150,42,.2);margin-bottom:20px}
@@ -295,105 +271,36 @@ section{padding:100px 64px}
 .cert-wrap{display:flex;justify-content:center;gap:12px;align-items:center}
 .cert-img{height:58px;filter:brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(3deg);opacity:.8}
 
-/* PRESENTACION 2 LIBRAS */
-#dos-libras{
-  background:var(--cr);
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-}
-.pcard-img-wrap.dos-libras {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 320px;
-  overflow: hidden;
-}
-.pcard-img-wrap.dos-libras img {
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  mix-blend-mode: lighten;
-}
-.grade-badge{
-  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
-  background:var(--au);color:var(--gd);
-  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-  padding:6px 18px;border-radius:2px;font-weight:500;
-}
+/* 2 LIBRAS */
+#dos-libras{background:var(--cr);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.pcard-img-wrap.dos-libras{display:flex;justify-content:center;align-items:center;height:320px;overflow:hidden;}
+.pcard-img-wrap.dos-libras img{max-height:100%;width:auto;object-fit:contain;display:block;mix-blend-mode:lighten;}
+.grade-badge{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--au);color:var(--gd);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:6px 18px;border-radius:2px;font-weight:500;}
 
-/* PAPITO RICO */
-#papito{
-  background:var(--wh);
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-}
-.pcard-img-wrap.papito {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 280px;
-  overflow: hidden;
-}
-.pcard-img-wrap.papito img {
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  mix-blend-mode: lighten;
-}
-.coccion-box{
-  background:var(--cr);border:1px solid var(--cd);border-left:3px solid var(--g2);
-  padding:18px 22px;border-radius:3px;margin-bottom:20px;
-}
+/* PAPITO */
+#papito{background:var(--wh);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.pcard-img-wrap.papito{display:flex;justify-content:center;align-items:center;height:280px;overflow:hidden;}
+.pcard-img-wrap.papito img{max-height:100%;width:auto;object-fit:contain;display:block;mix-blend-mode:lighten;}
+.coccion-box{background:var(--cr);border:1px solid var(--cd);border-left:3px solid var(--g2);padding:18px 22px;border-radius:3px;margin-bottom:20px;}
 .coccion-box h4{font-family:var(--fs);font-size:13px;font-weight:700;color:var(--au);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px}
 .coccion-box p{font-size:14px;color:var(--gy);line-height:1.6}
 
 /* CHOLITO */
-#cholito{
-  background:var(--cr);
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-}
-.pcard-img-wrap.cholito {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 280px;
-  overflow: hidden;
-}
-.pcard-img-wrap.cholito img {
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  mix-blend-mode: lighten;
-}
-.linea-tag{
-  display:inline-block;margin-top:16px;
-  background:var(--gy);color:var(--wh);
-  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-  padding:6px 18px;border-radius:2px;font-weight:500;
-}
+#cholito{background:var(--cr);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.pcard-img-wrap.cholito{display:flex;justify-content:center;align-items:center;height:280px;overflow:hidden;}
+.pcard-img-wrap.cholito img{max-height:100%;width:auto;object-fit:contain;display:block;mix-blend-mode:lighten;}
+.linea-tag{display:inline-block;margin-top:16px;background:var(--gy);color:var(--wh);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:6px 18px;border-radius:2px;font-weight:500;}
 
 /* PAPAS */
-#papas{
-  background:var(--wh);
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-}
-.papas-tag{
-  display:inline-block;margin-top:16px;
-  background:var(--g2);color:var(--al);
-  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-  padding:6px 18px;border-radius:2px;font-weight:500;
-}
+#papas{background:var(--wh);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.papas-tag{display:inline-block;margin-top:16px;background:var(--g2);color:var(--al);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:6px 18px;border-radius:2px;font-weight:500;}
 
 /* PROCESO */
 #proceso{background:var(--gd);color:var(--wh)}
 .proc-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:64px}
 .proc-head p{font-size:17px;line-height:1.8;color:rgba(255,255,255,.4);font-weight:300}
 .pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.paso{
-  background:rgba(255,255,255,.04);padding:44px 36px;
-  border-top:2px solid var(--au);transition:background .25s;
-}
+.paso{background:rgba(255,255,255,.04);padding:44px 36px;border-top:2px solid var(--au);transition:background .25s;}
 .paso:hover{background:rgba(255,255,255,.08)}
 .paso-n{font-family:var(--fs);font-size:58px;font-weight:900;color:rgba(201,150,42,.14);line-height:1;margin-bottom:20px}
 .paso h3{font-family:var(--fs);font-size:20px;font-weight:700;color:var(--al);margin-bottom:12px}
@@ -404,20 +311,10 @@ section{padding:100px 64px}
 .nos-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .nos-p{font-size:17px;line-height:1.85;color:var(--gy);font-weight:300;margin-bottom:16px}
 .nos-p strong{color:var(--gd);font-weight:500}
-.cia-box{
-  background:var(--gd);border-radius:10px;
-  padding:32px 40px;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid rgba(201,150,42,.2);margin-bottom:16px;
-}
+.cia-box{background:var(--gd);border-radius:10px;padding:32px 40px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,150,42,.2);margin-bottom:16px;}
 .cia-box img{width:100%;max-width:300px}
 .vals{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.val{
-  background:var(--cr);border:1px solid var(--cd);
-  border-left:3px solid var(--g2);
-  padding:20px 18px;border-radius:3px;
-  transition:transform .2s,border-left-color .2s;
-}
+.val{background:var(--cr);border:1px solid var(--cd);border-left:3px solid var(--g2);padding:20px 18px;border-radius:3px;transition:transform .2s,border-left-color .2s;}
 .val:hover{transform:translateY(-3px);border-left-color:var(--au)}
 .val h4{font-family:var(--fs);font-size:15px;font-weight:700;color:var(--gd);margin-bottom:5px}
 .val p{font-size:13px;color:var(--gy);line-height:1.6}
@@ -427,11 +324,7 @@ section{padding:100px 64px}
 .cto-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .cto-p{font-size:17px;line-height:1.8;color:rgba(255,255,255,.4);font-weight:300;margin-bottom:40px}
 .cto-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:0}
-.cto-card{
-  display:flex;align-items:center;gap:18px;padding:18px 22px;
-  background:rgba(255,255,255,.04);border:1px solid rgba(201,150,42,.2);
-  border-radius:4px;text-decoration:none;transition:all .25s;
-}
+.cto-card{display:flex;align-items:center;gap:18px;padding:18px 22px;background:rgba(255,255,255,.04);border:1px solid rgba(201,150,42,.2);border-radius:4px;text-decoration:none;transition:all .25s;}
 .cto-card:hover{background:rgba(201,150,42,.1);border-color:var(--au);transform:translateX(6px)}
 .cto-icon{width:46px;height:46px;min-width:46px;border-radius:50%;background:var(--au);display:flex;align-items:center;justify-content:center}
 .cto-card strong{display:block;font-size:15px;color:var(--wh);font-weight:500}
@@ -440,37 +333,107 @@ section{padding:100px 64px}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .fg{display:flex;flex-direction:column;gap:7px}
 .fg label{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,.32)}
-.fg input,.fg textarea,.fg select{
-  padding:13px 16px;background:rgba(255,255,255,.06);
-  border:1px solid rgba(201,150,42,.18);border-radius:2px;
-  font-family:var(--ff);font-size:15px;color:var(--wh);
-  outline:none;transition:border-color .2s;resize:vertical;
-}
+.fg input,.fg textarea,.fg select{padding:13px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(201,150,42,.18);border-radius:2px;font-family:var(--ff);font-size:15px;color:var(--wh);outline:none;transition:border-color .2s;resize:vertical;}
 .fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.2)}
 .fg select option{background:var(--g1)}
 .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--au)}
-.btn-sub{
-  background:var(--au);color:var(--gd);
-  padding:15px 36px;border:none;border-radius:2px;
-  font-family:var(--ff);font-size:13px;font-weight:500;
-  letter-spacing:0.1em;text-transform:uppercase;
-  cursor:pointer;transition:all .25s;align-self:flex-start;
-  display:flex;align-items:center;gap:10px;
-}
+.btn-sub{background:var(--au);color:var(--gd);padding:15px 36px;border:none;border-radius:2px;font-family:var(--ff);font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all .25s;align-self:flex-start;display:flex;align-items:center;gap:10px;}
 .btn-sub:hover{background:var(--al);transform:translateY(-2px)}
 
 /* FOOTER */
 footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,150,42,.22)}
-.ft{
-  display:grid;grid-template-columns:2fr 1fr 1fr;gap:52px;
-  padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:24px;
-}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr;gap:52px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:24px;}
 .fb img{height:42px;object-fit:contain;margin-bottom:14px;display:block}
 .fb p{font-size:14px;color:rgba(255,255,255,.28);line-height:1.7;max-width:240px}
 .fc h5{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--au);margin-bottom:16px;font-weight:500}
 .fc a{display:block;font-size:14px;color:rgba(255,255,255,.32);text-decoration:none;margin-bottom:10px;transition:color .2s}
 .fc a:hover{color:var(--al)}
 .fb-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(255,255,255,.2)}
+
+/* ===== PAYPHONE ===== */
+.fab-comprar{
+  position:fixed;bottom:28px;right:28px;z-index:300;
+  display:flex;align-items:center;gap:10px;
+  background:var(--au);color:var(--gd);
+  padding:14px 24px;border-radius:50px;
+  font-family:var(--ff);font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  border:none;cursor:pointer;
+  box-shadow:0 8px 30px rgba(201,150,42,.55);
+  transition:all .25s;
+  animation:pulseFab 2.5s ease-in-out infinite;
+}
+.fab-comprar:hover{background:var(--al);transform:translateY(-3px) scale(1.03);animation:none}
+.fab-comprar svg{width:18px;height:18px;flex-shrink:0}
+.fab-badge{
+  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  background:var(--g2);color:var(--al);
+  font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;white-space:nowrap;
+}
+@keyframes pulseFab{0%,100%{box-shadow:0 8px 30px rgba(201,150,42,.55)}50%{box-shadow:0 8px 40px rgba(201,150,42,.85)}}
+.pp-overlay{display:none;position:fixed;inset:0;z-index:400;background:rgba(7,15,8,0.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px;}
+.pp-overlay.active{display:flex}
+.pp-modal{background:var(--gd);border:1px solid rgba(201,150,42,.25);border-radius:16px;width:100%;max-width:500px;overflow:hidden;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6);animation:slideUp .3s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.pp-modal-head{background:linear-gradient(135deg,var(--g1),var(--gd));padding:28px 32px 22px;border-bottom:1px solid rgba(201,150,42,.15);position:relative;}
+.pp-modal-head::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--au),transparent);}
+.pp-modal-head h3{font-family:var(--fs);font-size:22px;font-weight:700;color:var(--al);margin-bottom:4px}
+.pp-modal-head p{font-size:13px;color:rgba(255,255,255,.4);line-height:1.5}
+.pp-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.08);border:none;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;color:rgba(255,255,255,.5);font-size:18px;}
+.pp-close:hover{background:rgba(255,255,255,.16);color:white}
+.pp-modal-body{padding:24px 32px 28px;display:flex;flex-direction:column;gap:16px;max-height:80vh;overflow-y:auto;}
+.pp-field{display:flex;flex-direction:column;gap:7px}
+.pp-field label{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,.32)}
+.pp-field select,.pp-field input[type=text],.pp-field input[type=number]{
+  padding:13px 16px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,150,42,.2);border-radius:4px;
+  font-family:var(--ff);font-size:15px;color:var(--wh);
+  outline:none;transition:border-color .2s;-webkit-appearance:none;
+}
+.pp-field select option{background:var(--g1);color:var(--wh)}
+.pp-field select:focus,.pp-field input:focus{border-color:var(--au)}
+.pp-field input::placeholder{color:rgba(255,255,255,.2)}
+.pp-product-chip{background:rgba(201,150,42,.1);border:1px solid rgba(201,150,42,.3);border-radius:6px;padding:12px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
+.pp-chip-price{font-family:var(--fs);font-size:15px;font-weight:700;color:var(--al);line-height:1.4}
+.pp-chip-min{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;background:var(--g2);color:var(--al);padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.pp-qty-control{display:flex;align-items:center;gap:0}
+.pp-qty-btn{width:46px;height:48px;background:rgba(201,150,42,.15);border:1px solid rgba(201,150,42,.25);color:var(--al);font-size:22px;font-weight:300;cursor:pointer;transition:background .2s;flex-shrink:0;}
+.pp-qty-btn:first-child{border-radius:4px 0 0 4px}
+.pp-qty-btn:last-child{border-radius:0 4px 4px 0}
+.pp-qty-btn:hover{background:rgba(201,150,42,.3)}
+#pp-cantidad{flex:1;text-align:center;padding:13px 8px;background:rgba(255,255,255,.06);border-top:1px solid rgba(201,150,42,.25);border-bottom:1px solid rgba(201,150,42,.25);border-left:none;border-right:none;font-family:var(--fs);font-size:18px;font-weight:700;color:var(--wh);outline:none;-moz-appearance:textfield;}
+#pp-cantidad::-webkit-inner-spin-button,#pp-cantidad::-webkit-outer-spin-button{-webkit-appearance:none}
+.pp-min-warning{display:flex;align-items:center;gap:8px;margin-top:6px;padding:8px 12px;background:rgba(220,50,50,.12);border:1px solid rgba(220,50,50,.3);border-radius:4px;font-size:12px;color:#f87171;}
+.pp-min-warning svg{width:14px;height:14px;stroke:#f87171;fill:none;stroke-width:2;flex-shrink:0}
+.pp-summary{background:rgba(255,255,255,.04);border:1px solid rgba(201,150,42,.15);border-radius:4px;padding:12px 16px;}
+.pp-summary-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.pp-summary-row span:first-child{font-size:13px;color:rgba(255,255,255,.5);line-height:1.5}
+.pp-summary-row span:last-child{font-size:14px;color:var(--al);font-weight:600;white-space:nowrap}
+.pp-total-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(201,150,42,.1);border:1px solid rgba(201,150,42,.25);border-radius:4px;}
+.pp-total-row span{font-size:13px;color:rgba(255,255,255,.5)}
+.pp-total-row strong{font-family:var(--fs);font-size:24px;color:var(--al)}
+.pp-delivery{display:flex;align-items:center;gap:10px;padding:11px 14px;background:rgba(27,74,32,.3);border:1px solid rgba(27,74,32,.5);border-radius:4px;font-size:13px;color:rgba(255,255,255,.65);}
+.pp-delivery svg{flex-shrink:0;width:18px;height:18px;stroke:var(--al);fill:none;stroke-width:2}
+.pp-delivery strong{color:var(--al)}
+.btn-pagar{background:var(--au);color:var(--gd);padding:16px;border:none;border-radius:4px;font-family:var(--ff);font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;}
+.btn-pagar:hover:not(:disabled){background:var(--al);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,150,42,.4)}
+.btn-pagar:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.pp-secure{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:rgba(255,255,255,.25);}
+.pp-secure svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+.pp-box-wrap{display:none;padding:24px 32px 32px;flex-direction:column;gap:16px;}
+.pp-box-wrap.active{display:flex}
+.pp-back{background:none;border:1px solid rgba(201,150,42,.3);color:var(--al);padding:8px 16px;border-radius:4px;font-family:var(--ff);font-size:12px;cursor:pointer;align-self:flex-start;transition:all .2s;letter-spacing:0.06em;display:flex;align-items:center;gap:6px;}
+.pp-back:hover{background:rgba(201,150,42,.1)}
+#pp-payment-box{min-height:180px}
+.pp-success{display:none;padding:40px 32px;text-align:center;flex-direction:column;align-items:center;gap:18px;}
+.pp-success.active{display:flex}
+.pp-success-icon{width:64px;height:64px;border-radius:50%;background:rgba(27,74,32,.4);border:2px solid var(--g3);display:flex;align-items:center;justify-content:center;animation:popIn .4s ease;}
+@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}
+.pp-success-icon svg{width:28px;height:28px;stroke:var(--al);fill:none;stroke-width:2.5}
+.pp-success h3{font-family:var(--fs);font-size:22px;font-weight:700;color:var(--al)}
+.pp-success p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.6;max-width:320px}
+.btn-wa-confirm{background:var(--g2);color:var(--al);padding:14px 28px;border:none;border-radius:4px;font-family:var(--ff);font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:10px;text-decoration:none;}
+.btn-wa-confirm:hover{background:var(--g3);transform:translateY(-2px)}
 
 /* RESPONSIVE */
 @media(max-width:960px){
@@ -481,6 +444,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   .hstats{gap:24px;padding:0 16px}
   .strip{grid-template-columns:1fr}
   .stab{border-right:none;border-bottom:1px solid rgba(7,15,8,.12)}
+  .stab-sub a{padding-left:48px}
   section{padding:64px 20px}
   #arroz,#dos-libras,#papito,#cholito,#papas,#nosotros,.nos-grid,.cto-grid,.proc-head{grid-template-columns:1fr;gap:40px}
   #papas .pcard,#papito .pcard,#dos-libras .pcard{order:-1}
@@ -492,9 +456,21 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   .vals{grid-template-columns:1fr}
   .pcard-img-wrap{width:200px;height:160px}
   .pcard-img-wrap.arroz img,.pcard-img-wrap.papas img{width:400px}
+  .fab-comprar{bottom:16px;right:16px;padding:13px 18px;font-size:12px}
+  .pp-modal{max-width:100%;border-radius:12px 12px 0 0;position:fixed;bottom:0;left:0;right:0;max-height:92vh;}
+  .pp-overlay{align-items:flex-end;padding:0}
+  .pp-modal-body{max-height:75vh}
+  .pp-modal-head{padding:20px 20px 16px}
+  .pp-modal-body{padding:18px 20px 24px}
+  .pp-box-wrap{padding:14px 20px 24px}
+  .pp-success{padding:28px 20px}
 }
-@media(max-width:640px){
-  .strip{grid-template-columns:1fr}
+@media(max-width:480px){
+  .hstat-n{font-size:22px}
+  .stit{font-size:28px}
+  .fab-text{display:none}
+  .fab-comprar{padding:14px;border-radius:50%;width:54px;height:54px;justify-content:center}
+  .fab-badge{display:none}
 }
 </style>
 </head>
@@ -545,9 +521,8 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   </div>
 </section>
 
-<!-- STRIP — 2 columnas: Arroz (acordeón) + Papas -->
+<!-- STRIP -->
 <div class="strip">
-  <!-- Ítem 01: Línea Arroz con sub-líneas -->
   <div class="stab-parent">
     <div class="stab" id="strip-arroz-toggle" onclick="toggleArrozStrip(this)">
       <div class="stab-n">01</div>
@@ -580,7 +555,6 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       </a>
     </div>
   </div>
-  <!-- Ítem 02: Papas Prefritas -->
   <a href="#papas" class="stab">
     <div class="stab-n">02</div>
     <div class="stab-t"><strong>Papas Prefritas</strong><span>Papa premium · Lista para freír · Nueva línea 2025</span></div>
@@ -621,7 +595,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   </div>
 </section>
 
-<!-- PRESENTACIÓN 2 LIBRAS -->
+<!-- 2 LIBRAS -->
 <section id="dos-libras">
   <div>
     <div class="pcard">
@@ -692,7 +666,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   </div>
 </section>
 
-<!-- CHOLITO SABROSO -->
+<!-- CHOLITO -->
 <section id="cholito">
   <div>
     <div class="pcard">
@@ -792,7 +766,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
     </div>
     <div>
       <div class="cia-box">
-        <img src="img/cueva.png" 
+        <img src="img/cueva.png" alt="Cueva & Asociados" style="filter:brightness(0) invert(1)">
       </div>
       <div class="vals">
         <div class="val"><h4>Tradición</h4><p>Raíces ecuatorianas con estándares que trascienden fronteras.</p></div>
@@ -888,30 +862,712 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
     </div>
   </div>
   <div class="fb-bot">
-    <span>© 2025 El Patriarca® — Cueva &amp; Asociados®<br>Global Corporate</h2>. Todos los derechos reservados.</span>
+    <span>© 2025 El Patriarca® — Cueva &amp; Asociados® Global Corporate. Todos los derechos reservados.</span>
     <span>Hecho con tradición y calidad · Ecuador 🇪🇨</span>
   </div>
 </footer>
 
+
+<!-- ================================================================
+     BOTÓN FLOTANTE "COMPRAR AHORA"
+     ================================================================ -->
+<button class="fab-comprar" onclick="openOrderModal()" aria-label="Comprar ahora">
+  <span class="fab-badge">🚚 Entrega en 24h</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61H19a2 2 0 001.97-1.68L23 6H6"/>
+  </svg>
+  <span class="fab-text">Comprar ahora</span>
+</button>
+
+<!-- ================================================================
+     OVERLAY + MODAL DE PAGO (3 pasos)
+     ================================================================ -->
+<div class="pp-overlay" id="pp-overlay" onclick="handleOverlayClick(event)">
+  <div class="pp-modal" id="pp-modal">
+
+    <!-- ── PASO 1: Selección de producto ── -->
+    <div id="pp-step-order">
+      <div class="pp-modal-head">
+        <button class="pp-close" onclick="closePayModal()" aria-label="Cerrar">✕</button>
+        <h3>Hacer pedido</h3>
+        <p>Precios mayoristas · Pago seguro con tarjeta</p>
+      </div>
+      <div class="pp-modal-body">
+
+        <!-- Producto -->
+        <div class="pp-field">
+          <label>Selecciona el producto</label>
+          <select id="pp-producto" onchange="onProductChange()">
+            <option value="">— Elige un producto —</option>
+            <option value="p25">El Patriarca 25lb · Arroz Envejecido Grado I</option>
+            <option value="p2lb">El Patriarca 2lb · Arroz Premium Grado I</option>
+            <option value="papito">Papito Rico 25lb · Arroz Envejecido Grado II</option>
+            <option value="cholito">Cholito Sabroso 25lb · Arroz Natural Estándar</option>
+            <option value="papas_cc">Papas Prefritas con Corteza · Funda 2 kg</option>
+            <option value="papas_sc">Papas Prefritas sin Corteza · Funda 2 kg</option>
+            <option value="custom">Pedido personalizado</option>
+          </select>
+        </div>
+
+        <!-- Chip informativo del producto -->
+        <div id="pp-product-info" style="display:none">
+          <div class="pp-product-chip">
+            <div>
+              <div class="pp-chip-price" id="pp-chip-price"></div>
+              <div class="pp-chip-detail" id="pp-chip-detail"></div>
+            </div>
+            <div class="pp-chip-min" id="pp-chip-min"></div>
+          </div>
+        </div>
+
+        <!-- Selector de cantidad -->
+        <div class="pp-field" id="pp-qty-wrap" style="display:none">
+          <label id="pp-qty-label">Cantidad</label>
+          <div class="pp-qty-control">
+            <button type="button" class="pp-qty-btn" onclick="changeQty(-1)" aria-label="Menos">−</button>
+            <input type="number" id="pp-cantidad" min="1" value="1" oninput="onQtyInput()" aria-label="Cantidad">
+            <button type="button" class="pp-qty-btn" onclick="changeQty(1)" aria-label="Más">+</button>
+          </div>
+          <!-- Aviso mínimo -->
+          <div class="pp-min-warning" id="pp-min-warning" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            <span id="pp-min-warning-text"></span>
+          </div>
+        </div>
+
+        <!-- Monto personalizado -->
+        <div class="pp-field" id="pp-monto-custom-wrap" style="display:none">
+          <label>Monto a pagar (USD)</label>
+          <input type="number" id="pp-monto-custom" min="1" step="0.01"
+                 placeholder="Mínimo $1.00" oninput="updateCustomTotal()">
+          <span class="pp-field-hint">Ingresa el valor exacto de tu pedido</span>
+        </div>
+
+        <!-- Nombre del cliente -->
+        <div class="pp-field">
+          <label>Tu nombre completo</label>
+          <input type="text" id="pp-nombre" placeholder="Para identificar tu pedido">
+        </div>
+
+        <!-- Teléfono -->
+        <div class="pp-field">
+          <label>Teléfono de contacto</label>
+          <input type="tel" id="pp-telefono" placeholder="Ej: 0999 999 999">
+        </div>
+
+        <!-- Dirección de entrega -->
+        <div class="pp-field">
+          <label>Dirección de entrega</label>
+          <input type="text" id="pp-direccion" placeholder="Ej: Guayaquil, Urdesa, Av. Las Monjas">
+        </div>
+
+        <!-- Resumen de compra en tiempo real -->
+        <div class="pp-summary" id="pp-summary" style="display:none">
+          <div class="pp-summary-label">Resumen de tu pedido</div>
+          <div class="pp-summary-calc" id="pp-summary-calc"></div>
+        </div>
+
+        <!-- Total prominente -->
+        <div class="pp-total-row" id="pp-total-row">
+          <div>
+            <span class="pp-total-label">Total a pagar</span>
+            <span class="pp-total-note" id="pp-total-note"></span>
+          </div>
+          <strong class="pp-total-amount" id="pp-total-display">$0.00</strong>
+        </div>
+
+        <!-- Entrega 24h -->
+        <div class="pp-delivery">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3"/>
+            <rect x="9" y="11" width="14" height="10" rx="2"/>
+            <circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          </svg>
+          <span>
+            <strong>Recibe tu pedido en máximo 24 horas</strong><br>
+            <small>Guayaquil y principales ciudades del Ecuador</small>
+          </span>
+        </div>
+
+        <!-- Botón pagar -->
+        <button class="btn-pagar" id="btn-ir-a-pagar" onclick="initPayphone()" disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+            <line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+          Pagar ahora con tarjeta
+        </button>
+
+        <!-- Seguridad -->
+        <div class="pp-secure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Pago 100% seguro · Visa · Mastercard · Diners · Payphone</span>
+        </div>
+
+      </div><!-- /pp-modal-body -->
+    </div><!-- /pp-step-order -->
+
+    <!-- ── PASO 2: Cajita PayPhone ── -->
+    <div class="pp-box-wrap" id="pp-step-payment">
+      <div class="pp-payment-header">
+        <button class="pp-back" onclick="backToOrder()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 5l-7 7 7 7"/>
+          </svg>
+          Volver al pedido
+        </button>
+        <div class="pp-payment-resume" id="pp-payment-resume"></div>
+      </div>
+      <div id="pp-payment-box"></div>
+    </div>
+
+    <!-- ── PASO 3: Pago exitoso ── -->
+    <div class="pp-success" id="pp-step-success">
+      <div class="pp-success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h3>¡Pago exitoso!</h3>
+      <p id="pp-success-msg">Tu pedido fue recibido. Te contactamos pronto para coordinar la entrega.</p>
+      <a href="#" id="btn-wa-after-pay" class="btn-wa-confirm" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+          <path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/>
+        </svg>
+        Confirmar pedido por WhatsApp
+      </a>
+      <button class="pp-back" onclick="closePayModal()" style="align-self:center;margin-top:8px">
+        Cerrar
+      </button>
+    </div>
+
+  </div><!-- /pp-modal -->
+</div><!-- /pp-overlay -->
+
+<!-- ================================================================
+     CSS ADICIONAL DEL MODAL (complementa el CSS del <head>)
+     ================================================================ -->
+<style>
+.pp-chip-detail{font-size:12px;color:rgba(255,255,255,.4);margin-top:3px}
+.pp-field-hint{font-size:11px;color:rgba(255,255,255,.3);margin-top:5px}
+.pp-summary-label{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px}
+.pp-summary-calc{font-family:var(--fs);font-size:18px;color:var(--al);font-weight:700;line-height:1.5}
+.pp-total-label{display:block;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.pp-total-note{display:block;font-size:11px;color:rgba(255,255,255,.25);margin-top:2px}
+.pp-total-amount{font-family:var(--fs);font-size:30px;font-weight:900;color:var(--al);line-height:1}
+.pp-payment-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.pp-payment-resume{font-size:13px;color:rgba(255,255,255,.45);text-align:right;line-height:1.5}
+.pp-delivery small{font-size:11px;color:rgba(255,255,255,.4)}
+</style>
+
+<!-- ================================================================
+     JAVASCRIPT COMPLETO — PayPhone + lógica de productos
+     ================================================================ -->
 <script>
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',scrollY>50);
+/* ──────────────────────────────────────────────
+   SCROLL NAV
+────────────────────────────────────────────── */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 50);
 });
-function toggleArrozStrip(el){
+
+/* ──────────────────────────────────────────────
+   STRIP ACORDEÓN
+────────────────────────────────────────────── */
+function toggleArrozStrip(el) {
   el.classList.toggle('open');
   document.getElementById('stab-sub-arroz').classList.toggle('visible');
 }
-function handleSubmit(e){
+
+/* ──────────────────────────────────────────────
+   FORMULARIO CONTACTO → WHATSAPP
+────────────────────────────────────────────── */
+function handleSubmit(e) {
   e.preventDefault();
-  const f=e.target;
-  const nombre=f.querySelector('input[type=text]').value||'';
-  const tel=f.querySelector('input[type=tel]').value||'';
-  const ciudad=f.querySelectorAll('input[type=text]')[1]?.value||'';
-  const prod=f.querySelectorAll('select')[0].value||'un producto';
-  const neg=f.querySelectorAll('select')[1].value||'';
-  const msg=encodeURIComponent(`Hola, soy ${nombre} de ${ciudad}. Me interesa: ${prod}. Negocio: ${neg}. Tel: ${tel}`);
-  window.open(`https://wa.me/593992210706?text=${msg}`,'_blank');
+  const f = e.target;
+  const nombre = f.querySelector('input[type=text]').value || '';
+  const tel    = f.querySelector('input[type=tel]').value  || '';
+  const ciudad = f.querySelectorAll('input[type=text]')[1]?.value || '';
+  const prod   = f.querySelectorAll('select')[0].value || 'un producto';
+  const neg    = f.querySelectorAll('select')[1].value || '';
+  const msg    = encodeURIComponent(
+    `Hola, soy ${nombre} de ${ciudad}. Me interesa: ${prod}. Negocio: ${neg}. Tel: ${tel}`
+  );
+  window.open(`https://wa.me/593992210706?text=${msg}`, '_blank');
 }
+
+/* ══════════════════════════════════════════════
+   CATÁLOGO DE PRODUCTOS
+   Reglas exactas: precio, mínimo, unidad, detalle
+══════════════════════════════════════════════ */
+const CATALOGO = {
+  p25: {
+    nombre:  'El Patriarca 25lb',
+    precio:  13.00,
+    minQty:  2,
+    unidad:  'funda',
+    detalle: 'Arroz Envejecido Grado I · 25 lb',
+  },
+  p2lb: {
+    nombre:  'El Patriarca 2lb',
+    precio:  1.25,
+    minQty:  100,
+    unidad:  'funda',
+    detalle: 'Arroz Premium Grado I · 2 lb',
+  },
+  papito: {
+    nombre:  'Papito Rico 25lb',
+    precio:  11.00,
+    minQty:  2,
+    unidad:  'funda',
+    detalle: 'Arroz Envejecido Grado II · 25 lb',
+  },
+  cholito: {
+    nombre:  'Cholito Sabroso 25lb',
+    precio:  9.00,
+    minQty:  2,
+    unidad:  'funda',
+    detalle: 'Arroz Natural Estándar · 25 lb',
+  },
+  papas_cc: {
+    nombre:  'Papas Prefritas con Corteza',
+    precio:  10.00,
+    minQty:  1,
+    unidad:  'funda 2 kg',
+    detalle: '$5,00 / kg · presentación exclusiva en funda de 2 kg',
+  },
+  papas_sc: {
+    nombre:  'Papas Prefritas sin Corteza',
+    precio:  10.70,
+    minQty:  1,
+    unidad:  'funda 2 kg',
+    detalle: '$5,35 / kg · presentación exclusiva en funda de 2 kg',
+  },
+  custom: {
+    nombre:  'Pedido personalizado',
+    precio:  0,
+    minQty:  1,
+    unidad:  '',
+    detalle: '',
+  },
+};
+
+/* ──────────────────────────────────────────────
+   CREDENCIALES PAYPHONE (reales)
+────────────────────────────────────────────── */
+const PP_TOKEN   = '0WG7BKI7kVdywr1fDTHTa9AeQqnFEs4JOm3Tnmc82NWK42uHYuph-9lkXry3UeM9CKMBXnJaOobfi2hldQIlAulmEzNdKPJXU567ycCba5XmFld70dORIQ0ylweJVGs-atrXcSg8RHrvR4sPEV8gSzKGijZXn6mB95jqXs58VZEwKvEe0lLwF2TCdJwhWeKHoP3Q6ecVazyzMEd3GashKJp4CoVBhQzMAlw1Kf6fLnRt7jDC4XGO4sA7GvlQ8hBuNB80meuy1C1jWCqu02nYkhy4q4gSu_hNMYONBGH3CYJGMM0Vp0bjiMfJFuIGE7bdpM3_pHFkYxdpEIS-7EssfZ7fZvk';
+const PP_STOREID = '';   // ← deja vacío si usas un solo store, PayPhone lo toma por defecto
+
+/* Estado global del pedido actual */
+let ppOrder = {
+  key:       '',
+  nombre:    '',
+  cantidad:  1,
+  precioUnit:0,
+  total:     0,
+  cliente:   '',
+};
+
+/* ──────────────────────────────────────────────
+   MODAL: abrir / cerrar / overlay
+────────────────────────────────────────────── */
+function openOrderModal() {
+  document.getElementById('pp-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePayModal() {
+  document.getElementById('pp-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+  showStep('order');
+  document.getElementById('pp-payment-box').innerHTML = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('pp-overlay')) closePayModal();
+}
+
+/* ──────────────────────────────────────────────
+   MODAL: cambiar paso
+────────────────────────────────────────────── */
+function showStep(step) {
+  // Paso 1
+  document.getElementById('pp-step-order').style.display =
+    step === 'order' ? 'block' : 'none';
+  // Paso 2
+  document.getElementById('pp-step-payment').classList
+    .toggle('active', step === 'payment');
+  // Paso 3
+  document.getElementById('pp-step-success').classList
+    .toggle('active', step === 'success');
+}
+
+/* ──────────────────────────────────────────────
+   SELECCIÓN DE PRODUCTO
+────────────────────────────────────────────── */
+function onProductChange() {
+  const key        = document.getElementById('pp-producto').value;
+  const infoEl     = document.getElementById('pp-product-info');
+  const qtyWrap    = document.getElementById('pp-qty-wrap');
+  const customWrap = document.getElementById('pp-monto-custom-wrap');
+  const summWrap   = document.getElementById('pp-summary');
+  const warning    = document.getElementById('pp-min-warning');
+
+  // Reset
+  infoEl.style.display     = 'none';
+  qtyWrap.style.display    = 'none';
+  customWrap.style.display = 'none';
+  summWrap.style.display   = 'none';
+  warning.style.display    = 'none';
+  setTotal(0, false);
+
+  if (!key) return;
+
+  const p = CATALOGO[key];
+  infoEl.style.display = 'block';
+
+  if (key === 'custom') {
+    /* ── Pedido personalizado ── */
+    document.getElementById('pp-chip-price').textContent  = 'Monto libre';
+    document.getElementById('pp-chip-detail').textContent = 'Ingresa el valor exacto de tu pedido';
+    document.getElementById('pp-chip-min').textContent    = 'Mínimo $1,00';
+    customWrap.style.display = 'flex';
+    document.getElementById('pp-monto-custom').value = '';
+  } else {
+    /* ── Producto del catálogo ── */
+    document.getElementById('pp-chip-price').textContent  =
+      '$' + p.precio.toFixed(2) + ' / ' + p.unidad;
+    document.getElementById('pp-chip-detail').textContent = p.detalle;
+    document.getElementById('pp-chip-min').textContent    =
+      'Compra mínima: ' + p.minQty + ' ' + p.unidad + (p.minQty > 1 ? 's' : '');
+    document.getElementById('pp-qty-label').textContent =
+      'Cantidad (' + p.unidad + 's)';
+
+    const qi  = document.getElementById('pp-cantidad');
+    qi.min    = p.minQty;
+    qi.value  = p.minQty;
+
+    summWrap.style.display = 'block';
+    qtyWrap.style.display  = 'block';
+    recalc(key, p.minQty);
+  }
+}
+
+/* ──────────────────────────────────────────────
+   CONTROLES DE CANTIDAD  +  /  −
+────────────────────────────────────────────── */
+function changeQty(delta) {
+  const key = document.getElementById('pp-producto').value;
+  if (!key || key === 'custom') return;
+
+  const p  = CATALOGO[key];
+  const qi = document.getElementById('pp-cantidad');
+  let v    = (parseInt(qi.value) || p.minQty) + delta;
+  if (v < p.minQty) v = p.minQty;   // bloquear por debajo del mínimo
+  qi.value = v;
+  recalc(key, v);
+}
+
+function onQtyInput() {
+  const key = document.getElementById('pp-producto').value;
+  if (!key || key === 'custom') return;
+  const v = parseInt(document.getElementById('pp-cantidad').value) || 0;
+  recalc(key, v);
+}
+
+/* ──────────────────────────────────────────────
+   RECALCULAR TOTAL (productos del catálogo)
+────────────────────────────────────────────── */
+function recalc(key, qty) {
+  const p       = CATALOGO[key];
+  const warning = document.getElementById('pp-min-warning');
+  const warnTxt = document.getElementById('pp-min-warning-text');
+  const calcEl  = document.getElementById('pp-summary-calc');
+  const noteEl  = document.getElementById('pp-total-note');
+
+  if (qty < p.minQty) {
+    /* Cantidad por debajo del mínimo → bloquear botón + mostrar aviso */
+    warning.style.display = 'flex';
+    warnTxt.textContent =
+      'Compra mínima: ' + p.minQty + ' ' + p.unidad +
+      's ($' + (p.precio * p.minQty).toFixed(2) + ')';
+    calcEl.textContent = '';
+    noteEl.textContent = '';
+    setTotal(0, false);
+    return;
+  }
+
+  warning.style.display = 'none';
+  const total = p.precio * qty;
+
+  /* Resumen visual: "3 fundas × $13,00 = $39,00" */
+  calcEl.textContent =
+    qty + ' ' + p.unidad + (qty > 1 ? 's' : '') +
+    ' × $' + p.precio.toFixed(2) +
+    ' = $' + total.toFixed(2);
+
+  /* Nota bajo el total */
+  noteEl.textContent = p.detalle;
+
+  setTotal(total, true);
+
+  ppOrder = {
+    key,
+    nombre:     p.nombre,
+    cantidad:   qty,
+    precioUnit: p.precio,
+    total,
+    cliente:    '',
+  };
+}
+
+/* ──────────────────────────────────────────────
+   TOTAL PERSONALIZADO
+────────────────────────────────────────────── */
+function updateCustomTotal() {
+  const v = parseFloat(document.getElementById('pp-monto-custom').value) || 0;
+  document.getElementById('pp-total-note').textContent = '';
+
+  if (v < 1) {
+    setTotal(0, false);
+    return;
+  }
+  setTotal(v, true);
+  ppOrder = {
+    key: 'custom', nombre: 'Pedido personalizado',
+    cantidad: 1, precioUnit: v, total: v, cliente: '',
+  };
+}
+
+/* ──────────────────────────────────────────────
+   HELPER: fijar total en pantalla
+────────────────────────────────────────────── */
+function setTotal(amt, enable) {
+  document.getElementById('pp-total-display').textContent =
+    amt > 0 ? '$' + amt.toFixed(2) : '$0.00';
+  document.getElementById('btn-ir-a-pagar').disabled = !enable;
+}
+
+
+/* ══════════════════════════════════════════════
+   LANZAR PAYPHONE — PPaymentButtonBox
+   Ejecuta SOLO al hacer clic. Nunca al cargar.
+══════════════════════════════════════════════ */
+function initPayphone() {
+
+  /* 1 ─ Producto */
+  var key = document.getElementById('pp-producto').value;
+  if (!key) { alert('Por favor selecciona un producto.'); return; }
+
+  /* 2 ─ Validar mínimos y calcular total */
+  if (key !== 'custom') {
+    var p   = CATALOGO[key];
+    var qty = parseInt(document.getElementById('pp-cantidad').value) || 0;
+    if (qty < p.minQty) {
+      alert('El pedido mínimo para "' + p.nombre + '" es de ' +
+            p.minQty + ' ' + p.unidad + '(s).\nTotal mínimo: $' +
+            (p.precio * p.minQty).toFixed(2));
+      document.getElementById('pp-cantidad').value = p.minQty;
+      recalc(key, p.minQty);
+      return;
+    }
+    ppOrder.cantidad = qty;
+    ppOrder.total    = p.precio * qty;
+  } else {
+    var v = parseFloat(document.getElementById('pp-monto-custom').value) || 0;
+    if (v < 1) { alert('El monto personalizado debe ser mayor a $1,00.'); return; }
+    ppOrder.total = v;
+  }
+
+  /* 3 ─ Validar teléfono y dirección */
+  var nombreVal = (document.getElementById('pp-nombre').value    || '').trim();
+  var telVal    = (document.getElementById('pp-telefono').value  || '').trim();
+  var dirVal    = (document.getElementById('pp-direccion').value || '').trim();
+
+  if (!telVal) {
+    alert('Por favor ingresa tu teléfono de contacto.');
+    document.getElementById('pp-telefono').focus();
+    return;
+  }
+  if (!dirVal) {
+    alert('Por favor ingresa tu dirección de entrega.');
+    document.getElementById('pp-direccion').focus();
+    return;
+  }
+
+  ppOrder.cliente   = nombreVal || 'Cliente';
+  ppOrder.telefono  = telVal;
+  ppOrder.direccion = dirVal;
+
+  if (ppOrder.total <= 0) { alert('El monto no puede ser cero.'); return; }
+
+  /* 4 ─ Pasar a paso 2 */
+  showStep('payment');
+
+  document.getElementById('pp-payment-resume').innerHTML =
+    '<strong style="color:var(--al)">' + ppOrder.nombre + '</strong><br>' +
+    (ppOrder.cantidad > 1 ? ppOrder.cantidad + ' unidades &middot; ' : '') +
+    'Total: <strong style="color:var(--al)">$' + ppOrder.total.toFixed(2) + '</strong>';
+
+  /* 5 ─ Montos en centavos (enteros, sin decimales) */
+  var totalCents = Math.round(ppOrder.total * 100);
+
+  /* 6 ─ ID único de transacción */
+  var clientTxId = 'PAT-' + Date.now();
+
+  /* 7 ─ Reference con todos los datos del pedido */
+  var catItem = ppOrder.key !== 'custom' ? CATALOGO[ppOrder.key] : null;
+  var reference =
+    ppOrder.nombre +
+    ' | ' + ppOrder.cantidad + ' und' +
+    ' | $' + ppOrder.total.toFixed(2) +
+    ' | Tel: ' + ppOrder.telefono +
+    ' | Dir: ' + ppOrder.direccion;
+
+  /* 8 ─ Contenedor + spinner */
+  var box = document.getElementById('pp-payment-box');
+  box.innerHTML =
+    '<div id="pp-load" style="padding:52px 24px;text-align:center">' +
+    '<div class="pp-spinner"></div>' +
+    '<p style="font-size:13px;color:rgba(255,255,255,.35);margin-top:18px">' +
+    'Abriendo formulario de pago\u2026</p></div>';
+
+  /* 9 ─ Esperar a que PPaymentButtonBox esté disponible (módulo ES asíncrono)
+         Polling cada 80 ms, máximo 4 s                                         */
+  var tick = 0;
+  var timer = setInterval(function () {
+    tick++;
+
+    if (typeof PPaymentButtonBox !== 'undefined') {
+      clearInterval(timer);
+      renderBox(box, totalCents, clientTxId, reference);
+    } else if (tick >= 50) {                     /* 50 × 80 ms = 4 s */
+      clearInterval(timer);
+      showError(box);
+    }
+  }, 80);
+}
+
+/* ── Instanciar y renderizar la cajita ── */
+function renderBox(box, totalCents, clientTxId, reference) {
+  /* Quitar spinner */
+  var loader = document.getElementById('pp-load');
+  if (loader) loader.remove();
+
+  try {
+    var ppb = new PPaymentButtonBox({
+      token:               PP_TOKEN,
+      storeId:             PP_STOREID,
+      clientTransactionId: clientTxId,
+      amount:              totalCents,       /* dinámico, en centavos */
+      amountWithoutTax:    totalCents,       /* sin desglose de IVA   */
+      tax:                 0,
+      service:             0,
+      tip:                 0,
+      currency:            'USD',
+      reference:           reference,
+      lang:                'es',
+    });
+
+    /* Renderizar en #pp-payment-box */
+    ppb.render('pp-payment-box');
+
+    /* ── Activar automáticamente el botón/trigger interno de PayPhone ──
+       PayPhone inyecta un <button> o desencadena el modal directamente.
+       Lo buscamos y hacemos clic tras un breve delay para asegurar DOM. */
+    setTimeout(function () {
+      var trigger =
+        box.querySelector('[data-pp-trigger]')        ||
+        box.querySelector('button[class*="payphone"]')||
+        box.querySelector('button[class*="pp-btn"]')  ||
+        box.querySelector('button:not(.pp-back)');
+
+      if (trigger && trigger.tagName === 'BUTTON') {
+        trigger.click();
+      }
+      /* Si PayPhone renderiza directo como iframe ya está visible */
+
+    }, 500);
+
+  } catch (err) {
+    showError(box);
+  }
+}
+
+/* ── Error mínimo: solo mostrar un mensaje limpio ── */
+function showError(box) {
+  box.innerHTML =
+    '<div style="padding:40px 24px;text-align:center">' +
+    '<p style="font-family:var(--fs);font-size:17px;color:var(--al);margin-bottom:10px">' +
+    'No se pudo cargar el formulario de pago</p>' +
+    '<p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:20px">' +
+    'Verifica tu conexi\u00F3n a internet e intenta nuevamente.</p>' +
+    '<button onclick="backToOrder()" ' +
+    'style="background:var(--au);color:var(--gd);border:none;padding:12px 28px;' +
+    'border-radius:4px;font-family:var(--ff);font-size:13px;font-weight:600;' +
+    'letter-spacing:0.08em;text-transform:uppercase;cursor:pointer">' +
+    'Volver al pedido</button></div>';
+}
+
+/* ══════════════════════════════════════════════
+   POST-PAGO: pantalla de éxito + WhatsApp
+   (se ejecuta DESPUÉS de que PayPhone confirma)
+══════════════════════════════════════════════ */
+function onPaymentSuccess(res, txId) {
+  showStep('success');
+
+  var p   = ppOrder;
+  var cat = (p.key !== 'custom') ? CATALOGO[p.key] : null;
+
+  document.getElementById('pp-success-msg').textContent =
+    '¡Gracias ' + p.cliente + '! Tu pago de $' + p.total.toFixed(2) +
+    ' fue aprobado (TX: ' + txId + '). ' +
+    'Te contactaremos en breve para coordinar la entrega en máximo 24 horas.';
+
+  /* WhatsApp de CONFIRMACIÓN post-pago (no es el flujo de compra) */
+  var waMsg = encodeURIComponent(
+    '\u2705 *Pago confirmado \u2014 El Patriarca\u00AE*\n\n' +
+    '\uD83D\uDC64 Cliente: '   + p.cliente               + '\n' +
+    '\uD83D\uDCF1 Tel: '       + (p.telefono  || '')     + '\n' +
+    '\uD83D\uDCCD Dir: '       + (p.direccion || '')     + '\n' +
+    '\uD83D\uDCE6 Producto: '  + p.nombre                + '\n' +
+    (cat ? '   ' + cat.detalle + '\n' : '') +
+    '\uD83D\uDD22 Cantidad: '  + p.cantidad +
+      (cat ? ' ' + cat.unidad + '(s)' : '') + '\n' +
+    '\uD83D\uDCB0 Total: $'    + p.total.toFixed(2)      + '\n' +
+    '\uD83D\uDD16 TX: '        + txId                    + '\n\n' +
+    '\uD83D\uDE9A Coordinar entrega \u2014 m\u00E1ximo 24 horas.'
+  );
+
+  document.getElementById('btn-wa-after-pay').href =
+    'https://wa.me/593992210706?text=' + waMsg;
+}
+
+/* ══════════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════════ */
+function backToOrder() {
+  showStep('order');
+  document.getElementById('pp-payment-box').innerHTML = '';
+}
+
+/* Spinner CSS (inyectado una sola vez) */
+(function () {
+  if (document.getElementById('pp-spinner-css')) return;
+  var s = document.createElement('style');
+  s.id  = 'pp-spinner-css';
+  s.textContent =
+    '.pp-spinner{width:42px;height:42px;' +
+    'border:3px solid rgba(201,150,42,.18);' +
+    'border-top-color:var(--au);border-radius:50%;' +
+    'animation:ppSpin .7s linear infinite;margin:0 auto}' +
+    '@keyframes ppSpin{to{transform:rotate(360deg)}}';
+  document.head.appendChild(s);
+}());
 </script>
 </body>
 </html>
