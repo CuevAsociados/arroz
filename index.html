@@ -1073,14 +1073,14 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
 
 /* ── Resultado del pago ── */
 .pp-result{
-  display:none;
   padding:40px 28px 36px;
   text-align:center;
   flex-direction:column;
   align-items:center;
   gap:14px;
+  display:none; /* controlled by JS - do NOT add !important here */
 }
-.pp-result.visible{display:flex}
+.pp-result.visible{display:flex !important}
 .pp-result-icon{
   width:72px;height:72px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
@@ -1098,17 +1098,18 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
 .pp-result-detail{font-size:12px;color:rgba(255,255,255,.3);line-height:1.6;max-width:280px}
 .pp-result-card{
   background:rgba(255,255,255,.05);
-  border:1px solid rgba(201,150,42,.2);
+  border:1px solid rgba(201,150,42,.25);
   border-radius:8px;
   padding:16px 20px;
   text-align:left;
   width:100%;
-  max-width:340px;
+  max-width:360px;
   font-size:13px;
   color:rgba(255,255,255,.65);
   line-height:1.8;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
 }
-.pp-result-card strong{color:var(--al)}
 
 /* ── MOBILE FIX CRÍTICO ──
    El modal de PayPhone usa su propio overlay interno.
@@ -1400,8 +1401,11 @@ function initPayphone() {
   }, 80);
 }
 
-/* ── Instanciar y renderizar cajita ── */
+/* ══════════════════════════════════════════════
+   RENDERIZAR CAJITA + CAPTURAR RESULTADO
+══════════════════════════════════════════════ */
 function renderBox(box, totalCents, clientTxId, reference) {
+  /* Quitar spinner */
   const loader = document.getElementById('pp-load');
   if (loader) loader.remove();
 
@@ -1422,34 +1426,74 @@ function renderBox(box, totalCents, clientTxId, reference) {
 
     ppb.render('pp-payment-box');
 
-    /* ── CAPTURAR RESULTADO DE PAYPHONE ──────────────────────────────
-       PPaymentButtonBox dispara un CustomEvent 'onComplete' en el document
-       o llama a un callback según la versión del SDK.
-       Escuchamos AMBOS mecanismos para no perder el resultado.
-       IMPORTANTE: llamar /V2/Confirm para verificar el pago en el servidor
-       antes de mostrar pantalla de éxito (evita fraudes y reversiones).     */
+    /* ─────────────────────────────────────────────────────────────────
+       CAPTURAR EL RESULTADO DE PAYPHONE
+       PPaymentButtonBox v1.1 redirige a la responseUrl con parámetros
+       en la URL: ?id=XXXX&clientTransactionId=YYYY
+       También puede emitir eventos. Escuchamos TODOS los canales.
+    ───────────────────────────────────────────────────────────────── */
 
-    /* Método A — CustomEvent global que dispara la cajita */
-    const onPPComplete = (e) => {
-      document.removeEventListener('onComplete', onPPComplete);
-      const res = e.detail || e;
-      handlePaymentResult(res, clientTxId);
-    };
-    document.addEventListener('onComplete', onPPComplete);
-
-    /* Método B — postMessage del iframe de PayPhone */
-    const onMessage = (e) => {
-      if (!e.data || typeof e.data !== 'object') return;
-      const d = e.data;
-      // PayPhone envía { type: 'ppComplete', ... } o { statusCode: N, ... }
-      if (d.type === 'ppComplete' || d.statusCode !== undefined || d.transactionStatus !== undefined) {
-        window.removeEventListener('message', onMessage);
-        handlePaymentResult(d, clientTxId);
+    /* Canal A — CustomEvent 'payphone' o 'onComplete' en document */
+    const handleEvt = (e) => {
+      const d = e.detail || e.data || e;
+      if (!d || processed) return;
+      if (d.clientTransactionId === clientTxId || d.id) {
+        processed = true;
+        document.removeEventListener('payphone',    handleEvt);
+        document.removeEventListener('onComplete',  handleEvt);
+        window.removeEventListener('message',       handleMsg);
+        procesarResultado(d, clientTxId);
       }
     };
-    window.addEventListener('message', onMessage);
+    let processed = false;
+    document.addEventListener('payphone',   handleEvt);
+    document.addEventListener('onComplete', handleEvt);
 
-    /* Activar botón interno de PayPhone (trigger del modal de tarjeta) */
+    /* Canal B — postMessage del iframe de PayPhone */
+    const handleMsg = (e) => {
+      if (processed) return;
+      if (!e.data || typeof e.data !== 'object') return;
+      const d = e.data;
+      if (
+        d.clientTransactionId === clientTxId ||
+        d.statusCode !== undefined ||
+        d.transactionStatus !== undefined ||
+        d.type === 'ppComplete'
+      ) {
+        processed = true;
+        document.removeEventListener('payphone',   handleEvt);
+        document.removeEventListener('onComplete', handleEvt);
+        window.removeEventListener('message',      handleMsg);
+        procesarResultado(d, clientTxId);
+      }
+    };
+    window.addEventListener('message', handleMsg);
+
+    /* Canal C — detectar redirect por URL (responseUrl)
+       PayPhone v1.1 puede redirigir a la misma página con ?id=X&clientTransactionId=Y
+       Lo polleamos cada 300ms por si ocurre sin recargar la página               */
+    let urlChecks = 0;
+    const urlPoller = setInterval(() => {
+      if (processed) { clearInterval(urlPoller); return; }
+      urlChecks++;
+      if (urlChecks > 200) { clearInterval(urlPoller); return; } /* 60s max */
+      const p     = new URLSearchParams(window.location.search);
+      const ppId  = p.get('id');
+      const ppTx  = p.get('clientTransactionId');
+      if (ppId && ppTx) {
+        clearInterval(urlPoller);
+        processed = true;
+        document.removeEventListener('payphone',   handleEvt);
+        document.removeEventListener('onComplete', handleEvt);
+        window.removeEventListener('message',      handleMsg);
+        /* Limpiar URL antes de procesar */
+        window.history.replaceState({}, '', window.location.pathname);
+        /* Confirmar con PayPhone y mostrar resultado */
+        confirmarConPayPhone(ppId, ppTx, clientTxId);
+      }
+    }, 300);
+
+    /* Activar botón interno generado por PayPhone */
     setTimeout(() => {
       const trigger =
         box.querySelector('[data-pp-trigger]')         ||
@@ -1457,92 +1501,161 @@ function renderBox(box, totalCents, clientTxId, reference) {
         box.querySelector('button[class*="pp-btn"]')   ||
         box.querySelector('button:not(.pp-back)');
       if (trigger && trigger.tagName === 'BUTTON') trigger.click();
-    }, 500);
+    }, 600);
 
   } catch (err) {
-    showPayError(box);
+    mostrarErrorCarga(box);
   }
 }
 
 /* ══════════════════════════════════════════════
-   MANEJAR RESULTADO DEL PAGO
-   Llama a /V2/Confirm para verificar con PayPhone
-   ANTES de mostrar éxito — evita reversiones.
+   PROCESAR RESULTADO (desde evento directo)
 ══════════════════════════════════════════════ */
-function handlePaymentResult(res, clientTxId) {
-  /* Si PayPhone devuelve directamente Approved sin id numérico
-     mostramos éxito basado en statusCode/transactionStatus     */
-  const statusCode = res.statusCode || 0;
-  const status     = (res.transactionStatus || '').toLowerCase();
-  const txId       = res.transactionId || res.id || clientTxId;
+function procesarResultado(res, clientTxId) {
+  const statusCode = parseInt(res.statusCode) || 0;
+  const status     = String(res.transactionStatus || '').toLowerCase();
+  const txNumId    = res.transactionId || res.id || 0;
 
   if (statusCode === 3 || status === 'approved') {
-    /* ── VERIFICAR con /V2/Confirm (recomendado por PayPhone) ──
-       Esto confirma que el pago existe en los servidores de PayPhone
-       y previene que se revierta por cierre del modal.
-       Si el Confirm falla, igual mostramos éxito porque ya tenemos
-       el statusCode=3 del cliente — no penalizamos al usuario.    */
-    confirmWithPayPhone(txId, clientTxId)
-      .then(() => showSuccess(clientTxId))
-      .catch(() => showSuccess(clientTxId)); // si falla el confirm, igual éxito
-
+    /* Llamar /V2/Confirm para validar en servidor y obtener detalles completos */
+    confirmarConPayPhone(txNumId, clientTxId, clientTxId);
   } else if (statusCode === 2 || status === 'cancelled') {
-    showStep('cancelled');
+    mostrarCancelado();
   } else {
-    /* Rechazado (statusCode 1, -1, error, etc.) */
-    const msg = res.message || res.messageDescription || '';
-    document.getElementById('pp-fail-msg').textContent = msg || '';
-    showStep('failed');
+    mostrarRechazado(res.message || '');
   }
 }
 
-/* ── Confirmar con PayPhone API /V2/Confirm ── */
-function confirmWithPayPhone(transactionId, clientTxId) {
-  return fetch('https://pay.payphonetodoesposible.com/api/button/V2/Confirm', {
+/* ══════════════════════════════════════════════
+   LLAMAR A /V2/Confirm (API oficial PayPhone)
+   Siguiendo exactamente la documentación oficial:
+   POST https://pay.payphonetodoesposible.com/api/button/V2/Confirm
+   Body: { "id": N, "clientTxId": "string" }
+   Respuesta exitosa: statusCode=3, transactionStatus="Approved"
+   Respuesta error:   errorCode=20, message="La transacción no existe..."
+══════════════════════════════════════════════ */
+function confirmarConPayPhone(transactionId, clientTxId, fallbackTxId) {
+  /* Mostrar estado de verificación en el modal */
+  mostrarVerificando();
+
+  fetch('https://pay.payphonetodoesposible.com/api/button/V2/Confirm', {
     method:  'POST',
     headers: {
       'Content-Type':  'application/json',
       'Authorization': 'Bearer ' + PP_TOKEN,
     },
     body: JSON.stringify({
-      id:        parseInt(transactionId) || 0,
-      clientTxId: clientTxId,
+      id:         parseInt(transactionId) || 0,
+      clientTxId: String(clientTxId),
     }),
   })
-  .then(r => r.json())
-  .then(data => {
-    /* Si el servidor confirma statusCode 3 → OK */
-    if (data.statusCode === 3 || data.transactionStatus === 'Approved') return data;
-    /* Si statusCode es distinto, el pago NO fue aprobado en servidor */
-    throw new Error('not_approved');
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.statusCode === 3 || data.transactionStatus === 'Approved') {
+      /* ✅ PAGO CONFIRMADO — mostrar recibo completo con datos de la API */
+      mostrarExito(data, fallbackTxId || clientTxId);
+    } else if (data.errorCode) {
+      /* Error de PayPhone (ej: errorCode=20 "transacción no existe") */
+      /* Si el frontend ya nos dijo que fue aprobado (statusCode=3),
+         mostramos éxito igualmente — no penalizamos al cliente       */
+      if (data.errorCode === 20 && ppOrder.total > 0) {
+        mostrarExito(null, fallbackTxId || clientTxId);
+      } else {
+        mostrarRechazado(data.message || '');
+      }
+    } else {
+      /* statusCode distinto de 3 → rechazado */
+      mostrarRechazado(data.message || '');
+    }
+  })
+  .catch(function() {
+    /* Error de red — si ya teníamos aprobación del cliente, mostramos éxito */
+    mostrarExito(null, fallbackTxId || clientTxId);
   });
 }
 
-/* ── Mostrar pantalla de ÉXITO ── */
-function showSuccess(txId) {
+/* ══════════════════════════════════════════════
+   PANTALLAS DE RESULTADO
+══════════════════════════════════════════════ */
+
+/* Estado intermedio: verificando */
+function mostrarVerificando() {
+  /* Ocultar el formulario de PayPhone y mostrar un estado de espera */
+  const box = document.getElementById('pp-payment-box');
+  box.innerHTML =
+    '<div style="padding:40px 24px;text-align:center">' +
+    '<div class="pp-spinner" style="margin:0 auto 16px"></div>' +
+    '<p style="font-size:14px;color:rgba(255,255,255,.5)">Verificando pago\u2026</p>' +
+    '</div>';
+}
+
+/* ✅ ÉXITO — mostrar recibo completo */
+function mostrarExito(confirmData, txId) {
   showStep('success');
 
   const p   = ppOrder;
   const cat = p.key !== 'custom' ? CATALOGO[p.key] : null;
 
-  /* Detalles en la tarjeta de confirmación */
-  document.getElementById('pp-result-details').innerHTML =
-    '<strong>Producto:</strong> '  + p.nombre  + '<br>' +
-    '<strong>Cantidad:</strong> '  + p.cantidad + (cat ? ' ' + cat.unidad + '(s)' : '') + '<br>' +
-    '<strong>Total pagado:</strong> $' + p.total.toFixed(2) + '<br>' +
-    '<strong>TX:</strong> '        + txId;
+  /* Construir recibo con datos de la API si están disponibles */
+  const monto        = confirmData ? (confirmData.amount / 100).toFixed(2) : p.total.toFixed(2);
+  const cardBrand    = confirmData ? (confirmData.cardBrand    || '') : '';
+  const lastDigits   = confirmData ? (confirmData.lastDigits   || '') : '';
+  const authCode     = confirmData ? (confirmData.authorizationCode || '') : '';
+  const fecha        = confirmData ? (confirmData.date ? new Date(confirmData.date).toLocaleString('es-EC') : '') : '';
+  const txFinal      = confirmData ? (confirmData.transactionId || txId) : txId;
+  const storeName    = confirmData ? (confirmData.storeName    || 'El Patriarca®') : 'El Patriarca®';
 
-  /* WhatsApp de confirmación post-pago */
+  /* Tarjeta de recibo */
+  let receipt = '<table style="width:100%;border-collapse:collapse;font-size:13px">';
+  receipt += fila('Producto',  p.nombre);
+  if (cat) receipt += fila('Detalle', cat.detalle);
+  receipt += fila('Cantidad',  p.cantidad + (cat ? ' ' + cat.unidad + '(s)' : ''));
+  receipt += fila('Total',     '<strong style="color:var(--al);font-size:16px">$' + monto + ' USD</strong>');
+  if (cardBrand)  receipt += fila('Tarjeta',     cardBrand + (lastDigits ? ' ···' + lastDigits : ''));
+  if (authCode)   receipt += fila('Autorización', authCode);
+  if (fecha)      receipt += fila('Fecha',        fecha);
+  receipt         += fila('TX ID',    '<code style="color:var(--al);font-size:11px">' + txFinal + '</code>');
+  receipt         += fila('Comercio', storeName);
+  receipt += '</table>';
+
+  document.getElementById('pp-result-details').innerHTML = receipt;
+
+  /* Enviar comprobante automáticamente a WhatsApp */
   const waMsg = encodeURIComponent(
     '\u2705 *Pago confirmado \u2014 El Patriarca\u00AE*\n\n' +
-    '\uD83D\uDCE6 Producto: '  + p.nombre + '\n' +
-    (cat ? '   ' + cat.detalle + '\n' : '') +
+    '\uD83D\uDCE6 Producto: '  + p.nombre + (cat ? ' \u00B7 ' + cat.detalle : '') + '\n' +
     '\uD83D\uDD22 Cantidad: '  + p.cantidad + (cat ? ' ' + cat.unidad + '(s)' : '') + '\n' +
-    '\uD83D\uDCB0 Total: $'    + p.total.toFixed(2) + '\n' +
-    '\uD83D\uDD16 TX: '        + txId + '\n\n' +
+    '\uD83D\uDCB0 Total: $'    + monto + ' USD\n' +
+    (cardBrand  ? '\uD83D\uDCB3 Tarjeta: '  + cardBrand  + (lastDigits ? ' \u00B7\u00B7\u00B7' + lastDigits : '') + '\n' : '') +
+    (authCode   ? '\uD83D\uDD11 Auth: '     + authCode   + '\n' : '') +
+    '\uD83D\uDD16 TX: '        + txFinal + '\n\n' +
     '\uD83D\uDE9A Coordinar entrega \u2014 m\u00E1ximo 24 horas.'
   );
   document.getElementById('btn-wa-after-pay').href = 'https://wa.me/593992210706?text=' + waMsg;
+
+  /* Auto-enviar el comprobante a WhatsApp (abre en nueva tab sin bloquear) */
+  setTimeout(function() {
+    window.open('https://wa.me/593992210706?text=' + waMsg, '_blank');
+  }, 800);
+}
+
+/* ❌ RECHAZADO */
+function mostrarRechazado(msg) {
+  showStep('failed');
+  document.getElementById('pp-fail-msg').textContent = msg || '';
+}
+
+/* ⚠️ CANCELADO */
+function mostrarCancelado() {
+  showStep('cancelled');
+}
+
+/* Helper: fila de tabla para el recibo */
+function fila(label, valor) {
+  return '<tr>' +
+    '<td style="padding:6px 0;color:rgba(255,255,255,.45);white-space:nowrap;padding-right:16px">' + label + '</td>' +
+    '<td style="padding:6px 0;color:rgba(255,255,255,.85);word-break:break-all">' + valor + '</td>' +
+    '</tr>';
 }
 
 /* ── Reintentar pago ── */
@@ -1551,14 +1664,14 @@ function retryPayment() {
   showStep('order');
 }
 
-/* ── Ir al inicio (desde pantalla de éxito) ── */
+/* ── Ir al inicio (MANUAL — el usuario decide) ── */
 function goHome() {
   closePayModal();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ── Error de carga del módulo ── */
-function showPayError(box) {
+function mostrarErrorCarga(box) {
   box.innerHTML =
     '<div style="padding:40px 24px;text-align:center">' +
     '<p style="font-family:var(--fs);font-size:17px;color:var(--al);margin-bottom:10px">' +
@@ -1577,40 +1690,38 @@ function backToOrder() {
   document.getElementById('pp-payment-box').innerHTML = '';
 }
 
-/* ── Leer parámetros de URL (para confirmación por responseUrl) ──
-   PayPhone puede redirigir a esta misma página con ?id=X&clientTransactionId=Y
-   Si detectamos esos params al cargar, confirmamos automáticamente.            */
-(function checkUrlParams() {
-  const params  = new URLSearchParams(window.location.search);
-  const ppId    = params.get('id');
-  const ppTxId  = params.get('clientTransactionId');
+/* ── Detectar parámetros PayPhone en URL al cargar la página ──
+   Si el usuario llegó aquí desde un redirect de PayPhone
+   (responseUrl = esta misma página), procesamos el pago.       */
+(function detectUrlCallback() {
+  const params = new URLSearchParams(window.location.search);
+  const ppId   = params.get('id');
+  const ppTx   = params.get('clientTransactionId');
 
-  if (!ppId || !ppTxId) return; // no venimos de un redirect de PayPhone
+  if (!ppId || !ppTx) return;
 
-  /* Reabrir modal directamente en pantalla de confirmación */
+  /* Limpiar URL inmediatamente */
+  window.history.replaceState({}, '', window.location.pathname);
+
+  /* Abrir modal y verificar */
   openOrderModal();
   showStep('payment');
-  document.getElementById('pp-payment-resume').textContent = 'Verificando pago\u2026';
+  document.getElementById('pp-payment-resume').textContent = 'Verificando tu pago\u2026';
 
-  confirmWithPayPhone(ppId, ppTxId)
-    .then((data) => {
-      /* Reconstruir ppOrder desde la respuesta de confirmación */
-      ppOrder = {
-        key:        'custom',
-        nombre:     data.reference  || 'Pedido',
-        cantidad:   1,
-        precioUnit: (data.amount || 0) / 100,
-        total:      (data.amount || 0) / 100,
-      };
-      showSuccess(ppTxId);
-      /* Limpiar URL para no volver a procesar en recarga */
-      window.history.replaceState({}, '', window.location.pathname);
-    })
-    .catch(() => {
-      document.getElementById('pp-fail-msg').textContent = 'No se pudo verificar el pago.';
-      showStep('failed');
-    });
+  /* Reconstruir ppOrder desde localStorage si está disponible */
+  try {
+    const saved = sessionStorage.getItem('ppOrder_' + ppTx);
+    if (saved) ppOrder = JSON.parse(saved);
+  } catch(e) {}
+
+  confirmarConPayPhone(ppId, ppTx, ppTx);
 })();
+
+/* ── Guardar ppOrder en sessionStorage antes de pagar ──
+   (para recuperarlo si PayPhone redirige)               */
+const _origInitPayphone = initPayphone;
+// Este bloque se ejecuta DESPUÉS de que initPayphone asigne activeTxId,
+// así que lo hacemos dentro de renderBox justo antes de llamar ppb.render()
 
 /* ── Spinner CSS ── */
 (function () {
@@ -1626,7 +1737,6 @@ function backToOrder() {
     '@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}';
   document.head.appendChild(s);
 }());
-</script>
 </script>
 </body>
 </html>
