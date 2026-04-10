@@ -1189,6 +1189,10 @@ const PP_STOREID = '';
 /* Estado global del pedido */
 let ppOrder = { key:'', nombre:'', cantidad:1, precioUnit:0, total:0 };
 
+/* Nombre del producto seleccionado — variable independiente
+   persiste aunque ppOrder se reconstruya desde la URL      */
+let productoSeleccionado = '';
+
 /* ID de transacción activo (necesario para /V2/Confirm) */
 let activeTxId = '';
 
@@ -1321,6 +1325,7 @@ function recalc(key, qty) {
   noteEl.textContent = p.detalle;
   setTotal(total, true);
   ppOrder = { key, nombre:p.nombre, cantidad:qty, precioUnit:p.precio, total };
+  productoSeleccionado = p.nombre; /* guardar nombre para el recibo */
 }
 
 function updateCustomTotal() {
@@ -1329,6 +1334,7 @@ function updateCustomTotal() {
   if (v < 1) { setTotal(0, false); return; }
   setTotal(v, true);
   ppOrder = { key:'custom', nombre:'Pedido personalizado', cantidad:1, precioUnit:v, total:v };
+  productoSeleccionado = 'Pedido personalizado'; /* guardar nombre para el recibo */
 }
 
 function setTotal(amt, enable) {
@@ -1379,6 +1385,9 @@ function initPayphone() {
   /* Reference */
   const catItem   = ppOrder.key !== 'custom' ? CATALOGO[ppOrder.key] : null;
   const reference = ppOrder.nombre + ' | ' + ppOrder.cantidad + ' und | $' + ppOrder.total.toFixed(2);
+
+  /* Guardar en sessionStorage para sobrevivir redirect de PayPhone */
+  try { sessionStorage.setItem('pp_producto', productoSeleccionado); } catch(e) {}
 
   /* Spinner */
   const box = document.getElementById('pp-payment-box');
@@ -1596,6 +1605,11 @@ function mostrarExito(confirmData, txId) {
   const p   = ppOrder;
   const cat = p.key !== 'custom' ? CATALOGO[p.key] : null;
 
+  /* Nombre del producto: usar la variable dedicada que se guardó
+     al momento de la selección — siempre tiene el valor correcto,
+     incluso si ppOrder fue reconstruido desde un redirect de URL  */
+  const nombreProducto = productoSeleccionado || p.nombre || (confirmData && confirmData.reference ? confirmData.reference.split('|')[0].trim() : 'Pedido');
+
   /* Construir recibo con datos de la API si están disponibles */
   const monto        = confirmData ? (confirmData.amount / 100).toFixed(2) : p.total.toFixed(2);
   const cardBrand    = confirmData ? (confirmData.cardBrand    || '') : '';
@@ -1607,7 +1621,7 @@ function mostrarExito(confirmData, txId) {
 
   /* Tarjeta de recibo */
   let receipt = '<table style="width:100%;border-collapse:collapse;font-size:13px">';
-  receipt += fila('Producto',  p.nombre);
+  receipt += fila('Producto',  nombreProducto);
   if (cat) receipt += fila('Detalle', cat.detalle);
   receipt += fila('Cantidad',  p.cantidad + (cat ? ' ' + cat.unidad + '(s)' : ''));
   receipt += fila('Total',     '<strong style="color:var(--al);font-size:16px">$' + monto + ' USD</strong>');
@@ -1623,7 +1637,7 @@ function mostrarExito(confirmData, txId) {
   /* Enviar comprobante automáticamente a WhatsApp */
   const waMsg = encodeURIComponent(
     '\u2705 *Pago confirmado \u2014 El Patriarca\u00AE*\n\n' +
-    '\uD83D\uDCE6 Producto: '  + p.nombre + (cat ? ' \u00B7 ' + cat.detalle : '') + '\n' +
+    '\uD83D\uDCE6 Producto: '  + nombreProducto + (cat ? ' \u00B7 ' + cat.detalle : '') + '\n' +
     '\uD83D\uDD22 Cantidad: '  + p.cantidad + (cat ? ' ' + cat.unidad + '(s)' : '') + '\n' +
     '\uD83D\uDCB0 Total: $'    + monto + ' USD\n' +
     (cardBrand  ? '\uD83D\uDCB3 Tarjeta: '  + cardBrand  + (lastDigits ? ' \u00B7\u00B7\u00B7' + lastDigits : '') + '\n' : '') +
@@ -1702,6 +1716,12 @@ function backToOrder() {
 
   /* Limpiar URL inmediatamente */
   window.history.replaceState({}, '', window.location.pathname);
+
+  /* Restaurar nombre del producto desde sessionStorage */
+  try {
+    const saved = sessionStorage.getItem('pp_producto');
+    if (saved) productoSeleccionado = saved;
+  } catch(e) {}
 
   /* Abrir modal y verificar */
   openOrderModal();
