@@ -27,8 +27,8 @@
   --fs:'Playfair Display',Georgia,serif;
   --ff:'DM Sans',sans-serif;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--ff);background:var(--cr);color:var(--gd);overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+body{font-family:var(--ff);background:var(--cr);color:var(--gd);overflow-x:hidden;min-height:100%;}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--gd)}
 ::-webkit-scrollbar-thumb{background:var(--au);border-radius:3px}
@@ -944,24 +944,6 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
           <span class="pp-field-hint">Ingresa el valor exacto de tu pedido</span>
         </div>
 
-        <!-- Nombre del cliente -->
-        <div class="pp-field">
-          <label>Tu nombre completo</label>
-          <input type="text" id="pp-nombre" placeholder="Para identificar tu pedido">
-        </div>
-
-        <!-- Teléfono -->
-        <div class="pp-field">
-          <label>Teléfono de contacto</label>
-          <input type="tel" id="pp-telefono" placeholder="Ej: 0999 999 999">
-        </div>
-
-        <!-- Dirección de entrega -->
-        <div class="pp-field">
-          <label>Dirección de entrega</label>
-          <input type="text" id="pp-direccion" placeholder="Ej: Guayaquil, Urdesa, Av. Las Monjas">
-        </div>
-
         <!-- Resumen de compra en tiempo real -->
         <div class="pp-summary" id="pp-summary" style="display:none">
           <div class="pp-summary-label">Resumen de tu pedido</div>
@@ -1024,23 +1006,49 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <div id="pp-payment-box"></div>
     </div>
 
-    <!-- ── PASO 3: Pago exitoso ── -->
-    <div class="pp-success" id="pp-step-success">
-      <div class="pp-success-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
+    <!-- ── PASO 3: Resultado del pago ── -->
+    <!-- SUCCESS -->
+    <div class="pp-result" id="pp-step-success" style="display:none">
+      <div class="pp-result-icon pp-result-icon--ok">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h3>¡Pago exitoso!</h3>
-      <p id="pp-success-msg">Tu pedido fue recibido. Te contactamos pronto para coordinar la entrega.</p>
+      <h3 class="pp-result-title">¡Pago realizado con éxito!</h3>
+      <p class="pp-result-sub">Tu pedido ha sido confirmado</p>
+      <div class="pp-result-card" id="pp-result-details"></div>
       <a href="#" id="btn-wa-after-pay" class="btn-wa-confirm" target="_blank" rel="noopener">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
-          <path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/>
-        </svg>
-        Confirmar pedido por WhatsApp
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
+        Compartir comprobante por WhatsApp
       </a>
-      <button class="pp-back" onclick="closePayModal()" style="align-self:center;margin-top:8px">
+      <button onclick="goHome()" class="btn-pagar" style="background:var(--g2);margin-top:8px">
+        Regresar al inicio
+      </button>
+    </div>
+    <!-- RECHAZADO -->
+    <div class="pp-result" id="pp-step-failed" style="display:none">
+      <div class="pp-result-icon pp-result-icon--fail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <h3 class="pp-result-title">Pago rechazado</h3>
+      <p class="pp-result-sub">Por favor intenta con otro método de pago</p>
+      <p id="pp-fail-msg" class="pp-result-detail"></p>
+      <button onclick="retryPayment()" class="btn-pagar" style="margin-top:4px">
+        Intentar nuevamente
+      </button>
+      <button onclick="closePayModal()" class="pp-back" style="align-self:center;margin-top:10px">
+        Cancelar
+      </button>
+    </div>
+    <!-- CANCELADO -->
+    <div class="pp-result" id="pp-step-cancelled" style="display:none">
+      <div class="pp-result-icon pp-result-icon--warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      </div>
+      <h3 class="pp-result-title">Pago cancelado</h3>
+      <p class="pp-result-sub">No se realizó ningún cobro</p>
+      <button onclick="retryPayment()" class="btn-pagar" style="margin-top:4px">
+        Volver a intentar
+      </button>
+      <button onclick="closePayModal()" class="pp-back" style="align-self:center;margin-top:10px">
         Cerrar
       </button>
     </div>
@@ -1049,7 +1057,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
 </div><!-- /pp-overlay -->
 
 <!-- ================================================================
-     CSS ADICIONAL DEL MODAL (complementa el CSS del <head>)
+     CSS ADICIONAL DEL MODAL
      ================================================================ -->
 <style>
 .pp-chip-detail{font-size:12px;color:rgba(255,255,255,.4);margin-top:3px}
@@ -1062,33 +1070,93 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
 .pp-payment-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 .pp-payment-resume{font-size:13px;color:rgba(255,255,255,.45);text-align:right;line-height:1.5}
 .pp-delivery small{font-size:11px;color:rgba(255,255,255,.4)}
+
+/* ── Resultado del pago ── */
+.pp-result{
+  display:none;
+  padding:40px 28px 36px;
+  text-align:center;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.pp-result.visible{display:flex}
+.pp-result-icon{
+  width:72px;height:72px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  animation:popIn .4s ease;flex-shrink:0;
+}
+.pp-result-icon svg{width:32px;height:32px}
+.pp-result-icon--ok{background:rgba(27,74,32,.45);border:2px solid var(--g3)}
+.pp-result-icon--ok svg{stroke:var(--al)}
+.pp-result-icon--fail{background:rgba(180,30,30,.25);border:2px solid rgba(220,50,50,.5)}
+.pp-result-icon--fail svg{stroke:#f87171}
+.pp-result-icon--warn{background:rgba(201,150,42,.15);border:2px solid rgba(201,150,42,.4)}
+.pp-result-icon--warn svg{stroke:var(--al)}
+.pp-result-title{font-family:var(--fs);font-size:22px;font-weight:700;color:var(--al);line-height:1.2}
+.pp-result-sub{font-size:14px;color:rgba(255,255,255,.55);line-height:1.5}
+.pp-result-detail{font-size:12px;color:rgba(255,255,255,.3);line-height:1.6;max-width:280px}
+.pp-result-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(201,150,42,.2);
+  border-radius:8px;
+  padding:16px 20px;
+  text-align:left;
+  width:100%;
+  max-width:340px;
+  font-size:13px;
+  color:rgba(255,255,255,.65);
+  line-height:1.8;
+}
+.pp-result-card strong{color:var(--al)}
+
+/* ── MOBILE FIX CRÍTICO ──
+   El modal de PayPhone usa su propio overlay interno.
+   Debemos permitir scroll completo dentro del contenedor.    */
+.pp-overlay{
+  /* NO poner overflow:hidden aquí — mata el scroll del formulario PayPhone */
+  -webkit-overflow-scrolling:touch;
+}
+.pp-modal{
+  /* scroll natural, sin truncar el formulario de tarjeta */
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  /* NO height:100vh — usar max-height con scroll */
+}
+/* El box donde PayPhone inyecta el formulario:
+   debe poder crecer sin restricciones             */
+#pp-payment-box{
+  min-height:200px;
+  overflow:visible;
+}
+/* Cuando el teclado virtual sube en móvil,
+   el modal debe poder scrollear hacia el botón Pagar */
+.pp-box-wrap.active{
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:32px; /* espacio extra para el botón Pagar */
+}
 </style>
 
 <!-- ================================================================
      JAVASCRIPT COMPLETO — PayPhone + lógica de productos
      ================================================================ -->
 <script>
-/* ──────────────────────────────────────────────
-   SCROLL NAV
-────────────────────────────────────────────── */
+/* ── Scroll nav ── */
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', scrollY > 50);
 });
 
-/* ──────────────────────────────────────────────
-   STRIP ACORDEÓN
-────────────────────────────────────────────── */
+/* ── Strip acordeón ── */
 function toggleArrozStrip(el) {
   el.classList.toggle('open');
   document.getElementById('stab-sub-arroz').classList.toggle('visible');
 }
 
-/* ──────────────────────────────────────────────
-   FORMULARIO CONTACTO → WHATSAPP
-────────────────────────────────────────────── */
+/* ── Formulario contacto → WhatsApp ── */
 function handleSubmit(e) {
   e.preventDefault();
-  const f = e.target;
+  const f      = e.target;
   const nombre = f.querySelector('input[type=text]').value || '';
   const tel    = f.querySelector('input[type=tel]').value  || '';
   const ciudad = f.querySelectorAll('input[type=text]')[1]?.value || '';
@@ -1101,80 +1169,31 @@ function handleSubmit(e) {
 }
 
 /* ══════════════════════════════════════════════
-   CATÁLOGO DE PRODUCTOS
-   Reglas exactas: precio, mínimo, unidad, detalle
+   CATÁLOGO — reglas exactas por producto
 ══════════════════════════════════════════════ */
 const CATALOGO = {
-  p25: {
-    nombre:  'El Patriarca 25lb',
-    precio:  13.00,
-    minQty:  2,
-    unidad:  'funda',
-    detalle: 'Arroz Envejecido Grado I · 25 lb',
-  },
-  p2lb: {
-    nombre:  'El Patriarca 2lb',
-    precio:  1.25,
-    minQty:  100,
-    unidad:  'funda',
-    detalle: 'Arroz Premium Grado I · 2 lb',
-  },
-  papito: {
-    nombre:  'Papito Rico 25lb',
-    precio:  11.00,
-    minQty:  2,
-    unidad:  'funda',
-    detalle: 'Arroz Envejecido Grado II · 25 lb',
-  },
-  cholito: {
-    nombre:  'Cholito Sabroso 25lb',
-    precio:  9.00,
-    minQty:  2,
-    unidad:  'funda',
-    detalle: 'Arroz Natural Estándar · 25 lb',
-  },
-  papas_cc: {
-    nombre:  'Papas Prefritas con Corteza',
-    precio:  10.00,
-    minQty:  1,
-    unidad:  'funda 2 kg',
-    detalle: '$5,00 / kg · presentación exclusiva en funda de 2 kg',
-  },
-  papas_sc: {
-    nombre:  'Papas Prefritas sin Corteza',
-    precio:  10.70,
-    minQty:  1,
-    unidad:  'funda 2 kg',
-    detalle: '$5,35 / kg · presentación exclusiva en funda de 2 kg',
-  },
-  custom: {
-    nombre:  'Pedido personalizado',
-    precio:  0,
-    minQty:  1,
-    unidad:  '',
-    detalle: '',
-  },
+  p25:      { nombre:'El Patriarca 25lb',           precio:13.00,  minQty:2,   unidad:'funda',      detalle:'Arroz Envejecido Grado I · 25 lb' },
+  p2lb:     { nombre:'El Patriarca 2lb',            precio:1.25,   minQty:100, unidad:'funda',      detalle:'Arroz Premium Grado I · 2 lb' },
+  papito:   { nombre:'Papito Rico 25lb',            precio:11.00,  minQty:2,   unidad:'funda',      detalle:'Arroz Envejecido Grado II · 25 lb' },
+  cholito:  { nombre:'Cholito Sabroso 25lb',        precio:9.00,   minQty:2,   unidad:'funda',      detalle:'Arroz Natural Estándar · 25 lb' },
+  papas_cc: { nombre:'Papas Prefritas con Corteza', precio:10.00,  minQty:1,   unidad:'funda 2kg',  detalle:'$5,00/kg · funda de 2 kg' },
+  papas_sc: { nombre:'Papas Prefritas sin Corteza', precio:10.70,  minQty:1,   unidad:'funda 2kg',  detalle:'$5,35/kg · funda de 2 kg' },
+  custom:   { nombre:'Pedido personalizado',        precio:0,      minQty:1,   unidad:'',           detalle:'' },
 };
 
-/* ──────────────────────────────────────────────
-   CREDENCIALES PAYPHONE (reales)
-────────────────────────────────────────────── */
+/* ── Credenciales PayPhone ── */
 const PP_TOKEN   = '0WG7BKI7kVdywr1fDTHTa9AeQqnFEs4JOm3Tnmc82NWK42uHYuph-9lkXry3UeM9CKMBXnJaOobfi2hldQIlAulmEzNdKPJXU567ycCba5XmFld70dORIQ0ylweJVGs-atrXcSg8RHrvR4sPEV8gSzKGijZXn6mB95jqXs58VZEwKvEe0lLwF2TCdJwhWeKHoP3Q6ecVazyzMEd3GashKJp4CoVBhQzMAlw1Kf6fLnRt7jDC4XGO4sA7GvlQ8hBuNB80meuy1C1jWCqu02nYkhy4q4gSu_hNMYONBGH3CYJGMM0Vp0bjiMfJFuIGE7bdpM3_pHFkYxdpEIS-7EssfZ7fZvk';
-const PP_STOREID = '';   // ← deja vacío si usas un solo store, PayPhone lo toma por defecto
+const PP_STOREID = '';
 
-/* Estado global del pedido actual */
-let ppOrder = {
-  key:       '',
-  nombre:    '',
-  cantidad:  1,
-  precioUnit:0,
-  total:     0,
-  cliente:   '',
-};
+/* Estado global del pedido */
+let ppOrder = { key:'', nombre:'', cantidad:1, precioUnit:0, total:0 };
 
-/* ──────────────────────────────────────────────
-   MODAL: abrir / cerrar / overlay
-────────────────────────────────────────────── */
+/* ID de transacción activo (necesario para /V2/Confirm) */
+let activeTxId = '';
+
+/* ── Modal: abrir/cerrar ──
+   IMPORTANTE: al abrir bloqueamos el scroll del body,
+   pero el modal interno debe scrollear libremente      */
 function openOrderModal() {
   document.getElementById('pp-overlay').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -1182,33 +1201,52 @@ function openOrderModal() {
 
 function closePayModal() {
   document.getElementById('pp-overlay').classList.remove('active');
+  /* Restaurar scroll del body — CRÍTICO para móvil */
   document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
   showStep('order');
   document.getElementById('pp-payment-box').innerHTML = '';
 }
 
 function handleOverlayClick(e) {
+  /* Solo cerrar si se está en paso 1 o en pantalla de resultado,
+     NUNCA cerrar mientras está el formulario de PayPhone activo
+     (evita revertir la venta por cierre accidental)              */
+  const step2Active = document.getElementById('pp-step-payment')
+    .classList.contains('active');
+  if (step2Active) return;   // no cerrar mientras el usuario paga
   if (e.target === document.getElementById('pp-overlay')) closePayModal();
 }
 
-/* ──────────────────────────────────────────────
-   MODAL: cambiar paso
-────────────────────────────────────────────── */
+/* ── Navegar entre pasos ── */
 function showStep(step) {
-  // Paso 1
-  document.getElementById('pp-step-order').style.display =
-    step === 'order' ? 'block' : 'none';
-  // Paso 2
-  document.getElementById('pp-step-payment').classList
-    .toggle('active', step === 'payment');
-  // Paso 3
-  document.getElementById('pp-step-success').classList
-    .toggle('active', step === 'success');
+  // Ocultar todo
+  document.getElementById('pp-step-order').style.display     = 'none';
+  document.getElementById('pp-step-payment').classList.remove('active');
+  document.getElementById('pp-step-success').classList.remove('visible');
+  document.getElementById('pp-step-failed').classList.remove('visible');
+  document.getElementById('pp-step-cancelled').classList.remove('visible');
+
+  switch(step) {
+    case 'order':
+      document.getElementById('pp-step-order').style.display = 'block';
+      break;
+    case 'payment':
+      document.getElementById('pp-step-payment').classList.add('active');
+      break;
+    case 'success':
+      document.getElementById('pp-step-success').classList.add('visible');
+      break;
+    case 'failed':
+      document.getElementById('pp-step-failed').classList.add('visible');
+      break;
+    case 'cancelled':
+      document.getElementById('pp-step-cancelled').classList.add('visible');
+      break;
+  }
 }
 
-/* ──────────────────────────────────────────────
-   SELECCIÓN DE PRODUCTO
-────────────────────────────────────────────── */
+/* ── Selección de producto ── */
 function onProductChange() {
   const key        = document.getElementById('pp-producto').value;
   const infoEl     = document.getElementById('pp-product-info');
@@ -1217,160 +1255,99 @@ function onProductChange() {
   const summWrap   = document.getElementById('pp-summary');
   const warning    = document.getElementById('pp-min-warning');
 
-  // Reset
-  infoEl.style.display     = 'none';
-  qtyWrap.style.display    = 'none';
-  customWrap.style.display = 'none';
-  summWrap.style.display   = 'none';
-  warning.style.display    = 'none';
+  infoEl.style.display = summWrap.style.display =
+  qtyWrap.style.display = customWrap.style.display =
+  warning.style.display = 'none';
   setTotal(0, false);
 
   if (!key) return;
-
   const p = CATALOGO[key];
   infoEl.style.display = 'block';
 
   if (key === 'custom') {
-    /* ── Pedido personalizado ── */
     document.getElementById('pp-chip-price').textContent  = 'Monto libre';
     document.getElementById('pp-chip-detail').textContent = 'Ingresa el valor exacto de tu pedido';
     document.getElementById('pp-chip-min').textContent    = 'Mínimo $1,00';
     customWrap.style.display = 'flex';
     document.getElementById('pp-monto-custom').value = '';
   } else {
-    /* ── Producto del catálogo ── */
-    document.getElementById('pp-chip-price').textContent  =
-      '$' + p.precio.toFixed(2) + ' / ' + p.unidad;
+    document.getElementById('pp-chip-price').textContent  = '$' + p.precio.toFixed(2) + ' / ' + p.unidad;
     document.getElementById('pp-chip-detail').textContent = p.detalle;
-    document.getElementById('pp-chip-min').textContent    =
-      'Compra mínima: ' + p.minQty + ' ' + p.unidad + (p.minQty > 1 ? 's' : '');
-    document.getElementById('pp-qty-label').textContent =
-      'Cantidad (' + p.unidad + 's)';
-
-    const qi  = document.getElementById('pp-cantidad');
-    qi.min    = p.minQty;
-    qi.value  = p.minQty;
-
-    summWrap.style.display = 'block';
-    qtyWrap.style.display  = 'block';
+    document.getElementById('pp-chip-min').textContent    = 'Compra mínima: ' + p.minQty + ' ' + p.unidad + (p.minQty > 1 ? 's' : '');
+    document.getElementById('pp-qty-label').textContent   = 'Cantidad (' + p.unidad + 's)';
+    const qi = document.getElementById('pp-cantidad');
+    qi.min   = p.minQty;
+    qi.value = p.minQty;
+    summWrap.style.display = qtyWrap.style.display = 'block';
     recalc(key, p.minQty);
   }
 }
 
-/* ──────────────────────────────────────────────
-   CONTROLES DE CANTIDAD  +  /  −
-────────────────────────────────────────────── */
+/* ── Controles +/− ── */
 function changeQty(delta) {
   const key = document.getElementById('pp-producto').value;
   if (!key || key === 'custom') return;
-
   const p  = CATALOGO[key];
   const qi = document.getElementById('pp-cantidad');
   let v    = (parseInt(qi.value) || p.minQty) + delta;
-  if (v < p.minQty) v = p.minQty;   // bloquear por debajo del mínimo
+  if (v < p.minQty) v = p.minQty;
   qi.value = v;
   recalc(key, v);
 }
-
 function onQtyInput() {
   const key = document.getElementById('pp-producto').value;
   if (!key || key === 'custom') return;
-  const v = parseInt(document.getElementById('pp-cantidad').value) || 0;
-  recalc(key, v);
+  recalc(key, parseInt(document.getElementById('pp-cantidad').value) || 0);
 }
 
-/* ──────────────────────────────────────────────
-   RECALCULAR TOTAL (productos del catálogo)
-────────────────────────────────────────────── */
+/* ── Recalcular ── */
 function recalc(key, qty) {
   const p       = CATALOGO[key];
   const warning = document.getElementById('pp-min-warning');
-  const warnTxt = document.getElementById('pp-min-warning-text');
   const calcEl  = document.getElementById('pp-summary-calc');
   const noteEl  = document.getElementById('pp-total-note');
-
   if (qty < p.minQty) {
-    /* Cantidad por debajo del mínimo → bloquear botón + mostrar aviso */
     warning.style.display = 'flex';
-    warnTxt.textContent =
-      'Compra mínima: ' + p.minQty + ' ' + p.unidad +
-      's ($' + (p.precio * p.minQty).toFixed(2) + ')';
-    calcEl.textContent = '';
-    noteEl.textContent = '';
+    document.getElementById('pp-min-warning-text').textContent =
+      'Compra mínima: ' + p.minQty + ' ' + p.unidad + 's ($' + (p.precio * p.minQty).toFixed(2) + ')';
+    calcEl.textContent = noteEl.textContent = '';
     setTotal(0, false);
     return;
   }
-
   warning.style.display = 'none';
   const total = p.precio * qty;
-
-  /* Resumen visual: "3 fundas × $13,00 = $39,00" */
-  calcEl.textContent =
-    qty + ' ' + p.unidad + (qty > 1 ? 's' : '') +
-    ' × $' + p.precio.toFixed(2) +
-    ' = $' + total.toFixed(2);
-
-  /* Nota bajo el total */
+  calcEl.textContent = qty + ' ' + p.unidad + (qty > 1 ? 's' : '') + ' × $' + p.precio.toFixed(2) + ' = $' + total.toFixed(2);
   noteEl.textContent = p.detalle;
-
   setTotal(total, true);
-
-  ppOrder = {
-    key,
-    nombre:     p.nombre,
-    cantidad:   qty,
-    precioUnit: p.precio,
-    total,
-    cliente:    '',
-  };
+  ppOrder = { key, nombre:p.nombre, cantidad:qty, precioUnit:p.precio, total };
 }
 
-/* ──────────────────────────────────────────────
-   TOTAL PERSONALIZADO
-────────────────────────────────────────────── */
 function updateCustomTotal() {
   const v = parseFloat(document.getElementById('pp-monto-custom').value) || 0;
   document.getElementById('pp-total-note').textContent = '';
-
-  if (v < 1) {
-    setTotal(0, false);
-    return;
-  }
+  if (v < 1) { setTotal(0, false); return; }
   setTotal(v, true);
-  ppOrder = {
-    key: 'custom', nombre: 'Pedido personalizado',
-    cantidad: 1, precioUnit: v, total: v, cliente: '',
-  };
+  ppOrder = { key:'custom', nombre:'Pedido personalizado', cantidad:1, precioUnit:v, total:v };
 }
 
-/* ──────────────────────────────────────────────
-   HELPER: fijar total en pantalla
-────────────────────────────────────────────── */
 function setTotal(amt, enable) {
-  document.getElementById('pp-total-display').textContent =
-    amt > 0 ? '$' + amt.toFixed(2) : '$0.00';
+  document.getElementById('pp-total-display').textContent = amt > 0 ? '$' + amt.toFixed(2) : '$0.00';
   document.getElementById('btn-ir-a-pagar').disabled = !enable;
 }
-
 
 /* ══════════════════════════════════════════════
    LANZAR PAYPHONE — PPaymentButtonBox
    Ejecuta SOLO al hacer clic. Nunca al cargar.
 ══════════════════════════════════════════════ */
 function initPayphone() {
-
-  /* 1 ─ Producto */
-  var key = document.getElementById('pp-producto').value;
+  const key = document.getElementById('pp-producto').value;
   if (!key) { alert('Por favor selecciona un producto.'); return; }
 
-  /* 2 ─ Validar mínimos y calcular total */
   if (key !== 'custom') {
-    var p   = CATALOGO[key];
-    var qty = parseInt(document.getElementById('pp-cantidad').value) || 0;
+    const p   = CATALOGO[key];
+    const qty = parseInt(document.getElementById('pp-cantidad').value) || 0;
     if (qty < p.minQty) {
-      alert('El pedido mínimo para "' + p.nombre + '" es de ' +
-            p.minQty + ' ' + p.unidad + '(s).\nTotal mínimo: $' +
-            (p.precio * p.minQty).toFixed(2));
+      alert('El pedido mínimo para "' + p.nombre + '" es de ' + p.minQty + ' ' + p.unidad + '(s).\nTotal mínimo: $' + (p.precio * p.minQty).toFixed(2));
       document.getElementById('pp-cantidad').value = p.minQty;
       recalc(key, p.minQty);
       return;
@@ -1378,93 +1355,63 @@ function initPayphone() {
     ppOrder.cantidad = qty;
     ppOrder.total    = p.precio * qty;
   } else {
-    var v = parseFloat(document.getElementById('pp-monto-custom').value) || 0;
+    const v = parseFloat(document.getElementById('pp-monto-custom').value) || 0;
     if (v < 1) { alert('El monto personalizado debe ser mayor a $1,00.'); return; }
     ppOrder.total = v;
   }
 
-  /* 3 ─ Validar teléfono y dirección */
-  var nombreVal = (document.getElementById('pp-nombre').value    || '').trim();
-  var telVal    = (document.getElementById('pp-telefono').value  || '').trim();
-  var dirVal    = (document.getElementById('pp-direccion').value || '').trim();
-
-  if (!telVal) {
-    alert('Por favor ingresa tu teléfono de contacto.');
-    document.getElementById('pp-telefono').focus();
-    return;
-  }
-  if (!dirVal) {
-    alert('Por favor ingresa tu dirección de entrega.');
-    document.getElementById('pp-direccion').focus();
-    return;
-  }
-
-  ppOrder.cliente   = nombreVal || 'Cliente';
-  ppOrder.telefono  = telVal;
-  ppOrder.direccion = dirVal;
-
   if (ppOrder.total <= 0) { alert('El monto no puede ser cero.'); return; }
 
-  /* 4 ─ Pasar a paso 2 */
+  /* Paso 2 */
   showStep('payment');
-
   document.getElementById('pp-payment-resume').innerHTML =
     '<strong style="color:var(--al)">' + ppOrder.nombre + '</strong><br>' +
     (ppOrder.cantidad > 1 ? ppOrder.cantidad + ' unidades &middot; ' : '') +
     'Total: <strong style="color:var(--al)">$' + ppOrder.total.toFixed(2) + '</strong>';
 
-  /* 5 ─ Montos en centavos (enteros, sin decimales) */
-  var totalCents = Math.round(ppOrder.total * 100);
+  /* Montos en centavos */
+  const totalCents = Math.round(ppOrder.total * 100);
 
-  /* 6 ─ ID único de transacción */
-  var clientTxId = 'PAT-' + Date.now();
+  /* ID único — guardamos en variable global para la confirmación */
+  activeTxId = 'PAT-' + Date.now();
 
-  /* 7 ─ Reference con todos los datos del pedido */
-  var catItem = ppOrder.key !== 'custom' ? CATALOGO[ppOrder.key] : null;
-  var reference =
-    ppOrder.nombre +
-    ' | ' + ppOrder.cantidad + ' und' +
-    ' | $' + ppOrder.total.toFixed(2) +
-    ' | Tel: ' + ppOrder.telefono +
-    ' | Dir: ' + ppOrder.direccion;
+  /* Reference */
+  const catItem   = ppOrder.key !== 'custom' ? CATALOGO[ppOrder.key] : null;
+  const reference = ppOrder.nombre + ' | ' + ppOrder.cantidad + ' und | $' + ppOrder.total.toFixed(2);
 
-  /* 8 ─ Contenedor + spinner */
-  var box = document.getElementById('pp-payment-box');
+  /* Spinner */
+  const box = document.getElementById('pp-payment-box');
   box.innerHTML =
     '<div id="pp-load" style="padding:52px 24px;text-align:center">' +
     '<div class="pp-spinner"></div>' +
-    '<p style="font-size:13px;color:rgba(255,255,255,.35);margin-top:18px">' +
-    'Abriendo formulario de pago\u2026</p></div>';
+    '<p style="font-size:13px;color:rgba(255,255,255,.35);margin-top:18px">Abriendo formulario de pago\u2026</p></div>';
 
-  /* 9 ─ Esperar a que PPaymentButtonBox esté disponible (módulo ES asíncrono)
-         Polling cada 80 ms, máximo 4 s                                         */
-  var tick = 0;
-  var timer = setInterval(function () {
+  /* Esperar módulo ES (asíncrono) */
+  let tick = 0;
+  const timer = setInterval(() => {
     tick++;
-
     if (typeof PPaymentButtonBox !== 'undefined') {
       clearInterval(timer);
-      renderBox(box, totalCents, clientTxId, reference);
-    } else if (tick >= 50) {                     /* 50 × 80 ms = 4 s */
+      renderBox(box, totalCents, activeTxId, reference);
+    } else if (tick >= 50) {
       clearInterval(timer);
-      showError(box);
+      showPayError(box);
     }
   }, 80);
 }
 
-/* ── Instanciar y renderizar la cajita ── */
+/* ── Instanciar y renderizar cajita ── */
 function renderBox(box, totalCents, clientTxId, reference) {
-  /* Quitar spinner */
-  var loader = document.getElementById('pp-load');
+  const loader = document.getElementById('pp-load');
   if (loader) loader.remove();
 
   try {
-    var ppb = new PPaymentButtonBox({
+    const ppb = new PPaymentButtonBox({
       token:               PP_TOKEN,
       storeId:             PP_STOREID,
       clientTransactionId: clientTxId,
-      amount:              totalCents,       /* dinámico, en centavos */
-      amountWithoutTax:    totalCents,       /* sin desglose de IVA   */
+      amount:              totalCents,
+      amountWithoutTax:    totalCents,
       tax:                 0,
       service:             0,
       tip:                 0,
@@ -1473,39 +1420,151 @@ function renderBox(box, totalCents, clientTxId, reference) {
       lang:                'es',
     });
 
-    /* Renderizar en #pp-payment-box */
     ppb.render('pp-payment-box');
 
-    /* ── Activar automáticamente el botón/trigger interno de PayPhone ──
-       PayPhone inyecta un <button> o desencadena el modal directamente.
-       Lo buscamos y hacemos clic tras un breve delay para asegurar DOM. */
-    setTimeout(function () {
-      var trigger =
-        box.querySelector('[data-pp-trigger]')        ||
-        box.querySelector('button[class*="payphone"]')||
-        box.querySelector('button[class*="pp-btn"]')  ||
-        box.querySelector('button:not(.pp-back)');
+    /* ── CAPTURAR RESULTADO DE PAYPHONE ──────────────────────────────
+       PPaymentButtonBox dispara un CustomEvent 'onComplete' en el document
+       o llama a un callback según la versión del SDK.
+       Escuchamos AMBOS mecanismos para no perder el resultado.
+       IMPORTANTE: llamar /V2/Confirm para verificar el pago en el servidor
+       antes de mostrar pantalla de éxito (evita fraudes y reversiones).     */
 
-      if (trigger && trigger.tagName === 'BUTTON') {
-        trigger.click();
+    /* Método A — CustomEvent global que dispara la cajita */
+    const onPPComplete = (e) => {
+      document.removeEventListener('onComplete', onPPComplete);
+      const res = e.detail || e;
+      handlePaymentResult(res, clientTxId);
+    };
+    document.addEventListener('onComplete', onPPComplete);
+
+    /* Método B — postMessage del iframe de PayPhone */
+    const onMessage = (e) => {
+      if (!e.data || typeof e.data !== 'object') return;
+      const d = e.data;
+      // PayPhone envía { type: 'ppComplete', ... } o { statusCode: N, ... }
+      if (d.type === 'ppComplete' || d.statusCode !== undefined || d.transactionStatus !== undefined) {
+        window.removeEventListener('message', onMessage);
+        handlePaymentResult(d, clientTxId);
       }
-      /* Si PayPhone renderiza directo como iframe ya está visible */
+    };
+    window.addEventListener('message', onMessage);
 
+    /* Activar botón interno de PayPhone (trigger del modal de tarjeta) */
+    setTimeout(() => {
+      const trigger =
+        box.querySelector('[data-pp-trigger]')         ||
+        box.querySelector('button[class*="payphone"]') ||
+        box.querySelector('button[class*="pp-btn"]')   ||
+        box.querySelector('button:not(.pp-back)');
+      if (trigger && trigger.tagName === 'BUTTON') trigger.click();
     }, 500);
 
   } catch (err) {
-    showError(box);
+    showPayError(box);
   }
 }
 
-/* ── Error mínimo: solo mostrar un mensaje limpio ── */
-function showError(box) {
+/* ══════════════════════════════════════════════
+   MANEJAR RESULTADO DEL PAGO
+   Llama a /V2/Confirm para verificar con PayPhone
+   ANTES de mostrar éxito — evita reversiones.
+══════════════════════════════════════════════ */
+function handlePaymentResult(res, clientTxId) {
+  /* Si PayPhone devuelve directamente Approved sin id numérico
+     mostramos éxito basado en statusCode/transactionStatus     */
+  const statusCode = res.statusCode || 0;
+  const status     = (res.transactionStatus || '').toLowerCase();
+  const txId       = res.transactionId || res.id || clientTxId;
+
+  if (statusCode === 3 || status === 'approved') {
+    /* ── VERIFICAR con /V2/Confirm (recomendado por PayPhone) ──
+       Esto confirma que el pago existe en los servidores de PayPhone
+       y previene que se revierta por cierre del modal.
+       Si el Confirm falla, igual mostramos éxito porque ya tenemos
+       el statusCode=3 del cliente — no penalizamos al usuario.    */
+    confirmWithPayPhone(txId, clientTxId)
+      .then(() => showSuccess(clientTxId))
+      .catch(() => showSuccess(clientTxId)); // si falla el confirm, igual éxito
+
+  } else if (statusCode === 2 || status === 'cancelled') {
+    showStep('cancelled');
+  } else {
+    /* Rechazado (statusCode 1, -1, error, etc.) */
+    const msg = res.message || res.messageDescription || '';
+    document.getElementById('pp-fail-msg').textContent = msg || '';
+    showStep('failed');
+  }
+}
+
+/* ── Confirmar con PayPhone API /V2/Confirm ── */
+function confirmWithPayPhone(transactionId, clientTxId) {
+  return fetch('https://pay.payphonetodoesposible.com/api/button/V2/Confirm', {
+    method:  'POST',
+    headers: {
+      'Content-Type':  'application/json',
+      'Authorization': 'Bearer ' + PP_TOKEN,
+    },
+    body: JSON.stringify({
+      id:        parseInt(transactionId) || 0,
+      clientTxId: clientTxId,
+    }),
+  })
+  .then(r => r.json())
+  .then(data => {
+    /* Si el servidor confirma statusCode 3 → OK */
+    if (data.statusCode === 3 || data.transactionStatus === 'Approved') return data;
+    /* Si statusCode es distinto, el pago NO fue aprobado en servidor */
+    throw new Error('not_approved');
+  });
+}
+
+/* ── Mostrar pantalla de ÉXITO ── */
+function showSuccess(txId) {
+  showStep('success');
+
+  const p   = ppOrder;
+  const cat = p.key !== 'custom' ? CATALOGO[p.key] : null;
+
+  /* Detalles en la tarjeta de confirmación */
+  document.getElementById('pp-result-details').innerHTML =
+    '<strong>Producto:</strong> '  + p.nombre  + '<br>' +
+    '<strong>Cantidad:</strong> '  + p.cantidad + (cat ? ' ' + cat.unidad + '(s)' : '') + '<br>' +
+    '<strong>Total pagado:</strong> $' + p.total.toFixed(2) + '<br>' +
+    '<strong>TX:</strong> '        + txId;
+
+  /* WhatsApp de confirmación post-pago */
+  const waMsg = encodeURIComponent(
+    '\u2705 *Pago confirmado \u2014 El Patriarca\u00AE*\n\n' +
+    '\uD83D\uDCE6 Producto: '  + p.nombre + '\n' +
+    (cat ? '   ' + cat.detalle + '\n' : '') +
+    '\uD83D\uDD22 Cantidad: '  + p.cantidad + (cat ? ' ' + cat.unidad + '(s)' : '') + '\n' +
+    '\uD83D\uDCB0 Total: $'    + p.total.toFixed(2) + '\n' +
+    '\uD83D\uDD16 TX: '        + txId + '\n\n' +
+    '\uD83D\uDE9A Coordinar entrega \u2014 m\u00E1ximo 24 horas.'
+  );
+  document.getElementById('btn-wa-after-pay').href = 'https://wa.me/593992210706?text=' + waMsg;
+}
+
+/* ── Reintentar pago ── */
+function retryPayment() {
+  document.getElementById('pp-payment-box').innerHTML = '';
+  showStep('order');
+}
+
+/* ── Ir al inicio (desde pantalla de éxito) ── */
+function goHome() {
+  closePayModal();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Error de carga del módulo ── */
+function showPayError(box) {
   box.innerHTML =
     '<div style="padding:40px 24px;text-align:center">' +
     '<p style="font-family:var(--fs);font-size:17px;color:var(--al);margin-bottom:10px">' +
     'No se pudo cargar el formulario de pago</p>' +
     '<p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:20px">' +
-    'Verifica tu conexi\u00F3n a internet e intenta nuevamente.</p>' +
+    'Verifica tu conexi\u00F3n e intenta nuevamente.</p>' +
     '<button onclick="backToOrder()" ' +
     'style="background:var(--au);color:var(--gd);border:none;padding:12px 28px;' +
     'border-radius:4px;font-family:var(--ff);font-size:13px;font-weight:600;' +
@@ -1513,61 +1572,61 @@ function showError(box) {
     'Volver al pedido</button></div>';
 }
 
-/* ══════════════════════════════════════════════
-   POST-PAGO: pantalla de éxito + WhatsApp
-   (se ejecuta DESPUÉS de que PayPhone confirma)
-══════════════════════════════════════════════ */
-function onPaymentSuccess(res, txId) {
-  showStep('success');
-
-  var p   = ppOrder;
-  var cat = (p.key !== 'custom') ? CATALOGO[p.key] : null;
-
-  document.getElementById('pp-success-msg').textContent =
-    '¡Gracias ' + p.cliente + '! Tu pago de $' + p.total.toFixed(2) +
-    ' fue aprobado (TX: ' + txId + '). ' +
-    'Te contactaremos en breve para coordinar la entrega en máximo 24 horas.';
-
-  /* WhatsApp de CONFIRMACIÓN post-pago (no es el flujo de compra) */
-  var waMsg = encodeURIComponent(
-    '\u2705 *Pago confirmado \u2014 El Patriarca\u00AE*\n\n' +
-    '\uD83D\uDC64 Cliente: '   + p.cliente               + '\n' +
-    '\uD83D\uDCF1 Tel: '       + (p.telefono  || '')     + '\n' +
-    '\uD83D\uDCCD Dir: '       + (p.direccion || '')     + '\n' +
-    '\uD83D\uDCE6 Producto: '  + p.nombre                + '\n' +
-    (cat ? '   ' + cat.detalle + '\n' : '') +
-    '\uD83D\uDD22 Cantidad: '  + p.cantidad +
-      (cat ? ' ' + cat.unidad + '(s)' : '') + '\n' +
-    '\uD83D\uDCB0 Total: $'    + p.total.toFixed(2)      + '\n' +
-    '\uD83D\uDD16 TX: '        + txId                    + '\n\n' +
-    '\uD83D\uDE9A Coordinar entrega \u2014 m\u00E1ximo 24 horas.'
-  );
-
-  document.getElementById('btn-wa-after-pay').href =
-    'https://wa.me/593992210706?text=' + waMsg;
-}
-
-/* ══════════════════════════════════════════════
-   HELPERS
-══════════════════════════════════════════════ */
 function backToOrder() {
   showStep('order');
   document.getElementById('pp-payment-box').innerHTML = '';
 }
 
-/* Spinner CSS (inyectado una sola vez) */
+/* ── Leer parámetros de URL (para confirmación por responseUrl) ──
+   PayPhone puede redirigir a esta misma página con ?id=X&clientTransactionId=Y
+   Si detectamos esos params al cargar, confirmamos automáticamente.            */
+(function checkUrlParams() {
+  const params  = new URLSearchParams(window.location.search);
+  const ppId    = params.get('id');
+  const ppTxId  = params.get('clientTransactionId');
+
+  if (!ppId || !ppTxId) return; // no venimos de un redirect de PayPhone
+
+  /* Reabrir modal directamente en pantalla de confirmación */
+  openOrderModal();
+  showStep('payment');
+  document.getElementById('pp-payment-resume').textContent = 'Verificando pago\u2026';
+
+  confirmWithPayPhone(ppId, ppTxId)
+    .then((data) => {
+      /* Reconstruir ppOrder desde la respuesta de confirmación */
+      ppOrder = {
+        key:        'custom',
+        nombre:     data.reference  || 'Pedido',
+        cantidad:   1,
+        precioUnit: (data.amount || 0) / 100,
+        total:      (data.amount || 0) / 100,
+      };
+      showSuccess(ppTxId);
+      /* Limpiar URL para no volver a procesar en recarga */
+      window.history.replaceState({}, '', window.location.pathname);
+    })
+    .catch(() => {
+      document.getElementById('pp-fail-msg').textContent = 'No se pudo verificar el pago.';
+      showStep('failed');
+    });
+})();
+
+/* ── Spinner CSS ── */
 (function () {
   if (document.getElementById('pp-spinner-css')) return;
-  var s = document.createElement('style');
-  s.id  = 'pp-spinner-css';
+  const s = document.createElement('style');
+  s.id    = 'pp-spinner-css';
   s.textContent =
     '.pp-spinner{width:42px;height:42px;' +
     'border:3px solid rgba(201,150,42,.18);' +
     'border-top-color:var(--au);border-radius:50%;' +
     'animation:ppSpin .7s linear infinite;margin:0 auto}' +
-    '@keyframes ppSpin{to{transform:rotate(360deg)}}';
+    '@keyframes ppSpin{to{transform:rotate(360deg)}}' +
+    '@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}';
   document.head.appendChild(s);
 }());
+</script>
 </script>
 </body>
 </html>
