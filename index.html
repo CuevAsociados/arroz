@@ -450,7 +450,17 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   .stab-sub a{padding-left:48px}
   section{padding:64px 20px}
   #arroz,#dos-libras,#papito,#cholito,#papas,#nosotros,.nos-grid,.cto-grid,.proc-head{grid-template-columns:1fr;gap:40px}
-  #papas .pcard,#papito .pcard,#dos-libras .pcard{order:-1}
+  /* Imagen siempre arriba en móvil — todas las secciones */
+  #arroz > div:first-child,
+  #dos-libras > div:first-child,
+  #papito > div:first-child,
+  #cholito > div:first-child,
+  #papas > div:first-child{order:-1}
+  #arroz > div:nth-child(2),
+  #dos-libras > div:nth-child(2),
+  #papito > div:nth-child(2),
+  #cholito > div:nth-child(2),
+  #papas > div:nth-child(2){order:1}
   .pasos{grid-template-columns:1fr}
   .ft{grid-template-columns:1fr;gap:24px}
   footer{padding:36px 20px 20px}
@@ -1158,7 +1168,17 @@ footer{
   #arroz,#dos-libras,#papito,#cholito,#papas,#nosotros,.nos-grid,.cto-grid,.proc-head{
     grid-template-columns:1fr;gap:36px
   }
-  #papas .pcard,#papito .pcard,#dos-libras .pcard,#arroz .pcard{order:-1}
+  /* Imagen siempre arriba en móvil — todas las secciones */
+  #arroz > div:first-child,
+  #dos-libras > div:first-child,
+  #papito > div:first-child,
+  #cholito > div:first-child,
+  #papas > div:first-child{order:-1}
+  #arroz > div:nth-child(2),
+  #dos-libras > div:nth-child(2),
+  #papito > div:nth-child(2),
+  #cholito > div:nth-child(2),
+  #papas > div:nth-child(2){order:1}
   .pcard{padding:36px 20px 32px}
   .pasos{grid-template-columns:1fr}
   .ft{grid-template-columns:1fr;gap:20px}
@@ -1215,12 +1235,17 @@ footer{
   #arroz,#dos-libras,#papito,#cholito,#papas{
     grid-template-columns:1fr;gap:40px
   }
-  /* En móvil/tablet: imagen siempre primero (order) */
+  /* En móvil/tablet: imagen siempre primero — todas las secciones */
   #arroz > div:first-child,
-  #papito > div:first-child{order:1}   /* imagen: ya están primeras */
-  #dos-libras > div:nth-child(2),
+  #dos-libras > div:first-child,
+  #papito > div:first-child,
   #cholito > div:first-child,
-  #papas > div:first-child{order:-1}   /* imagen: mover arriba */
+  #papas > div:first-child{order:-1}
+  #arroz > div:nth-child(2),
+  #dos-libras > div:nth-child(2),
+  #papito > div:nth-child(2),
+  #cholito > div:nth-child(2),
+  #papas > div:nth-child(2){order:1}
 
   .nos-grid,.cto-grid,.proc-head{grid-template-columns:1fr;gap:40px}
   .pasos{grid-template-columns:1fr}
