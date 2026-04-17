@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050D06">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>El Patriarca® — Productos Premium | Cueva & Asociados</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -472,6 +475,829 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   .fab-comprar{padding:14px;border-radius:50%;width:54px;height:54px;justify-content:center}
   .fab-badge{display:none}
 }
+
+/* ═══════════════════════════════════════════════════════
+   LUXURY UPGRADE — El Patriarca® Premium v3
+   Inspirado en: Agrosylma · Squarespace black · Proarroz
+   ═══════════════════════════════════════════════════════ */
+
+/* Paleta refinada */
+:root{
+  --gd:#050D06;
+  --g1:#0A1A0C;
+  --g2:#0F2912;
+  --g3:#174019;
+  --au:#C08B1E;
+  --al:#D4A843;
+  --ap:#EDD07A;
+  --cr:#F4EDD8;
+  --cd:#DFD0A6;
+  --wh:#FDFAF3;
+  --gy:#6B6456;
+  --pastel1:#E8F0E9;  /* verde pastel suave */
+  --pastel2:#F5EDD8;  /* crema cálida */
+  --pastel3:#EAE0CD;  /* arena premium */
+}
+
+/* Reset refinado */
+html{scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+body{font-family:var(--ff);background:var(--gd);color:var(--wh);overflow-x:hidden}
+
+/* ── NAV premium ── */
+nav{padding:24px 72px;background:transparent}
+nav.scrolled{
+  background:rgba(5,13,6,.96);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(192,139,30,.15);
+  padding:14px 72px;
+}
+.nav-links a{font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.55)}
+.nav-links a:hover{color:var(--al)}
+.nav-links a::after{background:var(--au)}
+.nav-cta{
+  background:transparent;
+  border:1px solid rgba(192,139,30,.5);
+  color:var(--al);
+  padding:9px 24px;border-radius:2px;
+  font-size:11px;letter-spacing:.12em;
+}
+.nav-cta:hover{background:var(--au);color:var(--gd);border-color:var(--au)}
+
+/* ── HERO — imagen como fondo, overlay premium ── */
+#hero{
+  min-height:100vh;
+  background:var(--gd);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:130px 64px 90px;
+  position:relative;overflow:hidden;
+}
+/* Grain texture overlay */
+#hero::after{
+  content:'';
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.6;z-index:1;
+}
+.hero-glow{
+  width:700px;height:700px;top:-200px;
+  background:radial-gradient(ellipse,rgba(192,139,30,.1) 0%,transparent 65%);
+}
+.hero-glow2{
+  width:900px;height:400px;
+  background:radial-gradient(ellipse,rgba(15,41,18,.6) 0%,transparent 70%);
+}
+.hero-eyebrow,.hero-logo,.hero-tagline,.hero-btns,.hero-stats{
+  position:relative;z-index:2;
+}
+.hero-tagline{
+  font-size:clamp(13px,1.4vw,18px);
+  color:rgba(255,255,255,.38);
+  letter-spacing:.08em;
+}
+.hero-tagline strong{color:var(--al)}
+.hstat-n{font-size:28px}
+
+/* ── STRIP — más compacto y oscuro ── */
+.strip{
+  background:var(--g1);
+  border-top:1px solid rgba(192,139,30,.12);
+  border-bottom:1px solid rgba(192,139,30,.12);
+}
+.stab{padding:24px 48px}
+.stab:hover{background:rgba(192,139,30,.06)}
+.stab-t strong{font-size:16px;color:rgba(255,255,255,.85)}
+.stab-t span{font-size:12px;color:rgba(255,255,255,.3)}
+.stab-n{color:rgba(192,139,30,.12)}
+.stab-parent{border-right:1px solid rgba(192,139,30,.1)}
+.stab-sub{background:rgba(0,0,0,.2)}
+.stab-sub a strong{color:rgba(255,255,255,.7)}
+.stab-sub a span{color:rgba(255,255,255,.3)}
+
+/* ── SECCIONES generales ── */
+section{padding:112px 80px;position:relative}
+
+/* Alternar fondos: oscuro / crema / oscuro */
+#arroz{background:var(--gd)}
+#dos-libras{background:var(--g1)}
+#papito{background:var(--gd)}
+#cholito{background:var(--g1)}
+#papas{background:var(--gd)}
+#proceso{background:var(--g1)}
+#nosotros{background:var(--gd)}
+#contacto{background:var(--g1)}
+
+/* Textos en secciones oscuras */
+.pdesc{font-size:16px;line-height:1.9;color:rgba(255,255,255,.42);font-weight:300;max-width:460px}
+.stit{color:var(--wh);letter-spacing:-.025em;line-height:1.06}
+.stit .it{color:var(--al);font-style:italic}
+.stit .go{color:var(--au)}
+.stit.wh{color:var(--wh)}
+
+/* ── Features list ── */
+.feats li{
+  border-bottom:1px solid rgba(255,255,255,.06);
+  color:rgba(255,255,255,.55);font-size:14.5px;padding:14px 0;
+}
+.feats li strong{color:rgba(255,255,255,.85)}
+.feats li:last-child{border-bottom:none}
+.ck-g{background:rgba(15,41,18,.8);border:1px solid rgba(192,139,30,.2)}
+.ck-a{background:rgba(192,139,30,.18);border:1px solid rgba(192,139,30,.3)}
+.ck svg{stroke:var(--al)}
+
+/* ── Label de sección ── */
+.slbl{color:var(--au)}
+.slbl::before{background:var(--au)}
+
+/* ── Coccion box (oscuro) ── */
+.coccion-box{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(192,139,30,.15);
+  border-left:2px solid var(--au);
+  padding:18px 22px;border-radius:2px;margin-bottom:20px;
+}
+.coccion-box h4{color:var(--au)}
+.coccion-box p{color:rgba(255,255,255,.4)}
+
+/* ── Cards de producto ── */
+.pcard{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(192,139,30,.15);
+  border-radius:2px;
+  padding:52px 36px 44px;
+  box-shadow:0 40px 120px rgba(0,0,0,.5),inset 0 1px 0 rgba(192,139,30,.08);
+}
+.pcard::before{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--au) 40%,var(--al) 60%,transparent);
+}
+.pcard-name{font-size:26px;color:var(--al);letter-spacing:-.02em}
+.pcard-sub{color:rgba(255,255,255,.25);font-size:11px;letter-spacing:.1em}
+.pcard-line{background:rgba(192,139,30,.12)}
+.pbadge{
+  background:rgba(192,139,30,.12);
+  border:1px solid rgba(192,139,30,.3);
+  color:var(--al);
+  box-shadow:none;
+}
+.pbadge strong{color:var(--wh)}
+
+/* ── BTN gold ── */
+.btn-gold{
+  background:var(--au);color:var(--gd);
+  border-radius:2px;
+  letter-spacing:.1em;
+}
+.btn-gold:hover{background:var(--al);box-shadow:0 8px 28px rgba(192,139,30,.35)}
+.btn-out{
+  border-color:rgba(192,139,30,.35);
+  color:var(--al);border-radius:2px;
+}
+.btn-out:hover{background:rgba(192,139,30,.08)}
+
+/* ── Proceso ── */
+#proceso{background:var(--g1)}
+.proc-head p{color:rgba(255,255,255,.35)}
+.paso{
+  background:rgba(255,255,255,.025);
+  border-top:1px solid rgba(192,139,30,.18);
+  padding:48px 36px;
+  transition:background .3s,transform .3s;
+}
+.paso:hover{background:rgba(255,255,255,.05);transform:translateY(-4px)}
+.paso-n{color:rgba(192,139,30,.1);font-size:64px;letter-spacing:-.05em}
+.paso h3{color:var(--al);font-size:18px}
+.paso p{color:rgba(255,255,255,.35)}
+
+/* ── Nosotros ── */
+#nosotros{background:var(--gd)}
+.nos-p{color:rgba(255,255,255,.42);font-weight:300}
+.nos-p strong{color:rgba(255,255,255,.8)}
+.cia-box{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(192,139,30,.12);
+  border-radius:2px;
+}
+.vals{gap:8px}
+.val{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  border-left:2px solid rgba(192,139,30,.3);
+  border-radius:2px;
+  transition:all .3s;
+}
+.val:hover{background:rgba(255,255,255,.06);border-left-color:var(--au)}
+.val h4{color:rgba(255,255,255,.85);font-size:14px}
+.val p{color:rgba(255,255,255,.35);font-size:13px}
+
+/* ── Contacto ── */
+#contacto{background:var(--g1)}
+.cto-p{color:rgba(255,255,255,.35)}
+.cto-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(192,139,30,.12);
+  border-radius:2px;
+}
+.cto-card:hover{background:rgba(192,139,30,.08);border-color:rgba(192,139,30,.35)}
+.cto-card strong{color:rgba(255,255,255,.8)}
+.cto-card span{color:rgba(255,255,255,.3)}
+.cto-icon{background:rgba(192,139,30,.15);border:1px solid rgba(192,139,30,.25)}
+.fg input,.fg textarea,.fg select{
+  background:rgba(255,255,255,.04);
+  border-color:rgba(192,139,30,.15);
+  color:rgba(255,255,255,.75);
+}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--au)}
+.fg label{color:rgba(255,255,255,.28)}
+.btn-sub{background:var(--au);border-radius:2px}
+.btn-sub:hover{background:var(--al)}
+
+/* ── Footer ── */
+footer{
+  background:#020806;
+  border-top:1px solid rgba(192,139,30,.1);
+}
+.fb p{color:rgba(255,255,255,.22)}
+.fc h5{color:rgba(192,139,30,.7);letter-spacing:.22em}
+.fc a{color:rgba(255,255,255,.25)}
+.fc a:hover{color:var(--al)}
+.fb-bot{color:rgba(255,255,255,.15)}
+
+/* ═══════════════════════════════════════════════════
+   TESTIMONIOS — sobre fondo oscuro con pasteles
+   ═══════════════════════════════════════════════════ */
+#testimonios{
+  background:var(--gd);
+  padding:120px 80px;
+}
+.test-head{text-align:center;margin-bottom:80px}
+.test-head .slbl{color:var(--au)}
+.test-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(192,139,30,.08);
+  border:1px solid rgba(192,139,30,.08);
+  overflow:hidden;
+  max-width:1200px;
+  margin:0 auto 1px;
+}
+.test-grid-2{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(192,139,30,.08);
+  border:1px solid rgba(192,139,30,.08);
+  border-top:none;
+  max-width:1200px;
+  margin:0 auto;
+  overflow:hidden;
+}
+.test-card{
+  background:rgba(255,255,255,.025);
+  padding:36px 32px;
+  transition:background .3s;
+  position:relative;
+  overflow:hidden;
+}
+.test-card:hover{background:rgba(255,255,255,.055)}
+.test-card::before{
+  content:'"';
+  font-family:var(--fs);font-size:100px;font-weight:900;
+  color:rgba(192,139,30,.07);
+  position:absolute;top:-10px;left:18px;line-height:1;
+  pointer-events:none;
+}
+.test-stars{display:flex;gap:3px;margin-bottom:16px}
+.test-stars span{color:var(--au);font-size:12px}
+.test-text{
+  font-size:14px;line-height:1.8;
+  color:rgba(255,255,255,.5);
+  font-style:italic;margin-bottom:24px;
+  position:relative;
+}
+.test-sep{height:1px;background:rgba(192,139,30,.1);margin-bottom:18px}
+.test-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.8);margin-bottom:3px}
+.test-role{font-size:11px;color:rgba(255,255,255,.28);letter-spacing:.05em}
+.test-badge-tag{
+  position:absolute;top:18px;right:18px;
+  background:rgba(192,139,30,.1);border:1px solid rgba(192,139,30,.2);
+  color:var(--au);font-size:9px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;padding:3px 9px;border-radius:2px;
+}
+
+/* ═══════════════════════════════════════════════════
+   COMPRA PERSONALIZADA — mini tienda luxury
+   ═══════════════════════════════════════════════════ */
+#personalizado{
+  background:var(--g1);
+  padding:120px 80px;
+}
+.pers-head{margin-bottom:72px}
+.pers-head .slbl{color:var(--au)}
+.pers-head .stit{color:var(--wh)}
+.pers-head .pdesc{color:rgba(255,255,255,.35);margin-top:14px;font-size:14.5px}
+.pers-container{max-width:860px}
+.pers-table{
+  border:1px solid rgba(192,139,30,.12);
+  border-radius:2px;overflow:hidden;margin-bottom:24px;
+}
+.pers-row{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:24px;align-items:center;
+  padding:20px 28px;
+  background:rgba(255,255,255,.02);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  transition:background .2s;
+}
+.pers-row:last-child{border-bottom:none}
+.pers-row:hover{background:rgba(255,255,255,.05)}
+.pers-prod-info{}
+.pers-prod-n{font-size:14.5px;font-weight:500;color:rgba(255,255,255,.82);margin-bottom:3px}
+.pers-prod-d{font-size:12px;color:rgba(255,255,255,.28)}
+.pers-price{
+  font-family:var(--fs);font-size:16px;font-weight:700;
+  color:var(--au);white-space:nowrap;min-width:70px;text-align:right;
+}
+.pers-qty-wrap{display:flex;align-items:center;gap:0}
+.pqb{
+  width:36px;height:38px;
+  background:rgba(192,139,30,.1);
+  border:1px solid rgba(192,139,30,.2);
+  color:var(--al);font-size:18px;
+  cursor:pointer;transition:all .15s;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.pqb:first-child{border-radius:2px 0 0 2px}
+.pqb:last-child{border-radius:0 2px 2px 0}
+.pqb:hover{background:var(--au);color:var(--gd);border-color:var(--au)}
+.pqi{
+  width:50px;height:38px;text-align:center;
+  border:1px solid rgba(192,139,30,.2);
+  border-left:none;border-right:none;
+  font-family:var(--fs);font-size:15px;font-weight:700;
+  color:rgba(255,255,255,.8);
+  background:rgba(255,255,255,.04);
+  outline:none;-moz-appearance:textfield;
+}
+.pqi::-webkit-inner-spin-button,.pqi::-webkit-outer-spin-button{-webkit-appearance:none}
+.pers-resumen{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:rgba(192,139,30,.08);
+  border:1px solid rgba(192,139,30,.1);
+  border-radius:2px;overflow:hidden;
+  margin-bottom:20px;
+}
+.presumen-item{
+  background:rgba(255,255,255,.025);
+  padding:20px 24px;
+}
+.presumen-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:6px}
+.presumen-val{
+  font-family:var(--fs);font-size:20px;font-weight:700;color:var(--al);
+}
+.pers-estado{
+  padding:14px 20px;margin-bottom:16px;border-radius:2px;
+  font-size:13px;line-height:1.6;
+  background:rgba(15,41,18,.3);
+  border:1px solid rgba(23,64,25,.6);
+  color:rgba(255,255,255,.45);
+}
+.pers-estado.ok{background:rgba(15,41,18,.4);border-color:rgba(23,64,25,.8);color:rgba(255,255,255,.6)}
+.pers-estado.warn{background:rgba(180,50,30,.1);border-color:rgba(180,50,30,.3);color:#f87171}
+.pers-estado strong{color:var(--al)}
+.pers-nota{
+  font-size:12px;color:rgba(255,255,255,.25);line-height:1.7;
+  text-align:center;padding:14px 20px;
+  background:rgba(192,139,30,.05);
+  border:1px solid rgba(192,139,30,.1);
+  border-radius:2px;margin-top:14px;
+}
+.pers-nota strong{color:var(--au)}
+
+/* ═══════════════════════════════════════════════════
+   POLÍTICAS — grilla estructurada
+   ═══════════════════════════════════════════════════ */
+#politicas{
+  background:var(--gd);
+  padding:120px 80px;
+}
+.pol-head{margin-bottom:72px}
+.pol-head .stit{color:var(--wh)}
+.pol-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:rgba(192,139,30,.08);
+  border:1px solid rgba(192,139,30,.08);
+  overflow:hidden;max-width:1000px;margin-bottom:24px;
+}
+.pol-card{
+  padding:40px 36px;
+  background:rgba(255,255,255,.02);
+  transition:background .25s;
+}
+.pol-card:hover{background:rgba(255,255,255,.05)}
+.pol-title{
+  font-family:var(--fs);font-size:15px;font-weight:700;
+  color:rgba(255,255,255,.8);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.pol-title::before{content:'';width:16px;height:1px;background:var(--au);opacity:.6}
+.pol-ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.pol-ul li{
+  font-size:13.5px;line-height:1.65;
+  color:rgba(255,255,255,.35);
+  padding-left:16px;position:relative;
+}
+.pol-ul li::before{
+  content:'';position:absolute;left:0;top:8px;
+  width:4px;height:1px;background:rgba(192,139,30,.5);
+}
+.pol-nota{
+  max-width:1000px;
+  background:rgba(23,64,25,.25);
+  border:1px solid rgba(23,64,25,.6);
+  border-left:2px solid var(--al);
+  padding:20px 24px;
+  font-size:13.5px;color:rgba(255,255,255,.5);line-height:1.7;
+}
+.pol-nota strong{color:var(--al)}
+
+/* ═══════════════════════════════════════════════════
+   PAPAS SUB-TIPOS
+   ═══════════════════════════════════════════════════ */
+.papas-tipos{margin-top:28px}
+.papas-tipos-lbl{
+  font-size:9.5px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--au);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.papas-tipos-lbl::before{content:'';width:18px;height:1px;background:var(--au)}
+.papas-tipo{border:1px solid rgba(192,139,30,.12);border-radius:2px;overflow:hidden;margin-bottom:8px;background:rgba(255,255,255,.025)}
+.papas-tipo-hdr{
+  display:flex;align-items:center;gap:14px;padding:15px 20px;
+  cursor:pointer;transition:background .2s;user-select:none;
+}
+.papas-tipo-hdr:hover{background:rgba(192,139,30,.08)}
+.papas-tipo-dot{width:6px;height:6px;border-radius:50%;background:var(--au);flex-shrink:0}
+.papas-tipo-nm{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.75);flex:1}
+.papas-tipo-pr{font-family:var(--fs);font-size:14px;font-weight:700;color:var(--au);white-space:nowrap}
+.papas-tipo-arr{
+  width:20px;height:20px;border-radius:50%;
+  background:rgba(192,139,30,.1);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .25s;flex-shrink:0;
+}
+.papas-tipo-arr svg{width:10px;height:10px;stroke:var(--au);fill:none;stroke-width:2}
+.papas-tipo.open .papas-tipo-arr{transform:rotate(90deg)}
+.papas-tipo-body{
+  display:none;padding:16px 20px;
+  background:rgba(255,255,255,.02);border-top:1px solid rgba(192,139,30,.08);
+  font-size:13.5px;line-height:1.75;color:rgba(255,255,255,.38);
+}
+.papas-tipo.open .papas-tipo-body{display:block}
+
+/* ═══════════════════════════════════════════════════
+   MODAL INFO PRODUCTO
+   ═══════════════════════════════════════════════════ */
+.info-overlay{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(5,13,6,.92);backdrop-filter:blur(14px);
+  align-items:center;justify-content:center;padding:20px;
+}
+.info-overlay.active{display:flex}
+.info-modal{
+  background:var(--g1);
+  border:1px solid rgba(192,139,30,.18);
+  border-radius:2px;
+  max-width:580px;width:100%;
+  max-height:88vh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  animation:slideUp .28s ease;position:relative;
+}
+.info-modal::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--au) 40%,var(--al) 60%,transparent);
+}
+.imod-head{padding:36px 36px 28px;border-bottom:1px solid rgba(192,139,30,.08)}
+.imod-close{
+  position:absolute;top:16px;right:16px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  width:32px;height:32px;border-radius:2px;cursor:pointer;
+  color:rgba(255,255,255,.4);font-size:16px;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.imod-close:hover{background:rgba(255,255,255,.12);color:white}
+.imod-tag{font-size:9px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--au);margin-bottom:10px}
+.imod-title{font-family:var(--fs);font-size:24px;font-weight:700;color:var(--al);line-height:1.15;margin-bottom:5px}
+.imod-sub{font-size:11.5px;color:rgba(255,255,255,.25);letter-spacing:.05em}
+.imod-body{padding:28px 36px 36px;display:flex;flex-direction:column;gap:24px}
+.imod-section h4{
+  font-size:9.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--au);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.imod-section h4::before{content:'';width:16px;height:1px;background:var(--au)}
+.imod-section p{font-size:14px;line-height:1.85;color:rgba(255,255,255,.4);font-weight:300}
+.imod-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.imod-list li{
+  display:flex;gap:10px;font-size:13.5px;
+  color:rgba(255,255,255,.5);line-height:1.55;align-items:flex-start;
+}
+.imod-list li::before{
+  content:'';width:3px;height:3px;border-radius:50%;
+  background:var(--au);margin-top:7px;flex-shrink:0;
+}
+.imod-specs{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.imod-spec{
+  background:rgba(255,255,255,.03);border:1px solid rgba(192,139,30,.08);
+  border-radius:2px;padding:12px 14px;
+}
+.imod-spec-label{font-size:9px;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.imod-spec-value{font-family:var(--fs);font-size:14px;font-weight:700;color:var(--al)}
+.btn-ver{
+  display:inline-flex;align-items:center;gap:7px;
+  background:transparent;border:1px solid rgba(192,139,30,.25);
+  color:rgba(255,255,255,.5);
+  padding:9px 18px;border-radius:2px;
+  font-family:var(--ff);font-size:11px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;margin-top:12px;
+}
+.btn-ver:hover{border-color:var(--au);color:var(--al);background:rgba(192,139,30,.07)}
+.btn-ver svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ═══════════════════════════════════════════════════
+   DONACIONES — sobrio, elegante
+   ═══════════════════════════════════════════════════ */
+#donaciones{
+  background:var(--g1);
+  padding:120px 80px;
+  position:relative;overflow:hidden;
+}
+#donaciones::before{
+  content:'';position:absolute;
+  bottom:-300px;right:-200px;
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(192,139,30,.05) 0%,transparent 60%);
+  pointer-events:none;
+}
+.don-layout{
+  display:grid;grid-template-columns:1.2fr 1fr;
+  gap:100px;align-items:center;position:relative;z-index:1;
+}
+.don-left{}
+.don-eyebrow{
+  font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--au);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.don-eyebrow::before{content:'';width:22px;height:1px;background:var(--au)}
+.don-title{
+  font-family:var(--fs);
+  font-size:clamp(28px,3.5vw,44px);
+  font-weight:700;color:var(--wh);
+  margin-bottom:18px;line-height:1.08;
+  letter-spacing:-.02em;
+}
+.don-title em{color:var(--al);font-style:normal}
+.don-sub{
+  font-size:15px;color:rgba(255,255,255,.38);
+  line-height:1.85;font-weight:300;max-width:420px;margin-bottom:36px;
+}
+.don-causes{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;
+}
+.don-cause{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 16px;
+  border:1px solid rgba(192,139,30,.18);
+  border-radius:2px;
+  font-size:11.5px;color:rgba(255,255,255,.4);
+  letter-spacing:.04em;
+}
+.don-cause-dot{width:5px;height:5px;border-radius:50%;background:var(--au)}
+.don-right{}
+.don-box{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(192,139,30,.12);
+  border-radius:2px;padding:40px 36px;
+}
+.don-box-title{
+  font-family:var(--fs);font-size:16px;font-weight:700;
+  color:rgba(255,255,255,.7);margin-bottom:24px;
+  display:flex;align-items:center;gap:10px;
+}
+.don-box-title::before{content:'';width:16px;height:1px;background:var(--au)}
+.don-amount-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px;margin-bottom:16px;
+}
+.don-amt{
+  padding:14px;text-align:center;
+  border:1px solid rgba(192,139,30,.15);border-radius:2px;
+  font-family:var(--fs);font-size:16px;font-weight:700;
+  color:rgba(255,255,255,.5);cursor:pointer;
+  transition:all .2s;background:rgba(255,255,255,.02);
+}
+.don-amt:hover,.don-amt.active{
+  background:rgba(192,139,30,.12);
+  border-color:var(--au);color:var(--al);
+}
+.don-custom{
+  width:100%;padding:13px 16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(192,139,30,.15);border-radius:2px;
+  font-family:var(--fs);font-size:15px;color:var(--wh);
+  outline:none;margin-bottom:20px;transition:border-color .2s;
+  -moz-appearance:textfield;box-sizing:border-box;
+}
+.don-custom::-webkit-inner-spin-button{-webkit-appearance:none}
+.don-custom::placeholder{color:rgba(255,255,255,.2);font-family:var(--ff);font-size:14px}
+.don-custom:focus{border-color:var(--au)}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════ */
+@media(max-width:960px){
+  #quienes-somos{padding:64px 20px !important}
+  #quienes-somos .nos-grid,
+  #quienes-somos > div > div:nth-child(3){grid-template-columns:1fr !important}
+  .ft{grid-template-columns:1fr 1fr !important;gap:32px !important}
+}
+@media(max-width:640px){
+  #quienes-somos{padding:52px 16px !important}
+  #quienes-somos > div > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
+  .ft{grid-template-columns:1fr !important;gap:24px !important}
+}
+
+/* Quiénes somos — valores responsive */
+@media(max-width:640px){
+  #quienes-somos .vals-wrap{flex-direction:column}
+}
+  .test-grid,.test-grid-2{grid-template-columns:1fr}
+  .pol-grid{grid-template-columns:1fr}
+  .don-layout{grid-template-columns:1fr;gap:52px}
+  .pers-row{grid-template-columns:1fr auto;gap:16px}
+  .pers-price{display:none}
+  .pers-resumen{grid-template-columns:1fr 1fr}
+  .imod-specs{grid-template-columns:1fr}
+  .don-amount-grid{grid-template-columns:repeat(3,1fr)}
+  .imod-head,.imod-body{padding:22px 20px}
+}
+@media(max-width:640px){
+  nav{padding:14px 18px}
+  nav.scrolled{padding:10px 18px}
+  section{padding:64px 16px}
+  .acerca-title{font-size:28px}
+  .don-title{font-size:26px}
+  .pers-row{grid-template-columns:1fr}
+  .pers-qty-wrap{justify-content:flex-start}
+  .don-amount-grid{grid-template-columns:1fr 1fr}
+  #arroz,#dos-libras,#papito,#cholito,#papas,#nosotros,.nos-grid,.cto-grid,.proc-head{
+    grid-template-columns:1fr;gap:36px
+  }
+  #papas .pcard,#papito .pcard,#dos-libras .pcard,#arroz .pcard{order:-1}
+  .pcard{padding:36px 20px 32px}
+  .pasos{grid-template-columns:1fr}
+  .ft{grid-template-columns:1fr;gap:20px}
+  footer{padding:32px 16px 80px}
+  .pp-modal{max-width:100%;border-radius:12px 12px 0 0;position:fixed;bottom:0;left:0;right:0;max-height:92vh}
+  .pp-overlay{align-items:flex-end;padding:0}
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE COMPLETO — Desktop · iPad · Tablet · Mobile
+   ═══════════════════════════════════════════════════════ */
+
+/* === BASE: grid de 2 columnas para secciones de producto === */
+#arroz,#dos-libras,#papito,#cholito,#papas{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:72px;
+  align-items:center;
+}
+#nosotros .nos-grid,.cto-grid,.proc-head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:72px;
+  align-items:start;
+}
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+
+/* === iPad landscape / Tablet grande (1024px) === */
+@media(max-width:1100px){
+  section{padding:88px 52px}
+  #quienes-somos{padding:80px 52px !important}
+  #acerca,#testimonios,#personalizado,#politicas,#donaciones{padding:88px 52px}
+  nav,nav.scrolled{padding:16px 40px}
+}
+
+/* === iPad portrait / Tablet (768px–960px) === */
+@media(max-width:960px){
+  #campo-mesa > div > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;gap:28px !important}
+  #campo-mesa{padding:72px 28px !important}
+}
+@media(max-width:640px){
+  #campo-mesa{padding:56px 18px !important}
+}
+
+@media(max-width:960px){
+  section{padding:72px 32px}
+  #quienes-somos{padding:72px 32px !important}
+  #acerca,#testimonios,#personalizado,#politicas,#donaciones{padding:72px 28px}
+  nav,nav.scrolled{padding:14px 24px}
+  .nav-links{display:none}
+
+  /* Productos: una columna, imagen arriba */
+  #arroz,#dos-libras,#papito,#cholito,#papas{
+    grid-template-columns:1fr;gap:40px
+  }
+  /* En móvil/tablet: imagen siempre primero (order) */
+  #arroz > div:first-child,
+  #papito > div:first-child{order:1}   /* imagen: ya están primeras */
+  #dos-libras > div:nth-child(2),
+  #cholito > div:first-child,
+  #papas > div:first-child{order:-1}   /* imagen: mover arriba */
+
+  .nos-grid,.cto-grid,.proc-head{grid-template-columns:1fr;gap:40px}
+  .pasos{grid-template-columns:1fr}
+  .ft{grid-template-columns:1fr 1fr !important;gap:28px !important}
+  .acerca-right{gap:1px}
+  .test-grid,.test-grid-2{grid-template-columns:1fr 1fr;gap:1px}
+  .pol-grid{grid-template-columns:1fr}
+  .don-layout{grid-template-columns:1fr;gap:44px}
+  #hero{padding:100px 32px 72px}
+  .hero-logo{width:86vw}
+  .strip{grid-template-columns:1fr}
+  .stab{border-right:none;border-bottom:1px solid rgba(192,139,30,.1)}
+  .stab-sub a{padding-left:36px}
+  #quienes-somos > div > div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr !important
+  }
+  .pers-row{grid-template-columns:1fr auto;gap:14px}
+  .pers-price{min-width:auto;font-size:14px}
+  .pers-resumen{grid-template-columns:1fr 1fr}
+  .imod-specs{grid-template-columns:1fr 1fr}
+  .vals{grid-template-columns:1fr 1fr}
+  .pcard-img-wrap{width:180px;height:150px}
+  .pcard-img-wrap.arroz,.pcard-img-wrap.papas{height:220px}
+}
+
+/* === Móvil grande · iPhone Pro Max (480px–640px) === */
+@media(max-width:640px){
+  section{padding:56px 18px}
+  #quienes-somos{padding:56px 18px !important}
+  #acerca,#testimonios,#personalizado,#politicas,#donaciones{padding:56px 18px}
+  nav,nav.scrolled{padding:12px 16px}
+  #hero{padding:88px 18px 56px}
+  .hero-logo{width:92vw}
+  .hstats{gap:18px;padding:0 12px}
+  .hstat-n{font-size:22px}
+  .stit{font-size:clamp(24px,7vw,34px)}
+  .acerca-title{font-size:clamp(26px,7vw,36px)}
+  .don-title{font-size:clamp(24px,6.5vw,34px)}
+  .test-grid,.test-grid-2{grid-template-columns:1fr}
+  .pol-grid{grid-template-columns:1fr}
+  .ft{grid-template-columns:1fr !important;gap:20px !important}
+  footer{padding:40px 18px 100px}
+  .fb-bot{flex-direction:column;align-items:flex-start;gap:8px}
+  .vals{grid-template-columns:1fr}
+  .pcard{padding:32px 18px 28px;border-radius:12px}
+  .pcard-name{font-size:22px}
+  .pasos{grid-template-columns:1fr;gap:2px}
+  .pers-row{grid-template-columns:1fr}
+  .pers-qty-wrap{margin-top:4px}
+  .pers-price{display:none}
+  .don-amount-grid{grid-template-columns:1fr 1fr}
+  .don-layout{gap:36px}
+  .don-right .don-box{padding:28px 20px}
+  #quienes-somos > div > div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr !important
+  }
+  .imod-specs{grid-template-columns:1fr}
+  .imod-head,.imod-body{padding:20px 18px}
+  .imod-title{font-size:20px}
+  .pp-modal{max-width:100%;border-radius:16px 16px 0 0;position:fixed;bottom:0;left:0;right:0;max-height:94vh}
+  .pp-overlay{align-items:flex-end;padding:0}
+  .pp-modal-body{max-height:72vh}
+  .fab-text{display:none}
+  .fab-comprar{padding:14px;border-radius:50%;width:54px;height:54px;justify-content:center}
+  .fab-badge{display:none}
+}
+
+/* === Móvil pequeño · iPhone SE (max 375px) === */
+@media(max-width:380px){
+  section{padding:44px 14px}
+  #quienes-somos{padding:44px 14px !important}
+  .stit{font-size:24px}
+  .pcard{padding:28px 14px 24px}
+  nav,nav.scrolled{padding:10px 14px}
+  .pers-resumen{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -486,6 +1312,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
     <li><a href="#papas">Papas Prefritas</a></li>
     <li><a href="#proceso">Proceso</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#personalizado">Comprar</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="https://wa.me/593992210706?text=Hola%20quiero%20distribuir%20El%20Patriarca" class="nav-cta" target="_blank">Distribuir</a>
@@ -518,6 +1345,67 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <div style="text-align:center"><div class="hstat-n">2025</div><div class="hstat-l">Since</div></div>
     </div>
     <div class="hline"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SECCIÓN CORPORATIVA ═══════════════ -->
+<section id="quienes-somos" style="background:#F0EAD8;padding:100px 80px;border-bottom:1px solid rgba(192,139,30,.15);text-align:center">
+  <div style="max-width:860px;margin:0 auto">
+
+    <!-- Quiénes somos — centrado -->
+    <div style="margin-bottom:72px">
+      <span class="slbl" style="color:var(--au);justify-content:center">Quiénes somos</span>
+      <h2 style="font-family:var(--fs);font-size:clamp(32px,4vw,54px);font-weight:700;color:var(--gd);line-height:1.06;letter-spacing:-.025em;margin-bottom:32px">
+        El Patriarca<em style="font-style:italic;color:var(--au)">®</em><br>
+        <span style="font-size:clamp(18px,2.2vw,28px);font-weight:400;color:#5A4A2A;letter-spacing:-.01em">Es una marca de productos premium</span>
+      </h2>
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:680px;margin:0 auto;text-align:left">
+        <p style="font-size:16px;line-height:1.9;color:#3a3228;font-weight:300">La marca es construida con visión empresarial, enfocada en ofrecer calidad real, consistencia y confianza en cada entrega.</p>
+        <p style="font-size:16px;line-height:1.9;color:#3a3228;font-weight:300">Operamos bajo procesos estructurados, con criterios claros de selección y control que garantizan que cada producto cumpla con estándares exigentes. No trabajamos desde la improvisación, sino desde una base sólida que prioriza el detalle, la eficiencia y el respeto por el consumidor.</p>
+        <p style="font-size:16px;line-height:1.9;color:#3a3228;font-weight:300">Nuestra propuesta se centra en desarrollar productos bien trabajados, pensados tanto para el hogar como para el negocio, manteniendo siempre coherencia en calidad, presentación y rendimiento.</p>
+        <p style="font-size:16px;line-height:1.9;color:#3a3228;font-weight:300">Respaldados por <strong style="color:var(--gd);font-weight:600">Cueva &amp; Asociados® Global Corporate</strong>, operamos con disciplina, estructura y compromiso, consolidando una marca que representa seriedad, control y visión a largo plazo.</p>
+      </div>
+      <div style="margin-top:44px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+        <a href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca" class="btn-gold" target="_blank" style="display:inline-flex;align-items:center;gap:10px">
+          Cotizar ahora
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://linktr.ee/elpatriarcaec" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(192,139,30,.45);color:#6B5A2A;padding:16px 28px;border-radius:2px;font-family:var(--ff);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .25s">
+          Todos los canales
+        </a>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div style="width:60px;height:1px;background:var(--au);opacity:.4;margin:0 auto 64px"></div>
+
+    <!-- Misión + Visión — centrados con más contenido -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(192,139,30,.15);border:1px solid rgba(192,139,30,.15);margin-bottom:48px;overflow:hidden;text-align:left">
+      <div style="background:#F0EAD8;padding:44px 48px">
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--au);margin-bottom:16px;display:flex;align-items:center;gap:10px"><span style="display:inline-block;width:20px;height:1px;background:var(--au);opacity:.6"></span>Misión</div>
+        <h3 style="font-family:var(--fs);font-size:18px;font-weight:700;color:var(--gd);margin-bottom:14px">Por qué existimos</h3>
+        <p style="font-size:15px;line-height:1.85;color:#3a3228;font-weight:300">Ofrecer productos alimenticios de alta calidad, cuidadosamente seleccionados y procesados, garantizando consistencia, rendimiento y confianza en cada entrega. Nos comprometemos a llevar calidad real a la mesa de los ecuatorianos, con procesos controlados y estándares internacionales en cada lote.</p>
+      </div>
+      <div style="background:#E8E0CE;padding:44px 48px">
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--au);margin-bottom:16px;display:flex;align-items:center;gap:10px"><span style="display:inline-block;width:20px;height:1px;background:var(--au);opacity:.6"></span>Visión</div>
+        <h3 style="font-family:var(--fs);font-size:18px;font-weight:700;color:var(--gd);margin-bottom:14px">Hacia dónde vamos</h3>
+        <p style="font-size:15px;line-height:1.85;color:#3a3228;font-weight:300">Consolidarnos como una marca reconocida a nivel nacional e internacional, destacando por calidad, confiabilidad y crecimiento sostenido en el sector alimenticio. Expandirnos a todos los mercados del Ecuador y la región, siendo referencia de excelencia en productos premium.</p>
+      </div>
+    </div>
+
+    <!-- Valores — centrados -->
+    <div style="text-align:center">
+      <div style="font-size:9.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--au);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:10px"><span style="display:inline-block;width:20px;height:1px;background:var(--au);opacity:.6"></span>Valores<span style="display:inline-block;width:20px;height:1px;background:var(--au);opacity:.6"></span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+        <span style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1px solid rgba(192,139,30,.3);border-radius:2px;font-size:13px;color:#3a3228;background:rgba(192,139,30,.06)"><span style="width:5px;height:5px;border-radius:50%;background:var(--au);flex-shrink:0"></span>Compromiso con la calidad</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1px solid rgba(192,139,30,.3);border-radius:2px;font-size:13px;color:#3a3228;background:rgba(192,139,30,.06)"><span style="width:5px;height:5px;border-radius:50%;background:var(--au);flex-shrink:0"></span>Responsabilidad en cada proceso</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1px solid rgba(192,139,30,.3);border-radius:2px;font-size:13px;color:#3a3228;background:rgba(192,139,30,.06)"><span style="width:5px;height:5px;border-radius:50%;background:var(--au);flex-shrink:0"></span>Consistencia en cada entrega</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1px solid rgba(192,139,30,.3);border-radius:2px;font-size:13px;color:#3a3228;background:rgba(192,139,30,.06)"><span style="width:5px;height:5px;border-radius:50%;background:var(--au);flex-shrink:0"></span>Respeto por el cliente</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1px solid rgba(192,139,30,.3);border-radius:2px;font-size:13px;color:#3a3228;background:rgba(192,139,30,.06)"><span style="width:5px;height:5px;border-radius:50%;background:var(--au);flex-shrink:0"></span>Enfoque en crecimiento sostenible</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -561,9 +1449,23 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
     <div class="stab-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   </a>
 </div>
-
 <!-- ARROZ 25LB -->
 <section id="arroz">
+  <!-- IMAGEN PRIMERO (izquierda), texto segundo (derecha) -->
+  <div>
+    <div class="pcard">
+      <div class="pbadge"><strong></strong>Linea<br>premium</div>
+      <div class="pcard-img-wrap arroz">
+        <img src="img/logo-arroz.png" alt="El Patriarca Arroz">
+      </div>
+      <p class="pcard-name">El Patriarca®</p>
+      <p class="pcard-sub">Arroz envejecido · Grano Tipo Exportación</p>
+      <div class="pcard-line"></div>
+      <div class="cert-wrap">
+        <img src="img/producto6.png" alt="Grano Tipo Exportación" class="cert-img">
+      </div>
+    </div>
+  </div>
   <div>
     <span class="slbl">Línea 01 - PREMIUM</span>
     <h2 class="stit">Arroz El Patriarca<br><span class="it">Grano Largo · 25 lb</span></h2>
@@ -578,20 +1480,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
       Cotizar arroz 25lb
     </a>
-  </div>
-  <div>
-    <div class="pcard">
-      <div class="pbadge"><strong></strong>Linea<br>premium</div>
-      <div class="pcard-img-wrap arroz">
-        <img src="img/logo-arroz.png" alt="El Patriarca Arroz">
-      </div>
-      <p class="pcard-name">El Patriarca®</p>
-      <p class="pcard-sub">Arroz envejecido · Grano Tipo Exportación</p>
-      <div class="pcard-line"></div>
-      <div class="cert-wrap">
-        <img src="img/producto6.png" alt="Grano Tipo Exportación" class="cert-img">
-      </div>
-    </div>
+    <button class="btn-ver" onclick="abrirInfo('p25')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Saber más</button>
   </div>
 </section>
 
@@ -626,11 +1515,27 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
       Cotizar 2 Libras
     </a>
+    <button class="btn-ver" onclick="abrirInfo('p2lb')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Saber más</button>
   </div>
 </section>
 
 <!-- PAPITO RICO -->
 <section id="papito">
+  <!-- IMAGEN IZQUIERDA, TEXTO DERECHA -->
+  <div>
+    <div class="pcard">
+      <div class="pbadge" style="background:var(--g3);color:var(--wh);box-shadow:0 6px 20px rgba(42,107,49,.5)"><strong style="font-size:14px">GII</strong>Especial</div>
+      <div class="pcard-img-wrap papito">
+        <img src="img/PAPITO2.png" alt="Papito Rico">
+      </div>
+      <p class="pcard-name">Papito Rico®</p>
+      <p class="pcard-sub">Arroz envejecido especial · Grado II</p>
+      <div class="pcard-line"></div>
+      <div class="cert-wrap">
+        <span style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:0.1em;text-transform:uppercase">Equilibrio entre calidad y precio</span>
+      </div>
+    </div>
+  </div>
   <div>
     <span class="slbl">TRADICIÓN</span>
     <h2 class="stit">Papito <span class="it">Rico</span><br><span class="go">Arroz Envejecido Especial</span></h2>
@@ -649,20 +1554,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
       Cotizar Papito Rico
     </a>
-  </div>
-  <div>
-    <div class="pcard">
-      <div class="pbadge" style="background:var(--g3);color:var(--wh);box-shadow:0 6px 20px rgba(42,107,49,.5)"><strong style="font-size:14px">GII</strong>Especial</div>
-      <div class="pcard-img-wrap papito">
-        <img src="img/PAPITO2.png" alt="Papito Rico">
-      </div>
-      <p class="pcard-name">Papito Rico®</p>
-      <p class="pcard-sub">Arroz envejecido especial · Grado II</p>
-      <div class="pcard-line"></div>
-      <div class="cert-wrap">
-        <span style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:0.1em;text-transform:uppercase">Equilibrio entre calidad y precio</span>
-      </div>
-    </div>
+    <button class="btn-ver" onclick="abrirInfo('papito')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Saber más</button>
   </div>
 </section>
 
@@ -700,6 +1592,7 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
       Cotizar Mi Cholo
     </a>
+    <button class="btn-ver" onclick="abrirInfo('cholito')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Saber más</button>
   </div>
 </section>
 
@@ -727,10 +1620,79 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
       <li><span class="ck ck-a"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Ideal para negocios</strong> — restaurantes, snacks y distribución</div></li>
       <li><span class="ck ck-a"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><div><strong>Respaldada por Cueva &amp; Asociados®</strong> — confianza garantizada</div></li>
     </ul>
+
+    <!-- Tipos de papas -->
+    <div class="papas-tipos">
+      <div class="papas-tipos-lbl">Presentaciones disponibles</div>
+      <div class="papas-tipo" id="ptipo-cc">
+        <div class="papas-tipo-hdr" onclick="toggleTipo('ptipo-cc')">
+          <span class="papas-tipo-dot"></span>
+          <div style="flex:1">
+            <div class="papas-tipo-nm">Papas Prefritas <strong style="color:rgba(255,255,255,.7)">con Corteza</strong></div>
+            <div style="font-size:11.5px;color:rgba(255,255,255,.25);margin-top:2px">Parte de la cáscara natural · Sabor intenso</div>
+          </div>
+          <span class="papas-tipo-pr">$10,00</span>
+          <span class="papas-tipo-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+        <div class="papas-tipo-body">
+          Papa precocida que conserva parte de su cáscara natural, lo que le da un sabor más intenso y textura rústica ideal para frituras en negocios de comida rápida y restaurantes. <strong style="color:var(--al)">$5,00/kg · funda exclusiva de 2 kg.</strong>
+        </div>
+      </div>
+      <div class="papas-tipo" id="ptipo-sc">
+        <div class="papas-tipo-hdr" onclick="toggleTipo('ptipo-sc')">
+          <span class="papas-tipo-dot"></span>
+          <div style="flex:1">
+            <div class="papas-tipo-nm">Papas Prefritas <strong style="color:rgba(255,255,255,.7)">sin Corteza</strong></div>
+            <div style="font-size:11.5px;color:rgba(255,255,255,.25);margin-top:2px">Pelada completamente · Acabado premium uniforme</div>
+          </div>
+          <span class="papas-tipo-pr">$10,70</span>
+          <span class="papas-tipo-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+        <div class="papas-tipo-body">
+          Papa precocida pelada por completo, con acabado suave y uniforme. Perfecta para recetas gourmet y negocios que requieren una presentación limpia y prolija. <strong style="color:var(--al)">$5,35/kg · funda exclusiva de 2 kg.</strong>
+        </div>
+      </div>
+    </div>
+
     <a href="https://wa.me/593992210706?text=Hola%20quiero%20info%20sobre%20las%20Papas%20Prefritas%20El%20Patriarca" class="btn-gold" target="_blank">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15c-.197.297-.767.966-.94 1.164c-.173.199-.347.223-.644.075c-.297-.15-1.255-.463-2.39-1.475c-.883-.788-1.48-1.761-1.653-2.059c-.173-.297-.018-.458.13-.606c.134-.133.298-.347.446-.52c.149-.174.198-.298.298-.497c.099-.198.05-.371-.025-.52c-.075-.149-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51c-.173-.008-.371-.01-.57-.01c-.198 0-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487c.709.306 1.262.489 1.694.625c.712.227 1.36.195 1.871.118c.571-.085 1.758-.719 2.006-1.413c.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
       Consultar papas
     </a>
+  </div>
+</section>
+
+<!-- ══════════ SECCIÓN VERDE: CAMPO A LA MESA ══════════ -->
+<section id="campo-mesa" style="background:var(--g1);padding:120px 80px;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-200px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(192,139,30,.05) 0%,transparent 65%);pointer-events:none"></div>
+  <div style="max-width:900px;position:relative;z-index:1">
+    <span class="slbl" style="color:var(--au)">Nuestra historia</span>
+    <h2 class="acerca-title" style="margin-bottom:36px">
+      Calidad que nace <em>del campo a la mesa</em>
+    </h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <p class="acerca-intro" style="margin-bottom:0">El Patriarca® nace en 2025 como una decisión estratégica: construir una marca capaz de competir en un entorno exigente, donde la calidad no es una opción, sino una obligación.</p>
+        <p class="acerca-intro" style="margin-bottom:0">Desde el inicio entendimos que no bastaba con vender un producto, sino que debíamos desarrollar una propuesta sólida, basada en excelencia, control y mejora continua. Así comenzamos a estructurar cada etapa del proceso, desde la selección en origen hasta el producto final.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <p class="acerca-intro" style="margin-bottom:0">A lo largo de este camino, hemos enfocado nuestros esfuerzos en consolidar dos líneas que reflejan nuestra visión: <strong style="color:rgba(255,255,255,.8)">Arroz El Patriarca</strong> y <strong style="color:rgba(255,255,255,.8)">Papas Prefritas El Patriarca</strong>, ambas diseñadas para ofrecer rendimiento, consistencia y confianza en cada uso.</p>
+        <p class="acerca-intro" style="margin-bottom:0">Hoy, seguimos avanzando con el mismo enfoque con el que empezamos: crecer con orden, fortalecer nuestra presencia en el mercado y construir una marca que se convierta en referencia dentro de la industria.</p>
+        <div style="margin-top:8px;display:flex;gap:28px;flex-wrap:wrap">
+          <div style="text-align:center">
+            <div style="font-family:var(--fs);font-size:32px;font-weight:900;color:var(--al);line-height:1">2</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;margin-top:4px">Líneas</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-family:var(--fs);font-size:32px;font-weight:900;color:var(--al);line-height:1">100%</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;margin-top:4px">Premium</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-family:var(--fs);font-size:32px;font-weight:900;color:var(--al);line-height:1">24h</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.14em;text-transform:uppercase;margin-top:4px">Entrega</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -750,34 +1712,90 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   </div>
 </section>
 
-<!-- NOSOTROS -->
-<section id="nosotros">
-  <div class="nos-grid">
-    <div>
-      <span class="slbl">Quiénes somos</span>
-      <h2 class="stit">Cueva <span class="it">&amp; Asociados</span><br>Global Corporate</h2>
-      <p class="nos-p"><strong>El Patriarca</strong> es una marca de productos premium creada con visión empresarial y un enfoque claro en calidad, responsabilidad y crecimiento sostenido.</p>
-      <p class="nos-p">Nace del interés por ofrecer productos bien trabajados que cumplan estándares altos y mantengan coherencia en cada entrega. <strong>No buscamos improvisar</strong> — construimos una propuesta seria que representa confianza, autoridad y respeto por el consumidor.</p>
-      <p class="nos-p">Respaldados por <strong>Cueva &amp; Asociados®</strong>, empresa ecuatoriana con visión global y compromiso real con sus clientes.</p>
-      <div style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap">
-        <a href="https://wa.me/593992210706?text=Hola%20quiero%20cotizar%20El%20Patriarca" class="btn-gold" target="_blank">Cotizar ahora</a>
-        <a href="https://linktr.ee/elpatriarcaec" style="border:1px solid rgba(27,74,32,.45);color:var(--g3);padding:15px 30px;border-radius:2px;font-size:13px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .25s" target="_blank">Todos los canales</a>
+<!-- ══════════ COMPRA PERSONALIZADA ══════════ -->
+<section id="personalizado">
+  <div class="pers-head" style="text-align:center">
+    <span class="slbl" style="justify-content:center">Arma tu pedido</span>
+    <h2 class="stit" style="text-align:center">Compra <span class="it">personalizada</span></h2>
+    <p class="pdesc" style="text-align:center;margin:14px auto 0;max-width:520px">Selecciona los productos y cantidades que necesitas. El total se calcula automáticamente. Mínimo de compra: <strong style="color:var(--al)">$30,00</strong></p>
+  </div>
+  <div class="pers-container" style="max-width:860px;margin:0 auto">
+    <div class="pers-table">
+      <div class="pers-row">
+        <div class="pers-prod-info">
+          <div class="pers-prod-n">El Patriarca 25lb</div>
+          <div class="pers-prod-d">Arroz Envejecido Grado I · Grano Largo</div>
+        </div>
+        <div class="pers-price">$13,00 / saco</div>
+        <div class="pers-qty-wrap">
+          <button class="pqb" onclick="pAj('pq25',-1)">−</button>
+          <input class="pqi" id="pq25" type="number" value="0" min="0" oninput="pCalc()">
+          <button class="pqb" onclick="pAj('pq25',1)">+</button>
+        </div>
+      </div>
+      <div class="pers-row">
+        <div class="pers-prod-info">
+          <div class="pers-prod-n">El Patriarca 2lb</div>
+          <div class="pers-prod-d">Arroz Envejecido Grado I · Funda 2 libras</div>
+        </div>
+        <div class="pers-price">$1,25 / funda</div>
+        <div class="pers-qty-wrap">
+          <button class="pqb" onclick="pAj('pq2lb',-1)">−</button>
+          <input class="pqi" id="pq2lb" type="number" value="0" min="0" oninput="pCalc()">
+          <button class="pqb" onclick="pAj('pq2lb',1)">+</button>
+        </div>
+      </div>
+      <div class="pers-row">
+        <div class="pers-prod-info">
+          <div class="pers-prod-n">Papito Rico 25lb</div>
+          <div class="pers-prod-d">Arroz Envejecido Especial · Grado II</div>
+        </div>
+        <div class="pers-price">$11,00 / saco</div>
+        <div class="pers-qty-wrap">
+          <button class="pqb" onclick="pAj('pqpap',-1)">−</button>
+          <input class="pqi" id="pqpap" type="number" value="0" min="0" oninput="pCalc()">
+          <button class="pqb" onclick="pAj('pqpap',1)">+</button>
+        </div>
+      </div>
+      <div class="pers-row">
+        <div class="pers-prod-info">
+          <div class="pers-prod-n">Mi Cholo Querido 25lb</div>
+          <div class="pers-prod-d">Arroz Natural Estándar · Grado II · Línea diaria</div>
+        </div>
+        <div class="pers-price">$9,00 / saco</div>
+        <div class="pers-qty-wrap">
+          <button class="pqb" onclick="pAj('pqcho',-1)">−</button>
+          <input class="pqi" id="pqcho" type="number" value="0" min="0" oninput="pCalc()">
+          <button class="pqb" onclick="pAj('pqcho',1)">+</button>
+        </div>
       </div>
     </div>
-    <div>
-      <div class="cia-box">
-        <img src="img/cueva.png" alt="Cueva & Asociados" style="filter:brightness(0) invert(1)">
+
+    <div class="pers-resumen">
+      <div class="presumen-item">
+        <div class="presumen-label">Productos seleccionados</div>
+        <div class="presumen-val" id="pcant">0 items</div>
       </div>
-      <div class="vals">
-        <div class="val"><h4>Tradición</h4><p>Raíces ecuatorianas con estándares que trascienden fronteras.</p></div>
-        <div class="val"><h4>Precisión</h4><p>Tecnología de selección y procesos controlados en cada línea.</p></div>
-        <div class="val"><h4>Confianza</h4><p>Relación directa con distribuidores basada en cumplimiento.</p></div>
-        <div class="val"><h4>Crecimiento</h4><p>Marca pensada para expandirse con orden y solidez en el tiempo.</p></div>
+      <div class="presumen-item">
+        <div class="presumen-label">Total del pedido</div>
+        <div class="presumen-val" id="ptotal">$0,00</div>
       </div>
+    </div>
+
+    <div class="pers-estado" id="pestado">
+      <strong>Mínimo de compra: $30,00</strong> — Agrega productos para continuar.
+    </div>
+
+    <button class="btn-gold" id="pbtnpagar" onclick="pPagar()" disabled style="width:100%;justify-content:center;padding:17px;font-size:13px;border-radius:2px;opacity:.45;cursor:not-allowed">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      Pagar pedido personalizado
+    </button>
+
+    <div class="pers-nota">
+      <strong>Importante:</strong> Después de pagar, envía el detalle y comprobante por WhatsApp al +593 99 221 0706 con tu nombre y productos seleccionados.
     </div>
   </div>
 </section>
-
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="cto-grid">
@@ -838,35 +1856,219 @@ footer{background:#040A05;padding:52px 64px 28px;border-top:2px solid rgba(201,1
   </div>
 </section>
 
+<!-- ══════════ TESTIMONIOS ══════════ -->
+<section id="testimonios">
+  <div class="test-head">
+    <span class="slbl">Lo que dicen</span>
+    <h2 class="stit">Clientes que <span class="it">confían</span></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <span class="test-badge-tag">Restaurante</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">El arroz El Patriarca tiene cocción perfecta y mis clientes lo piden siempre. La calidad nunca falla y el grano queda suelto en cada plato.</p>
+      <div class="test-sep"></div>
+      <div class="test-name">Carmen Rodríguez</div>
+      <div class="test-role">Restaurante · Guayaquil</div>
+    </div>
+    <div class="test-card">
+      <span class="test-badge-tag">Distribuidora</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">Excelente rendimiento en cada saco. Usamos El Patriarca 25lb en nuestro negocio y el volumen por taza es muy superior al promedio. Gran producto.</p>
+      <div class="test-sep"></div>
+      <div class="test-name">Miguel Andrade</div>
+      <div class="test-role">Distribuidora · Samborondón</div>
+    </div>
+    <div class="test-card">
+      <span class="test-badge-tag">Mayorista</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">Llevo meses con El Patriarca y la calidad es consistente en cada lote. La entrega cumple los tiempos y la atención es inmediata. Un proveedor serio.</p>
+      <div class="test-sep"></div>
+      <div class="test-name">Luis Fuentes</div>
+      <div class="test-role">Mayorista · Daule</div>
+    </div>
+  </div>
+  <div class="test-grid-2">
+    <div class="test-card">
+      <span class="test-badge-tag">Hogar</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">Papito Rico es el arroz de mi familia. Tiene un sabor más rico y el grano queda perfecto. Desde la primera vez mis hijos solo piden este arroz.</p>
+      <div class="test-sep"></div>
+      <div class="test-name">Andrea Mora</div>
+      <div class="test-role">Cliente hogar · Guayaquil</div>
+    </div>
+    <div class="test-card">
+      <span class="test-badge-tag">Local comida</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">Las papas sin corteza son un éxito en mi local. Quedan crujientes, uniformes y mis clientes siempre las piden. Calidad que se ve y se siente.</p>
+      <div class="test-sep"></div>
+      <div class="test-name">Roberto Silva</div>
+      <div class="test-role">Comida rápida · Guayaquil</div>
+    </div>
+    <div class="test-card">
+      <span class="test-badge-tag">Tienda</span>
+      <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="test-text">Mi Cholo Querido se vende solo. Los clientes lo compran semana a semana. Precio justo, buen rendimiento y calidad confiable. El mejor para venta diaria.</p>
+      <div class="test-sep"></div>
+      <div class="test-name">Patricia Vega</div>
+      <div class="test-role">Tienda · Milagro</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ DONACIONES ══════════ -->
+<section id="donaciones">
+  <div class="don-layout">
+    <div class="don-left">
+      <div class="don-eyebrow">El Patriarca da</div>
+      <h2 class="don-title">Donaciones &amp;<br><em>Causas Sociales</em></h2>
+      <p class="don-sub">Apoya a quienes más lo necesitan. Cada donación llega directamente a fundaciones, familias y comunidades a través de El Patriarca. Sin comisiones ocultas.</p>
+      <div class="don-causes">
+        <div class="don-cause"><span class="don-cause-dot"></span>Navidad para niños</div>
+        <div class="don-cause"><span class="don-cause-dot"></span>Fundaciones</div>
+        <div class="don-cause"><span class="don-cause-dot"></span>Ayuda social</div>
+        <div class="don-cause"><span class="don-cause-dot"></span>Canastas familiares</div>
+      </div>
+    </div>
+    <div class="don-right">
+      <div class="don-box">
+        <div class="don-box-title">Hacer un aporte</div>
+        <div class="don-amount-grid">
+          <div class="don-amt" onclick="selDon(this,1)">$1</div>
+          <div class="don-amt" onclick="selDon(this,5)">$5</div>
+          <div class="don-amt" onclick="selDon(this,10)">$10</div>
+          <div class="don-amt" onclick="selDon(this,20)">$20</div>
+          <div class="don-amt" onclick="selDon(this,50)">$50</div>
+          <div class="don-amt" onclick="selDon(this,0)">Otro</div>
+        </div>
+        <input class="don-custom" id="don-monto" type="number" min="1" step="1" placeholder="Ingresa un monto personalizado ($1 mínimo)" oninput="donCalc()">
+        <div class="pers-estado ok" id="don-status" style="margin-bottom:16px">Desde <strong>$1,00</strong> puedes hacer la diferencia.</div>
+        <button class="btn-gold" id="don-btn" onclick="donPagar()" style="width:100%;justify-content:center;padding:16px;font-size:13px;border-radius:2px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M11.5 2C6.25 2 2 6.25 2 11.5c0 1.952.584 3.771 1.587 5.285L2 22l5.336-1.58A9.453 9.453 0 0011.5 21c5.247 0 9.5-4.253 9.5-9.5S16.747 2 11.5 2z"/></svg>
+          Realizar donación ahora
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
-  <div class="ft">
+  <div class="ft" style="grid-template-columns:1.6fr 1fr 1fr 1.3fr">
     <div class="fb">
-      <img src="img/cia3.png" alt="Cueva & Asociados" style="filter:brightness(0) invert(1)">
-      <p>El Patriarca® es una marca de Cueva &amp; Asociados®. Arroz envejecido, papas prefritas y más líneas de calidad premium para Ecuador.</p>
+      <p style="font-size:13px;color:rgba(255,255,255,.35);line-height:1.75;max-width:240px;margin-bottom:0">El Patriarca® es una marca de Cueva &amp; Asociados®. Arroz envejecido, papas prefritas y más líneas de calidad premium para Ecuador.</p>
     </div>
     <div class="fc">
       <h5>Productos</h5>
       <a href="#arroz">Arroz envejecido 25lb</a>
       <a href="#dos-libras">El Patriarca 2 Libras</a>
       <a href="#papito">Papito Rico</a>
-      <a href="#cholito">Mi Cholo (Cholito Sabroso)</a>
+      <a href="#cholito">Mi Cholo Querido</a>
       <a href="#papas">Papas prefritas</a>
     </div>
     <div class="fc">
       <h5>Empresa</h5>
-      <a href="#nosotros">Quiénes somos</a>
+      <a href="#quienes-somos">Quiénes somos</a>
+      <a href="#acerca">Acerca de nosotros</a>
       <a href="#contacto">Contacto</a>
       <a href="https://linktr.ee/elpatriarcaec" target="_blank">Canales oficiales</a>
       <a href="https://wa.me/593992210706" target="_blank">WhatsApp</a>
     </div>
+    <div class="fc">
+      <h5>Políticas</h5>
+      <p style="font-size:13px;color:rgba(255,255,255,.3);line-height:1.7;margin-bottom:16px">
+        · Pedidos sujetos a disponibilidad y volumen mínimo<br>
+        · Entregas en Guayaquil y envíos a otras ciudades<br>
+        · Pagos mediante transferencia o canales habilitados<br>
+        · Despacho una vez confirmado el pago
+      </p>
+      <button onclick="abrirPoliticas()" style="display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid rgba(192,139,30,.3);color:var(--al);padding:9px 18px;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:var(--ff)" onmouseover="this.style.background='rgba(192,139,30,.1)';this.style.borderColor='var(--au)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(192,139,30,.3)'">
+        Ver políticas completas
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
   </div>
-  <div class="fb-bot">
-    <span>© 2025 El Patriarca® — Cueva &amp; Asociados® Global Corporate. Todos los derechos reservados.</span>
-    <span>Hecho con tradición y calidad · Ecuador 🇪🇨</span>
+  <div class="fb-bot" style="color:rgba(255,255,255,.55);border-top:1px solid rgba(192,139,30,.1);padding-top:20px;margin-top:4px">
+    <span style="color:rgba(255,255,255,.6);font-size:12.5px">© 2026 El Patriarca® — Cueva &amp; Asociados® Global Corporate. Todos los derechos reservados.</span>
+    <span style="font-size:12px;color:rgba(255,255,255,.35)">Hecho con tradición y calidad · Ecuador 🇪🇨</span>
   </div>
 </footer>
 
+
+<!-- ══ MODAL POLÍTICAS ══ -->
+<div style="display:none;position:fixed;inset:0;z-index:600;background:rgba(5,13,6,.93);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:20px" id="pol-overlay" onclick="cerrarPoliticasClick(event)">
+  <div style="background:#0A1A0C;border:1px solid rgba(192,139,30,.18);border-radius:2px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;animation:slideUp .28s ease;position:relative">
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--au) 40%,var(--al) 60%,transparent)"></div>
+    <div style="padding:32px 36px 24px;border-bottom:1px solid rgba(192,139,30,.08);position:relative">
+      <button onclick="cerrarPoliticas()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);width:32px;height:32px;border-radius:2px;cursor:pointer;color:rgba(255,255,255,.4);font-size:16px;display:flex;align-items:center;justify-content:center">✕</button>
+      <div style="font-size:9px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--au);margin-bottom:8px">Transparencia</div>
+      <h3 style="font-family:var(--fs);font-size:22px;font-weight:700;color:var(--al);line-height:1.15">Políticas de compra</h3>
+    </div>
+    <div style="padding:28px 36px 36px;display:flex;flex-direction:column;gap:28px">
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--au);margin-bottom:12px;display:flex;align-items:center;gap:8px"><span style="width:16px;height:1px;background:var(--au)"></span>Pedidos mínimos</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Arroz (cualquier línea 25lb): mínimo 2 sacos por pedido</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Papas prefritas: mínimo 1 funda de 2 kg</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Compra personalizada (mix de productos): mínimo $30,00</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Para envíos fuera de la ciudad no hay mínimo de unidades</li>
+        </ul>
+      </div>
+      <div style="height:1px;background:rgba(192,139,30,.08)"></div>
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--au);margin-bottom:12px;display:flex;align-items:center;gap:8px"><span style="width:16px;height:1px;background:var(--au)"></span>Tiempos de entrega</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Guayaquil y área metropolitana: dentro de 24 horas</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Fuera de la ciudad: 24 a 48 horas según distancia y horario</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>El pago debe reflejarse en cuenta antes del despacho</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Transferencias a 12 horas deben esperar confirmación bancaria</li>
+        </ul>
+      </div>
+      <div style="height:1px;background:rgba(192,139,30,.08)"></div>
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--au);margin-bottom:12px;display:flex;align-items:center;gap:8px"><span style="width:16px;height:1px;background:var(--au)"></span>Métodos de pago</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Transferencia bancaria directa</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Botón de pago online (Visa · Mastercard · Diners · Discover)</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Link de pago enviado por WhatsApp</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>El pago debe reflejarse en cuenta antes del despacho</li>
+        </ul>
+      </div>
+      <div style="height:1px;background:rgba(192,139,30,.08)"></div>
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--au);margin-bottom:12px;display:flex;align-items:center;gap:8px"><span style="width:16px;height:1px;background:var(--au)"></span>Envíos y distribución</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Dentro de Guayaquil: envío incluido en pedidos normales</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Fuera de la ciudad: costo de envío asumido por el cliente</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Para ser distribuidor: contactar por WhatsApp o formulario</li>
+          <li style="font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.45);padding-left:14px;position:relative"><span style="position:absolute;left:0;top:8px;width:4px;height:1px;background:rgba(192,139,30,.5)"></span>Precios especiales para distribuidores y mayoristas</li>
+        </ul>
+      </div>
+      <div style="background:rgba(23,64,25,.25);border:1px solid rgba(23,64,25,.6);border-left:2px solid var(--al);padding:18px 22px;font-size:13.5px;color:rgba(255,255,255,.5);line-height:1.7">
+        <strong style="color:var(--al)">Comprobante de pago:</strong> El cliente debe enviar el comprobante junto con su nombre, producto y cantidad por WhatsApp al <strong style="color:var(--al)">+593 99 221 0706</strong>. El producto se despacha una vez confirmado el pago.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL INFO PRODUCTO ══ -->
+<div class="info-overlay" id="info-overlay" onclick="cerrarInfoSiAfuera(event)">
+  <div class="info-modal" id="info-modal">
+    <div class="imod-head">
+      <button class="imod-close" onclick="cerrarInfo()">✕</button>
+      <div class="imod-tag" id="im-tag"></div>
+      <div class="imod-title" id="im-title"></div>
+      <div class="imod-sub" id="im-sub"></div>
+    </div>
+    <div class="imod-body">
+      <div class="imod-section"><h4>Qué es</h4><p id="im-desc"></p></div>
+      <div class="imod-section"><h4>Por qué es envejecido</h4><p id="im-env"></p></div>
+      <div class="imod-section"><h4>Beneficios</h4><ul class="imod-list" id="im-bens"></ul></div>
+      <div class="imod-section"><h4>Especificaciones</h4><div class="imod-specs" id="im-specs"></div></div>
+    </div>
+  </div>
+</div>
 
 <!-- ================================================================
      BOTÓN FLOTANTE "COMPRAR AHORA"
@@ -1757,6 +2959,196 @@ const _origInitPayphone = initPayphone;
     '@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}';
   document.head.appendChild(s);
 }());
+
+/* ══ PAPAS TIPOS ══ */
+function toggleTipo(id){
+  const el=document.getElementById(id);
+  const open=el.classList.contains('open');
+  document.querySelectorAll('.papas-tipo').forEach(t=>t.classList.remove('open'));
+  if(!open) el.classList.add('open');
+}
+
+
+/* ══ MODAL POLÍTICAS ══ */
+function abrirPoliticas(){
+  const o=document.getElementById('pol-overlay');
+  o.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function cerrarPoliticas(){
+  document.getElementById('pol-overlay').style.display='none';
+  document.body.style.overflow='';
+}
+function cerrarPoliticasClick(e){
+  if(e.target===document.getElementById('pol-overlay')) cerrarPoliticas();
+}
+
+/* ══ MODAL INFO PRODUCTO ══ */
+const INFO={
+  p25:{
+    tag:'El Patriarca · Grado I · Premium',
+    title:'Arroz El Patriarca 25lb',sub:'Envejecido · Grano Largo Fino · Tipo Exportación',
+    desc:'El Patriarca 25lb es el arroz emblema de la marca. Grano largo fino seleccionado electrónicamente para garantizar solo los mejores granos en cada saco. Riguroso control de calidad en cada lote.',
+    env:'El envejecimiento es un proceso controlado post-cosecha que reduce humedad del grano, lo hace más firme y mejora la cocción. El resultado: grano suelto, mayor rendimiento por taza, mejor aroma y textura que el arroz fresco convencional.',
+    bens:['Grano suelto y bien definido — no se apelotona','Mayor rendimiento por taza — ahorra en cada cocción','Selección electrónica — solo granos enteros uniformes','Aroma característico del proceso de envejecimiento','Estándar internacional de exportación verificado'],
+    specs:[['Presentación','25 lb · 11,3 kg'],['Grado','Grado I — Premium'],['Grano','Largo fino'],['Mínimo','2 sacos'],['Precio','$13,00 / saco'],['Proceso','Envejecido controlado']]
+  },
+  p2lb:{
+    tag:'El Patriarca · Grado I · Hogar',
+    title:'El Patriarca 2lb',sub:'Envejecido · Bolsa Premium · Para el Hogar',
+    desc:'La misma calidad Grado I del Patriarca en formato conveniente para el hogar. Sellada al vacío para preservar frescura. Ideal para familias que buscan calidad premium sin comprar grandes volúmenes.',
+    env:'Mismo proceso de envejecimiento controlado del saco de 25lb. Grano firme, aromático y con mayor rendimiento. Excelencia que se elige en cada comida — ese es el compromiso de cada bolsa.',
+    bens:['Misma calidad Grado I en formato familiar conveniente','Mayor porcentaje de granos enteros — presentación impecable','Empaque sellado que preserva frescura y calidad','Cocción superior — grano suelto, firme, bien definido','Perfecto para hogares exigentes con calidad'],
+    specs:[['Presentación','2 lb · 907 g'],['Grado','Grado I — Premium'],['Grano','Largo fino'],['Mínimo','100 fundas'],['Precio','$1,25 / funda'],['Proceso','Envejecido controlado']]
+  },
+  papito:{
+    tag:'Papito Rico · Grado II · Tradición',
+    title:'Papito Rico 25lb',sub:'Envejecido Especial · Grano Normal · Grado II',
+    desc:'El arroz de la tradición ecuatoriana mejorado. Grano normal con proceso de envejecimiento especial para quienes prefieren el sabor familiar con mejor cocción y consistencia.',
+    env:'Aunque es Grado II, Papito Rico también pasa por proceso de envejecimiento que mejora notablemente su cocción frente al arroz fresco estándar. El grano absorbe mejor el agua y queda más uniforme, manteniendo la textura tradicional ecuatoriana.',
+    bens:['Proceso de envejecimiento que mejora la cocción tradicional','Buena uniformidad y calidad constante en cada lote','Textura suave con cohesión natural característica','Buen rendimiento para el consumo diario familiar','Equilibrio óptimo entre calidad y precio'],
+    specs:[['Presentación','25 lb · 11,3 kg'],['Grado','Grado II — Especial'],['Grano','Normal medio'],['Cocción','1 taza + 2 agua'],['Precio','$11,00 / saco'],['Proceso','Envejecido especial']]
+  },
+  cholito:{
+    tag:'Mi Cholo Querido · Diario · Esencial',
+    title:'Mi Cholo Querido 25lb',sub:'Natural Estándar · Grano Normal · Línea Diaria',
+    desc:'Mi Cholo Querido — también conocido como Cholito Sabroso — es el arroz del consumo diario del hogar ecuatoriano. Accesible, práctico y confiable para todas las familias.',
+    env:'A diferencia de las otras líneas, Mi Cholo no pasa por envejecimiento. Conserva mayor humedad natural del grano fresco, lo que resulta en una cocción más rápida y textura más suave. Ideal para el hogar que busca practicidad cotidiana.',
+    bens:['Cocción rápida — sin tiempos de espera adicionales','Textura suave y cohesionada al estilo tradicional','Mayor humedad natural — ideal para arroces caldosos','Precio muy accesible para el consumo diario','Diseñado especialmente para el hogar ecuatoriano'],
+    specs:[['Presentación','25 lb · 11,3 kg'],['Grado','Grado II — Estándar'],['Grano','Normal / medio'],['Cocción','1 taza + 1 agua'],['Precio','$9,00 / saco'],['Proceso','Natural — sin envejecer']]
+  }
+};
+function abrirInfo(id){
+  const d=INFO[id];if(!d)return;
+  document.getElementById('im-tag').textContent=d.tag;
+  document.getElementById('im-title').textContent=d.title;
+  document.getElementById('im-sub').textContent=d.sub;
+  document.getElementById('im-desc').textContent=d.desc;
+  document.getElementById('im-env').textContent=d.env;
+  document.getElementById('im-bens').innerHTML=d.bens.map(b=>'<li>'+b+'</li>').join('');
+  document.getElementById('im-specs').innerHTML=d.specs.map(s=>
+    '<div class="imod-spec"><div class="imod-spec-label">'+s[0]+'</div>'+
+    '<div class="imod-spec-value">'+s[1]+'</div></div>'
+  ).join('');
+  document.getElementById('info-overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function cerrarInfo(){
+  document.getElementById('info-overlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+function cerrarInfoSiAfuera(e){
+  if(e.target===document.getElementById('info-overlay')) cerrarInfo();
+}
+
+/* ══ COMPRA PERSONALIZADA ══ */
+const PPRECIOS={pq25:13,pq2lb:1.25,pqpap:11,pqcho:9};
+function pAj(id,d){
+  const i=document.getElementById(id);
+  i.value=Math.max(0,(parseInt(i.value)||0)+d);pCalc();
+}
+function pCalc(){
+  let tot=0,cnt=0;
+  Object.entries(PPRECIOS).forEach(([id,pr])=>{
+    const v=Math.max(0,parseInt(document.getElementById(id).value)||0);
+    tot+=v*pr;cnt+=v;
+  });
+  document.getElementById('ptotal').textContent='$'+tot.toFixed(2).replace('.',',');
+  document.getElementById('pcant').textContent=cnt+' item'+(cnt!==1?'s':'');
+  const btn=document.getElementById('pbtnpagar');
+  const st=document.getElementById('pestado');
+  if(tot<=0){
+    st.className='pers-estado';
+    st.innerHTML='<strong>Mínimo de compra: $30,00</strong> — Agrega productos para continuar.';
+    btn.disabled=true;btn.style.opacity='.45';btn.style.cursor='not-allowed';
+  } else if(tot<30){
+    st.className='pers-estado warn';
+    st.innerHTML='<strong>Mínimo no alcanzado.</strong> Necesitas $'+(30-tot).toFixed(2).replace('.',',')+' más para pagar.';
+    btn.disabled=true;btn.style.opacity='.45';btn.style.cursor='not-allowed';
+  } else {
+    st.className='pers-estado ok';
+    st.innerHTML='<strong>✓ Pedido listo — $'+tot.toFixed(2).replace('.',',')+'</strong> Puedes continuar al pago.';
+    btn.disabled=false;btn.style.opacity='1';btn.style.cursor='pointer';
+  }
+}
+function pPagar(){
+  let tot=0,lineas=[];
+  const NOM={pq25:'El Patriarca 25lb',pq2lb:'El Patriarca 2lb',pqpap:'Papito Rico 25lb',pqcho:'Mi Cholo Querido 25lb'};
+  Object.entries(PPRECIOS).forEach(([id,pr])=>{
+    const v=Math.max(0,parseInt(document.getElementById(id).value)||0);
+    if(v>0){tot+=v*pr;lineas.push(NOM[id]+' x'+v+' ($'+(v*pr).toFixed(2)+')');}
+  });
+  if(tot<30){alert('El mínimo de compra personalizada es $30,00.');return;}
+  if(typeof openOrderModal==='function'){
+    productoSeleccionado='Pedido personalizado: '+lineas.join(' | ');
+    ppOrder={key:'custom',nombre:'Pedido personalizado',cantidad:1,precioUnit:tot,total:tot};
+    try{sessionStorage.setItem('pp_producto',productoSeleccionado);}catch(e){}
+    openOrderModal();
+    setTimeout(()=>{
+      const totalCents=Math.round(tot*100);
+      const txId='PAT-'+Date.now();
+      activeTxId=txId;
+      showStep('payment');
+      document.getElementById('pp-payment-resume').innerHTML=
+        '<strong style="color:var(--al)">Pedido personalizado</strong><br>Total: <strong style="color:var(--al)">$'+tot.toFixed(2)+'</strong>';
+      const box=document.getElementById('pp-payment-box');
+      box.innerHTML='<div id="pp-load" style="padding:52px 24px;text-align:center"><div class="pp-spinner"></div><p style="font-size:13px;color:rgba(255,255,255,.35);margin-top:18px">Abriendo formulario de pago…</p></div>';
+      let tick=0;
+      const timer=setInterval(()=>{
+        tick++;
+        if(typeof PPaymentButtonBox!=='undefined'){
+          clearInterval(timer);
+          renderBox(box,totalCents,txId,'Pedido personalizado | $'+tot.toFixed(2)+' | '+lineas.join(', '));
+        } else if(tick>=50){clearInterval(timer);mostrarErrorCarga(box);}
+      },80);
+    },150);
+  }
+}
+
+/* ══ DONACIONES ══ */
+let donMonto=0;
+function selDon(el,val){
+  document.querySelectorAll('.don-amt').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+  const inp=document.getElementById('don-monto');
+  if(val>0){inp.value=val;donMonto=val;}
+  else{inp.value='';donMonto=0;inp.focus();}
+  donCalc();
+}
+function donCalc(){
+  const v=parseFloat(document.getElementById('don-monto').value)||0;
+  donMonto=v;
+  const st=document.getElementById('don-status');
+  if(v>=1){
+    st.className='pers-estado ok';
+    st.innerHTML='<strong>Donación de $'+v.toFixed(2)+'</strong> — ¡Gracias por tu generosidad!';
+  } else {
+    st.className='pers-estado';
+    st.innerHTML='Desde <strong>$1,00</strong> puedes hacer la diferencia.';
+  }
+}
+function donPagar(){
+  const v=parseFloat(document.getElementById('don-monto').value)||0;
+  if(v<1){alert('El monto mínimo de donación es $1,00.');return;}
+  if(typeof openOrderModal==='function'){
+    productoSeleccionado='Donación El Patriarca® — $'+v.toFixed(2);
+    ppOrder={key:'custom',nombre:'Donación El Patriarca®',cantidad:1,precioUnit:v,total:v};
+    try{sessionStorage.setItem('pp_producto',productoSeleccionado);}catch(e){}
+    openOrderModal();
+    /* Cambiar título del modal para que diga "Hacer pago" */
+    setTimeout(()=>{
+      const h3=document.querySelector('.pp-modal-head h3');
+      if(h3) h3.textContent='Hacer pago';
+      const sub=document.querySelector('.pp-modal-head p');
+      if(sub) sub.textContent='Donación El Patriarca® · '+v.toFixed(2)+' USD';
+      const sel=document.getElementById('pp-producto');
+      if(sel){sel.value='custom';onProductChange();}
+      const inp=document.getElementById('pp-monto-custom');
+      if(inp){inp.value=v;updateCustomTotal();}
+    },100);
+  }
+}
+
 </script>
 </body>
 </html>
