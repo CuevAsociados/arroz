@@ -1,6 +1,42 @@
 <!doctype html>
 <html lang="es">
 <head>
+<script>
+/* Respaldo de rutas para que las imágenes funcionen si los archivos de preparación se cargaron
+   directamente en img/ en vez de img/, o si la carpeta quedó accidentalmente como img/img/. */
+(function () {
+  var prepNames = new Set([
+    'freidora.jpg','air-fryer.jpg','horno.jpg','arroz-medidor.svg','agua-medidor.svg',
+    'arroz-servido.svg','paso-lavar.svg','paso-coccion.svg','paso-hervir.svg',
+    'paso-fuego-bajo.svg','paso-reposar.svg'
+  ]);
+  document.addEventListener('error', function (event) {
+    var img = event.target;
+    if (!img || img.tagName !== 'IMG' || img.dataset.pathFallbackStarted === '1') return;
+    var src = img.getAttribute('src') || '';
+    var normalized = src.replace(/^\.\//, '');
+    if (!normalized.startsWith('img/')) return;
+    var candidates = [];
+    var filename = normalized.split('/').pop();
+    if (normalized.startsWith('img/')) {
+      candidates.push('img/' + filename, 'img/img/' + filename, 'img/img/' + filename);
+    } else {
+      if (prepNames.has(filename)) candidates.push('img/' + filename);
+      candidates.push('img/img/' + normalized.slice(4));
+    }
+    candidates = candidates.filter(function (v, i, a) { return a.indexOf(v) === i && v !== normalized; });
+    if (!candidates.length) return;
+    img.dataset.pathFallbackStarted = '1';
+    var next = 0;
+    img.onerror = function () {
+      if (next >= candidates.length) { img.onerror = null; return; }
+      img.src = candidates[next++];
+    };
+    img.src = candidates[next++];
+  }, true);
+})();
+</script>
+
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#07160f"><title>El Patriarca® | Arroz y Papas Prefritas 100% Super Chola</title>
 <style>
@@ -461,24 +497,24 @@ function renderPreparationProduct(key){
   mount.innerHTML=`<div class="prep-potato-layout">
    <section class="prep-potato-profile"><img src="img/papa.png" alt="Papas Prefritas 100% Super Chola de El Patriarca"><div><span class="prep-profile-tag">Guía de preparación</span><h4>Papas Prefritas 100% Super Chola</h4><p>Papa Super Chola 100%, prefrita y de corte uniforme. Prepáralas directamente desde congelación para conseguir una textura dorada y crocante por fuera, suave por dentro.</p><div class="prep-profile-badges"><span>100% Super Chola</span><span>Corte uniforme</span><span>Bolsa de 2 kg</span></div></div><span class="prep-potato-tag">Mantener a −18 °C · Hasta 12 meses</span></section>
    <section><div class="prep-steps-title"><h4>Métodos de preparación</h4><small>Temperaturas y tiempos de referencia del folleto</small></div><div class="prep-method-visual-grid">
-    <article class="prep-method-visual"><img class="method-photo" src="img/preparacion/freidora.jpg" alt="Papas friéndose en una canasta"><div class="method-inner"><h4>Freidora / sartén</h4><span class="method-temp">180 °C · 3–4 minutos</span><p>Precalienta el aceite. Añade las papas congeladas con cuidado y fríe hasta que estén doradas y crocantes. Escurre antes de servir.</p><span class="method-result">Resultado: crocantes por fuera y suaves por dentro.</span></div></article>
-    <article class="prep-method-visual"><img class="method-photo" src="img/preparacion/air-fryer.jpg" alt="Papas en una air fryer"><div class="method-inner"><h4>Air fryer</h4><span class="method-temp">180 °C · 12–15 minutos</span><p>Precalienta el equipo, coloca las papas sin sobrecargar la canasta y agítala a mitad del tiempo.</p><span class="method-result">Resultado: doradas y crocantes.</span></div></article>
-    <article class="prep-method-visual"><img class="method-photo" src="img/preparacion/horno.jpg" alt="Papas en bandeja dentro del horno"><div class="method-inner"><h4>Horno</h4><span class="method-temp">200 °C · 20–25 minutos</span><p>Distribuye las papas congeladas en una sola capa sobre la bandeja. Voltéalas a mitad del tiempo.</p><span class="method-result">Resultado: doradas y deliciosas.</span></div></article>
+    <article class="prep-method-visual"><img class="method-photo" src="img/freidora.jpg" alt="Papas friéndose en una canasta"><div class="method-inner"><h4>Freidora / sartén</h4><span class="method-temp">180 °C · 3–4 minutos</span><p>Precalienta el aceite. Añade las papas congeladas con cuidado y fríe hasta que estén doradas y crocantes. Escurre antes de servir.</p><span class="method-result">Resultado: crocantes por fuera y suaves por dentro.</span></div></article>
+    <article class="prep-method-visual"><img class="method-photo" src="img/air-fryer.jpg" alt="Papas en una air fryer"><div class="method-inner"><h4>Air fryer</h4><span class="method-temp">180 °C · 12–15 minutos</span><p>Precalienta el equipo, coloca las papas sin sobrecargar la canasta y agítala a mitad del tiempo.</p><span class="method-result">Resultado: doradas y crocantes.</span></div></article>
+    <article class="prep-method-visual"><img class="method-photo" src="img/horno.jpg" alt="Papas en bandeja dentro del horno"><div class="method-inner"><h4>Horno</h4><span class="method-temp">200 °C · 20–25 minutos</span><p>Distribuye las papas congeladas en una sola capa sobre la bandeja. Voltéalas a mitad del tiempo.</p><span class="method-result">Resultado: doradas y deliciosas.</span></div></article>
    </div><div class="prep-potato-safety"><div><b>No descongelar</b>Coloca las papas directamente desde congelación.</div><div><b>Evita salpicaduras</b>No agregues agua al aceite caliente e introduce las papas con cuidado.</div><div><b>No sobrecargar</b>Prepara en tandas pequeñas para mantener una cocción pareja.</div></div></section>
   </div>`;
   return;
  }
  const d=data[key]||data.patriarca;
  const steps=[
-  {title:'Lava',img:'img/preparacion/paso-lavar.svg',text:'Enjuaga el arroz hasta que el agua salga clara.'},
-  {title:'Combina',img:'img/preparacion/paso-coccion.svg',text:'Coloca el arroz y el agua en una olla.'},
-  {title:'Hierve',img:'img/preparacion/paso-hervir.svg',text:'Lleva a fuego alto hasta que hierva.'},
-  {title:'Baja el fuego',img:'img/preparacion/paso-fuego-bajo.svg',text:`Reduce a fuego bajo, tapa y cocina ${d.time}.`},
-  {title:'Reposa',img:'img/preparacion/paso-reposar.svg',text:'Apaga y deja tapado 5 minutos; luego esponja.'}
+  {title:'Lava',img:'img/paso-lavar.svg',text:'Enjuaga el arroz hasta que el agua salga clara.'},
+  {title:'Combina',img:'img/paso-coccion.svg',text:'Coloca el arroz y el agua en una olla.'},
+  {title:'Hierve',img:'img/paso-hervir.svg',text:'Lleva a fuego alto hasta que hierva.'},
+  {title:'Baja el fuego',img:'img/paso-fuego-bajo.svg',text:`Reduce a fuego bajo, tapa y cocina ${d.time}.`},
+  {title:'Reposa',img:'img/paso-reposar.svg',text:'Apaga y deja tapado 5 minutos; luego esponja.'}
  ];
  mount.innerHTML=`<div class="prep-rice-layout">
   <section class="prep-rice-profile"><span class="prep-profile-tag">${d.type}</span><img src="${d.img}" alt="Empaque original de ${d.name}"><h4>${d.name}</h4><p>${d.desc}</p><div class="prep-profile-badges">${d.features.map(x=>`<span>${x}</span>`).join('')}</div></section>
-  <div class="prep-rice-guide"><section class="prep-ratio-panel"><div class="prep-panel-head"><h4>Proporción de cocción</h4><span>Usa una taza medidora</span></div><div class="prep-ratio-equation"><div class="prep-ratio-item"><img src="img/preparacion/arroz-medidor.svg" alt="Taza medidora de arroz"><b>${d.rice}</b><small>de arroz</small></div><span class="prep-equation-symbol">+</span><div class="prep-ratio-item"><img src="img/preparacion/agua-medidor.svg" alt="Taza medidora de agua"><b>${d.water}</b><small>de agua</small></div><span class="prep-equation-symbol">=</span><div class="prep-ratio-item"><img src="img/preparacion/arroz-servido.svg" alt="Tazón de arroz cocido"><b>Listo para servir</b><small>deja reposar</small></div></div></section>
+  <div class="prep-rice-guide"><section class="prep-ratio-panel"><div class="prep-panel-head"><h4>Proporción de cocción</h4><span>Usa una taza medidora</span></div><div class="prep-ratio-equation"><div class="prep-ratio-item"><img src="img/arroz-medidor.svg" alt="Taza medidora de arroz"><b>${d.rice}</b><small>de arroz</small></div><span class="prep-equation-symbol">+</span><div class="prep-ratio-item"><img src="img/agua-medidor.svg" alt="Taza medidora de agua"><b>${d.water}</b><small>de agua</small></div><span class="prep-equation-symbol">=</span><div class="prep-ratio-item"><img src="img/arroz-servido.svg" alt="Tazón de arroz cocido"><b>Listo para servir</b><small>deja reposar</small></div></div></section>
    <section class="prep-steps-panel"><div class="prep-steps-title"><h4>Método paso a paso</h4><small>Tiempo de cocción orientativo: ${d.time} + 5 min de reposo</small></div><div class="prep-rice-steps">${steps.map((st,i)=>`<article class="prep-rice-step"><span class="step-index">${i+1}</span><img src="${st.img}" alt=""><b>${st.title}</b><p>${st.text}</p></article>`).join('')}</div></section>
    <div class="prep-time-strip"><span class="prep-time-icon">◷</span><div><b>Consejo de preparación</b><br>Las proporciones y los tiempos corresponden a las indicaciones de los folletos compartidos. La absorción puede variar según la olla y la intensidad del fuego; revisa la textura antes de servir.</div></div>
   </div>
