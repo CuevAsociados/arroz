@@ -71,6 +71,7 @@ html{scroll-padding-top:84px}section[id]{scroll-margin-top:84px}
 <div class="overlay" id="donationOverlay" onclick="if(event.target===this)closeDonation()"><div class="dialog" style="max-width:450px"><div class="dialog-head"><h2>Apoya nuestras donaciones</h2><button class="close" onclick="closeDonation()" aria-label="Cerrar">×</button></div><div class="dialog-body"><p style="line-height:1.6;color:var(--muted);font-size:13px">Tu aporte se procesa por separado de la compra de productos. No se agrega al carrito ni se coordina por WhatsApp.</p><form id="donationForm" class="donation-form"><label for="donorName">Nombre</label><input id="donorName" name="name" autocomplete="name" placeholder="Nombre completo" required maxlength="120"><label for="donorEmail">Correo electrónico</label><input id="donorEmail" name="email" type="email" autocomplete="email" placeholder="nombre@correo.com" required maxlength="200"><label for="donationAmount">Monto de donación</label><select id="donationAmount" name="amount" required><option value="5">$5,00</option><option value="10">$10,00</option><option value="20">$20,00</option><option value="50">$50,00</option></select><p class="fineprint">Después de seleccionar el monto, continuas a PayPhone para completar el pago. La donación solo se registra cuando PayPhone confirma la transacción.</p><button class="btn btn-dark" id="donationPayBtn" type="submit" style="width:100%">Continuar a PayPhone →</button><div id="donationInlineMessage" class="payment-inline" role="status" aria-live="polite"></div></form></div></div></div>
 <div class="overlay" id="paymentResultOverlay" style="z-index:70" onclick="if(event.target===this)closePaymentResult()"><div class="dialog payment-screen"><div class="dialog-head" style="padding:0 0 15px;border-bottom:1px solid var(--line)"><span class="eyebrow" style="margin:0">EL PATRIARCA · PAGO EN LÍNEA</span><button class="close" onclick="closePaymentResult()" aria-label="Cerrar">×</button></div><div class="dialog-body" style="padding:20px 0 0"><div class="payment-symbol" id="paymentResultIcon">✓</div><h2 id="paymentResultTitle">Verificando tu pago</h2><p id="paymentResultText">Estamos comprobando el resultado de la transacción con PayPhone. No cierres esta ventana.</p><div class="payment-detail" id="paymentResultDetail" style="display:none"></div><div class="payment-instructions" id="paymentResultInstructions" style="display:none"></div><a class="btn btn-dark" id="paymentWhatsAppBtn" href="#" target="_blank" rel="noopener" style="display:none">Enviar detalle por WhatsApp →</a><button class="btn btn-outline" id="paymentCloseBtn" onclick="closePaymentResult()" style="width:100%;display:none">Volver a la tienda</button></div></div></div>
 <div class="toast" id="toast"></div>
+<script src="./payment-config.js"></script>
 <script>
 const products=[
 {id:'patriarca2',name:'El Patriarca',pres:'2 lb',price:3.50,img:'img/IMG_4770.png',description:'Arroz envejecido seleccionado electrónicamente, de grano largo fino.',specs:['Grano largo fino (Clase 11)','Arroz envejecido','Selección electrónica','Presentación práctica de 2 lb'],available:true},
@@ -125,8 +126,8 @@ function openCart(){updateCart();document.getElementById('cartDrawer').classList
 // CONFIGURACIÓN PÚBLICA: completa estas dos variables tras desplegar las funciones de Supabase.
 // No pegues aquí el token secreto de PayPhone. Ese secreto vive solo en Supabase.
 const EL_PATRIARCA_PAYMENT_CONFIG = {
-  functionsBaseUrl: '', // Ejemplo: https://TU-PROYECTO.supabase.co/functions/v1
-  supabaseAnonKey: ''   // Clave anon/public del proyecto Supabase (no la service_role)
+  functionsBaseUrl: String(window.EL_PATRIARCA_PAYMENT_CONFIG?.functionsBaseUrl || ''),
+  supabaseAnonKey: String(window.EL_PATRIARCA_PAYMENT_CONFIG?.supabaseAnonKey || '')
 };
 const pendingOrderStorageKey = 'elPatriarcaPendingPayPhoneOrder';
 const pendingDonationStorageKey = 'elPatriarcaPendingPayPhoneDonation';
@@ -135,7 +136,7 @@ async function callPaymentFunction(name, payload){
   if(location.protocol==='file:') throw new Error('Estás viendo una copia local. El pago requiere abrir la web publicada por HTTPS y conectar Supabase con PayPhone. No se hizo ningún cobro.');
   const base=EL_PATRIARCA_PAYMENT_CONFIG.functionsBaseUrl.trim().replace(/\/$/,'');
   const anon=EL_PATRIARCA_PAYMENT_CONFIG.supabaseAnonKey.trim();
-  if(!base||!anon) throw new Error('El pago seguro de PayPhone todavía no está conectado. No se ha realizado ningún cobro. Contacta por WhatsApp mientras configuramos la pasarela.');
+  if(!base||!anon) throw new Error('La conexión de pago aún no está configurada. No se ha realizado ningún cobro. El administrador debe completar payment-config.js después de desplegar las funciones de Supabase.');
   const response=await fetch(`${base}/${name}`,{method:'POST',headers:{'Content-Type':'application/json','apikey':anon,'Authorization':`Bearer ${anon}`},body:JSON.stringify(payload)});
   const data=await response.json().catch(()=>({}));
   if(!response.ok) throw new Error(data.error||data.message||'No pudimos preparar el pago. Inténtalo nuevamente.');
