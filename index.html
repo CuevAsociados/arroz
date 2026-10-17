@@ -795,9 +795,11 @@ html{scroll-padding-top:84px}section[id]{scroll-margin-top:84px}
 .policy-detail-gallery-sales img{object-fit:contain;padding:10px;background:#f7f0e1;}
 .policy-detail-gallery-single{grid-template-columns:minmax(0,1fr);max-width:560px;}
 .policy-detail-gallery-single img{height:clamp(115px,22vw,175px);}
+.policy-delivery-truck{width:100%;max-width:760px;min-height:clamp(180px,28vw,270px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f7f0e1;border-radius:12px;}
+.policy-delivery-truck img{width:100%;height:clamp(180px,28vw,270px);max-height:none;object-fit:contain;object-position:center;border-radius:12px;background:#f7f0e1;}
 .policy-detail-gallery-product-feature{grid-template-columns:minmax(0,1fr);max-width:760px;}
 .policy-detail-gallery-product-feature img{height:clamp(150px,24vw,230px);object-fit:cover;object-position:center;border-radius:13px;}
-@media(max-width:600px){.policy-detail-gallery{gap:7px;margin:11px 0 15px}.policy-detail-gallery img{height:108px;border-radius:9px}.policy-detail-gallery-single img{height:135px}.policy-detail-gallery-sales img{padding:8px}.policy-detail-gallery-product-feature img{height:145px;object-fit:cover;object-position:center;border-radius:10px}}
+@media(max-width:600px){.policy-detail-gallery{gap:7px;margin:11px 0 15px}.policy-detail-gallery img{height:108px;border-radius:9px}.policy-detail-gallery-single img{height:135px}.policy-delivery-truck{min-height:clamp(175px,52vw,230px);}.policy-delivery-truck img{height:clamp(175px,52vw,230px);width:100%;object-fit:contain;object-position:center;}policy-detail-gallery-sales img{padding:8px}.policy-detail-gallery-product-feature img{height:145px;object-fit:cover;object-position:center;border-radius:10px}}
 </style>
 </head>
 <body>
@@ -1056,7 +1058,7 @@ const INFO_COPY = {
      <p>La garantía está sujeta a la revisión del producto y a la confirmación de que la novedad corresponde a una condición cubierta por esta política.</p>
     </section>
     <section id="policy-detail-delivery"><p class="info-kicker">Cobertura y recepción</p><h3>Políticas de entregas</h3>
-     <div class="policy-detail-gallery policy-detail-gallery-single"><img src="img/Cami%C3%B3n%20El%20Patriarca%20al%20Amanecer.png" alt="Camión El Patriarca al amanecer, imagen de referencia para las políticas de entrega" loading="lazy"></div>
+     <div class="policy-detail-gallery policy-detail-gallery-single policy-delivery-truck"><img src="img/Cami%C3%B3n%20El%20Patriarca%20al%20Amanecer.png" alt="Camión El Patriarca al amanecer, imagen de referencia para las políticas de entrega" loading="lazy"></div>
      <h4>Entrega gratuita dentro de Guayaquil</h4><p>La entrega es gratuita únicamente dentro de nuestra zona de cobertura en Guayaquil. <strong>Antes de comprar, consulta con nuestro equipo si tu dirección está cubierta</strong> o confirma que tu sector aparezca en la lista. La cobertura puntual se valida antes del pago.</p>
      <h4>Sectores de cobertura referencial</h4><p>Alborada, Garzota, Samanes, Sauces, Centenario, Guangala, Acacias, Almendros, Domingo Comín, vía Samborondón, La Aurora, vía Daule y vía Salitre. La disponibilidad puede variar según la dirección exacta y la ruta; pregunta antes de pagar.</p>
      <h4>Cómo se entrega</h4><ul><li>En casas, el punto de entrega debe estar al pie de la calle.</li><li>En callejones o departamentos, la entrega se realiza en la puerta principal o en un punto accesible previamente acordado.</li><li>También podemos coordinar un punto específico y público, confirmado previamente por ambas partes.</li><li>Después de reflejarse y confirmarse el pago, el plazo estimado es de 24 a 72 horas laborables. No se garantiza una hora exacta.</li></ul>
