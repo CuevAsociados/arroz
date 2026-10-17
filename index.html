@@ -795,11 +795,13 @@ html{scroll-padding-top:84px}section[id]{scroll-margin-top:84px}
 .policy-detail-gallery-sales img{object-fit:contain;padding:10px;background:#f7f0e1;}
 .policy-detail-gallery-single{grid-template-columns:minmax(0,1fr);max-width:560px;}
 .policy-detail-gallery-single img{height:clamp(115px,22vw,175px);}
-.policy-delivery-truck{width:100%;max-width:760px;min-height:clamp(180px,28vw,270px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f7f0e1;border-radius:12px;}
-.policy-delivery-truck img{width:100%;height:clamp(180px,28vw,270px);max-height:none;object-fit:contain;object-position:center;border-radius:12px;background:#f7f0e1;}
+.policy-delivery-truck{position:relative;isolation:isolate;width:100%;max-width:760px;height:clamp(180px,28vw,270px);min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f7f0e1;border-radius:12px;}
+/* La fotografía completa se mantiene centrada; sus laterales se integran con una extensión desenfocada de la misma foto para evitar bandas crema. */
+.policy-delivery-truck::before{content:"";position:absolute;z-index:0;inset:-14px;background-image:url("img/Cami%C3%B3n%20El%20Patriarca%20al%20Amanecer.png");background-size:cover;background-position:center 56%;filter:blur(12px) brightness(.84);transform:scale(1.04);opacity:.96;}
+.policy-delivery-truck img{position:relative;z-index:1;display:block;width:100%;height:100%;max-height:none;object-fit:contain;object-position:center;border:0;border-radius:0;background:transparent;}
 .policy-detail-gallery-product-feature{grid-template-columns:minmax(0,1fr);max-width:760px;}
 .policy-detail-gallery-product-feature img{height:clamp(150px,24vw,230px);object-fit:cover;object-position:center;border-radius:13px;}
-@media(max-width:600px){.policy-detail-gallery{gap:7px;margin:11px 0 15px}.policy-detail-gallery img{height:108px;border-radius:9px}.policy-detail-gallery-single img{height:135px}.policy-delivery-truck{min-height:clamp(175px,52vw,230px);}.policy-delivery-truck img{height:clamp(175px,52vw,230px);width:100%;object-fit:contain;object-position:center;}policy-detail-gallery-sales img{padding:8px}.policy-detail-gallery-product-feature img{height:145px;object-fit:cover;object-position:center;border-radius:10px}}
+@media(max-width:600px){.policy-detail-gallery{gap:7px;margin:11px 0 15px}.policy-detail-gallery img{height:108px;border-radius:9px}.policy-detail-gallery-single img{height:135px}.policy-delivery-truck{height:clamp(175px,52vw,230px);min-height:0;}.policy-delivery-truck::before{filter:blur(10px) brightness(.84);}.policy-delivery-truck img{height:100%;width:100%;object-fit:contain;object-position:center;}policy-detail-gallery-sales img{padding:8px}.policy-detail-gallery-product-feature img{height:145px;object-fit:cover;object-position:center;border-radius:10px}}
 </style>
 </head>
 <body>
