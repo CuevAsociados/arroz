@@ -826,6 +826,52 @@ html{scroll-padding-top:84px}section[id]{scroll-margin-top:84px}
 @media(max-width:720px){.about-story-visual{margin:12px 0 13px}.about-story-visual img{height:clamp(112px,33vw,155px)}.about-story-visual figcaption{font-size:10px;padding:7px 9px}.about-story-grid{grid-template-columns:1fr;gap:8px;margin-bottom:10px}.about-story-card{padding:12px 13px}.about-story-card h4{font-size:17px}.about-story-card p:last-child,.about-story-transparency p{font-size:12px;line-height:1.55}.about-story-transparency{grid-template-columns:28px minmax(0,1fr);gap:9px;padding:12px;margin-bottom:10px}.about-story-check{width:27px;height:27px;font-size:16px}.about-story-transparency h4{font-size:16px}.about-story-signature{font-size:9px;gap:7px;letter-spacing:.055em}.about-story-signature i{width:15px;flex-basis:15px}}
 @media(max-width:390px){.about-story-visual img{height:112px}.about-story-lead{font-size:12px}.about-story-card{padding:11px}.about-story-transparency{padding:10px}}
 
+
+
+/* Etapas de calidad: tarjetas-imagen accesibles que abren el modal de detalle existente. */
+.quality-intro{font-size:12px;line-height:1.5;color:var(--muted);margin:8px auto 0;max-width:620px}
+.quality-grid{align-items:stretch}
+.quality-item{appearance:none;-webkit-appearance:none;width:100%;min-width:0;min-height:0;overflow:hidden;padding:0;gap:0;border:1px solid var(--line);border-radius:12px;background:var(--paper);font:inherit;color:inherit;text-align:center;cursor:pointer;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.quality-item:hover{transform:translateY(-3px);border-color:#c4a05a;box-shadow:0 10px 22px #07160f12}
+.quality-item:focus-visible{outline:3px solid #b58a3a;outline-offset:3px}
+.quality-item .quality-thumb{display:block;width:100%;height:clamp(112px,11vw,146px);object-fit:cover;object-position:center;background:#f7f1e3}
+.quality-item-packaging .quality-thumb{object-fit:cover;object-position:center 48%;background:#f7f1e3}
+.quality-item .quality-item-copy{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:100%;min-height:58px;padding:10px 7px 12px}
+.quality-item b{font-size:12px;line-height:1.25;color:var(--ink)}
+.quality-item small{font-size:10px;line-height:1.35;color:var(--muted);margin:0}
+.quality-wide{width:min(980px,100%)}
+.quality-detail-top{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:22px;align-items:center;margin-bottom:18px}
+.quality-detail-photo{margin:0;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:#f7f1e3;min-height:220px;display:flex;align-items:center;justify-content:center}
+.quality-detail-photo img{display:block;width:100%;height:100%;max-height:310px;min-height:220px;object-fit:cover;object-position:center;background:#f7f1e3}
+.quality-detail-photo.photo-contain img{object-fit:contain;max-height:360px}
+.quality-detail-copy h3{font:700 clamp(23px,3vw,31px)/1.12 Georgia,serif;color:var(--forest);margin:0 0 10px}
+.quality-detail-copy .info-lead{font-size:14px;line-height:1.65;margin:0 0 10px}
+.quality-stage-label{font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+.quality-stage-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.quality-stage-tags span{display:inline-flex;align-items:center;border:1px solid #e8dcc3;background:#fbf7ed;border-radius:999px;padding:6px 10px;color:var(--green);font-size:10px;font-weight:700}
+.quality-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.quality-detail-grid .info-card{padding:15px;border-radius:11px}
+.quality-detail-grid .info-card h4{font-size:16px;margin:0 0 6px}
+.quality-detail-grid .info-card p{font-size:12px;line-height:1.6}
+.quality-detail-list{margin:8px 0 14px;padding-left:20px;color:var(--muted);font-size:12px;line-height:1.65}
+.quality-detail-list li{margin:5px 0}
+.quality-detail-note{background:#f7f1e3;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 9px 9px 0;padding:12px 14px;color:var(--ink);font-size:12px;line-height:1.6;margin:15px 0 2px}
+@media(max-width:720px){
+ .quality-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .quality-item:last-child{grid-column:1/-1;width:calc(50% - 4px);justify-self:center}
+ .quality-item .quality-thumb{height:clamp(105px,31vw,132px)}
+ .quality-item .quality-item-copy{min-height:54px;padding:9px 5px 11px}
+ .quality-item b{font-size:11px}
+ .quality-item small{font-size:9px}
+ .quality-detail-top{grid-template-columns:1fr;gap:14px}
+ .quality-detail-photo{min-height:170px;max-height:250px}
+ .quality-detail-photo img{min-height:170px;max-height:250px}
+ .quality-detail-photo.photo-contain img{max-height:300px}
+ .quality-detail-grid{grid-template-columns:1fr;gap:8px}
+ .quality-detail-grid .info-card{padding:13px}
+ .quality-detail-copy h3{font-size:25px}
+}
+
 </style>
 </head>
 <body>
@@ -849,7 +895,37 @@ html{scroll-padding-top:84px}section[id]{scroll-margin-top:84px}
 <section class="hero" id="inicio"><div class="hero-inner"><div class="hero-copy"><h1>El Patriarca<span class="registered-mark" aria-label="marca registrada">®</span></h1><h2><span>Calidad seleccionada.</span><span>Rendimiento que se distingue.</span></h2><p class="hero-categories">Arroz <span aria-hidden="true">·</span> Papas prefritas <span aria-hidden="true">·</span> Productos alimenticios</p></div><div class="hero-buttons"><a href="#productos" class="btn btn-dark">Ver productos <span>→</span></a><button class="btn btn-outline" onclick="openCart()">Pedido personalizado <span>→</span></button></div><div class="features"><div class="feature"><img src="img/seleccion.png" alt="" class="feature-icon"><span><b>Selección</b><small>rigurosa</small></span></div><div class="feature"><img src="img/calidad.png" alt="" class="feature-icon"><span><b>Calidad</b><small>consistente</small></span></div><div class="feature"><img src="img/distribucion.png" alt="" class="feature-icon"><span><b>Distribución</b><small>empresarial</small></span></div></div></div></section>
 <section class="products" id="productos"><div class="container"><div class="section-heading"><p class="eyebrow">Nuestras líneas</p><h2>Productos de calidad para cada necesidad</h2><p>Arroz y papas con el respaldo de una marca que cuida cada detalle.</p></div><div class="product-grid" id="productGrid"></div></div></section>
 <section class="story" id="nosotros"><div class="story-copy"><p class="eyebrow">Nuestra historia</p><h2>Del campo a tu mesa<br><em>con excelencia</em></h2><p>Trabajamos con procesos que garantizan calidad, inocuidad y un producto consistente en cada entrega.</p><button type="button" class="btn" onclick="openInfo('calidad')">Conoce nuestro proceso <span>→</span></button></div></section>
-<section class="quality-strip" id="calidad" aria-labelledby="qualityTitle"><div class="container"><div class="quality-heading"><p class="eyebrow">Nuestro compromiso</p><h2 id="qualityTitle">Calidad en cada etapa</h2></div><div class="quality-grid"><div class="quality-item"><span aria-hidden="true">✦</span><b>Selección</b><small>de materia prima</small></div><div class="quality-item"><span aria-hidden="true">✓</span><b>Control</b><small>de calidad</small></div><div class="quality-item"><span aria-hidden="true">◇</span><b>Procesamiento</b><small>especializado</small></div><div class="quality-item"><span aria-hidden="true">▣</span><b>Empaque</b><small>seguro</small></div><div class="quality-item"><span aria-hidden="true">↗</span><b>Distribución</b><small>confiable</small></div></div></div></section>
+<section class="quality-strip" id="calidad" aria-labelledby="qualityTitle">
+ <div class="container">
+  <div class="quality-heading">
+   <p class="eyebrow">Nuestro compromiso</p>
+   <h2 id="qualityTitle">Calidad en cada etapa</h2>
+   <p class="quality-intro">Conoce cómo cuidamos nuestros productos desde la materia prima hasta la coordinación del pedido.</p>
+  </div>
+  <div class="quality-grid">
+   <button class="quality-item" type="button" onclick="openQualityStep('seleccion')" aria-label="Conocer la etapa de selección de materia prima">
+    <img class="quality-thumb" src="img/seleccion-materia-prima.png" alt="Manos sosteniendo arroz junto al cultivo" loading="lazy">
+    <div class="quality-item-copy"><b>Selección</b><small>de materia prima</small></div>
+   </button>
+   <button class="quality-item" type="button" onclick="openQualityStep('control')" aria-label="Conocer la etapa de control de calidad">
+    <img class="quality-thumb" src="img/control-calidad-arroz.png" alt="Inspección de una muestra de arroz" loading="lazy">
+    <div class="quality-item-copy"><b>Control de calidad</b><small>revisión del producto</small></div>
+   </button>
+   <button class="quality-item" type="button" onclick="openQualityStep('procesamiento')" aria-label="Conocer el procesamiento especializado y la selectora electrónica">
+    <img class="quality-thumb" src="img/selectora-arroz-alta-tecnologia(3).png" alt="Selectora óptica para el procesamiento de arroz" loading="lazy">
+    <div class="quality-item-copy"><b>Procesamiento</b><small>selección electrónica</small></div>
+   </button>
+   <button class="quality-item quality-item-packaging" type="button" onclick="openQualityStep('empaque')" aria-label="Conocer la etapa de empaque seguro">
+    <img class="quality-thumb" src="img/Papas%20fritas%20El%20Patriarca%20en%20bolsa.png" alt="Empaque de papas prefritas El Patriarca" loading="lazy">
+    <div class="quality-item-copy"><b>Empaque</b><small>protección y conservación</small></div>
+   </button>
+   <button class="quality-item" type="button" onclick="openQualityStep('distribucion')" aria-label="Conocer la etapa de distribución">
+    <img class="quality-thumb" src="img/distribucion-camion-patriarca.png" alt="Camión de El Patriarca junto a campos de arroz" loading="lazy">
+    <div class="quality-item-copy"><b>Distribución</b><small>coordinación del pedido</small></div>
+   </button>
+  </div>
+ </div>
+</section>
 <section class="business" id="negocios"><div class="business-copy"><p class="eyebrow">Para restaurantes, comercios y distribuidores</p><h2>Abastecimiento<br><em>confiable</em><br>para tu negocio</h2><p>Soluciones de abastecimiento con la calidad y el respaldo que tu negocio necesita.</p><button type="button" class="btn" onclick="openInfo('negocios')">Solicita una propuesta <span>→</span></button></div></section>
 <section class="cta-strip" id="contacto" style="background:#fefdf8;border-top:1px solid var(--line)"><div class="container cta-inner"><div><p class="eyebrow">Hablemos</p><h2>¿Listo para distribuir?</h2><p>Cuéntanos qué necesitas y conversemos sobre tu negocio.</p></div><a class="btn btn-outline" href="https://wa.me/593992210706" target="_blank" rel="noopener">Contactar por WhatsApp →</a></div></section>
 </main>
@@ -1167,6 +1243,99 @@ function closePolicyDetail(){const overlay=document.getElementById('policyDetail
 function contactPolicyWhatsApp(){const message='Hola, quiero consultar sobre las políticas de venta, producto, garantía y entrega de El Patriarca. ¿Me pueden ayudar a confirmar las condiciones para mi pedido?';window.open('https://wa.me/593992210706?text='+encodeURIComponent(message),'_blank','noopener,noreferrer')}
 
 function closeMobileMenu(){const nav=document.querySelector('.nav');if(nav)nav.classList.remove('menu-open');const menu=document.getElementById('menuToggle');if(menu){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menú');}}
+const QUALITY_STAGE_DETAILS = {
+  seleccion: {
+    title: 'Selección de materia prima', image: 'img/seleccion-materia-prima.png', alt: 'Manos sosteniendo arroz junto al cultivo', stage: 'Etapa 1 de 5 · Materia prima',
+    lead: 'La calidad empieza antes de que el producto llegue al empaque. La recepción y selección de la materia prima ayudan a conocer la condición del grano y a orientar cada lote hacia el proceso que corresponde a su línea.',
+    tags: ['Recepción', 'Aspecto del grano', 'Uniformidad'],
+    cards: [
+      ['¿Qué se observa?', 'Se presta atención a la apariencia general, uniformidad, limpieza y condición del arroz recibido. También se identifican diferencias visibles que puedan requerir una revisión adicional antes de continuar.'],
+      ['¿Cómo aporta al proceso?', 'La observación inicial ayuda a organizar la materia prima por sus características y a detectar a tiempo lotes que necesitan atención, para evitar que una novedad pase inadvertida a las siguientes etapas.'],
+      ['Cuidado de la materia prima', 'La manipulación y el almacenamiento deben ayudar a proteger el producto de humedad, contaminación y daños innecesarios antes del procesamiento.'],
+      ['¿Qué obtiene el cliente?', 'Un proceso que comienza con atención al producto desde su origen y que busca mantener consistencia entre las presentaciones de arroz de la marca.']
+    ],
+    note: 'Los criterios específicos de aceptación pueden variar según la línea, las características del lote y los controles internos aplicables.'
+  },
+  control: {
+    title: 'Control de calidad', image: 'img/control-calidad-arroz.png', alt: 'Inspección de una muestra de arroz', stage: 'Etapa 2 de 5 · Revisión del producto',
+    lead: 'El control de calidad consiste en revisar el producto durante el proceso para identificar características que podrían afectar su presentación. La imagen muestra una inspección cercana de una muestra de arroz.',
+    tags: ['Inspección', 'Muestras', 'Presentación'],
+    cards: [
+      ['Aspecto y limpieza', 'Se observan el color, la apariencia del grano, la limpieza de la muestra y la presencia visible de material que no corresponda al producto.'],
+      ['Integridad del grano', 'La revisión puede considerar uniformidad, granos partidos y otras diferencias visibles que sean relevantes para el tipo de arroz que se está preparando.'],
+      ['Antes de empacar', 'La inspección durante el proceso ayuda a encontrar novedades antes de que el producto quede cerrado en su presentación comercial. Si se detecta una diferencia, se valora la acción que corresponda.'],
+      ['Calidad transparente', 'El objetivo es mantener una presentación cuidada y comunicar con claridad las características de cada producto, sin atribuirle certificaciones que no hayan sido confirmadas.']
+    ],
+    note: 'La fotografía ilustra una inspección de producto. Los ensayos, registros o certificaciones concretos deben describirse únicamente cuando formen parte de los procedimientos confirmados de la empresa.'
+  },
+  procesamiento: {
+    title: 'Procesamiento especializado', image: 'img/selectora-arroz-alta-tecnologia(3).png', alt: 'Selectora óptica para el procesamiento de arroz', stage: 'Etapa 3 de 5 · Selección electrónica',
+    lead: 'La selección electrónica es una etapa importante para el arroz que requiere una presentación más uniforme. La imagen muestra una selectora óptica identificada visualmente como Bühler SORTEX: este tipo de equipo utiliza sistemas ópticos para detectar diferencias entre granos y separar los que cumplen los criterios configurados.',
+    tags: ['Selectora óptica', 'Sensores y cámaras', 'Separación de granos'],
+    cards: [
+      ['1. Alimentación del equipo', 'El arroz se distribuye por los canales de alimentación para que los granos pasen de forma ordenada por la zona de inspección óptica.'],
+      ['2. Detección visual', 'Los sensores o cámaras analizan el aspecto de los granos en movimiento. El sistema identifica diferencias como variaciones de color o defectos visuales según los parámetros configurados.'],
+      ['3. Separación selectiva', 'Cuando el equipo detecta un grano que no coincide con los criterios establecidos, el sistema de expulsión lo separa del flujo principal. La precisión depende del equipo, sus ajustes y las condiciones del producto.'],
+      ['4. Resultado esperado', 'La tecnología complementa otras revisiones del proceso y ayuda a mejorar la uniformidad visual del arroz. En la línea El Patriarca, la selección electrónica forma parte de la propuesta de producto.']
+    ],
+    note: 'La imagen permite explicar el funcionamiento de una selectora óptica. El modelo exacto, la configuración y las capacidades instaladas deben corresponder al equipo real de la planta.'
+  },
+  empaque: {
+    title: 'Empaque seguro', image: 'img/Papas%20fritas%20El%20Patriarca%20en%20bolsa.png', alt: 'Empaque de papas prefritas El Patriarca', stage: 'Etapa 4 de 5 · Presentación y conservación',
+    lead: 'El empaque protege el producto durante su manipulación y ayuda a identificar la marca, la variedad y la presentación. Esta imagen corresponde específicamente a las papas prefritas El Patriarca 100% Super Chola; cada línea de producto utiliza su presentación correspondiente.',
+    tags: ['Identificación', 'Integridad de la funda', 'Conservación'],
+    cards: [
+      ['Identificación del producto', 'La presentación permite reconocer la marca y el tipo de producto. La información del envase debe coincidir con la línea que se comercializa y con las condiciones indicadas para su conservación.'],
+      ['Revisión de la funda', 'Antes de manipular o entregar el producto, es importante que el envase conserve su integridad, que el cierre se mantenga en buenas condiciones y que no existan daños visibles.'],
+      ['Papas prefritas congeladas', 'Las papas prefritas deben conservarse congeladas a −18 °C, de acuerdo con las indicaciones de manejo del producto. Es importante evitar interrupciones de la cadena de frío durante el almacenamiento y la manipulación.'],
+      ['Protección durante el manejo', 'Un empaque íntegro facilita el almacenamiento y reduce la exposición del producto a factores externos. La conservación también depende de seguir las condiciones indicadas para cada producto.']
+    ],
+    note: 'La imagen de esta etapa representa el empaque de papas prefritas. No debe interpretarse como la bolsa utilizada para las distintas presentaciones de arroz.'
+  },
+  distribucion: {
+    title: 'Distribución y coordinación del pedido', image: 'img/distribucion-camion-patriarca.png', alt: 'Camión de El Patriarca junto a campos de arroz', stage: 'Etapa 5 de 5 · Logística',
+    lead: 'La etapa logística ayuda a coordinar el pedido correcto: productos, cantidades, presentación, disponibilidad y condiciones de retiro. La imagen del camión representa la identidad logística de la marca; las opciones de entrega reales se confirman según la política comercial vigente.',
+    tags: ['Preparación del pedido', 'Verificación', 'Entrega coordinada'],
+    cards: [
+      ['Verificación del pedido', 'Se deben confirmar las cantidades, las presentaciones y la disponibilidad antes de preparar la operación, para que el cliente sepa qué productos recibirá.'],
+      ['Pago y alistamiento', 'Según las condiciones comerciales vigentes, el pedido se coordina una vez que el pago anticipado ha sido confirmado. El plazo de preparación se comunica antes de concretar el retiro.'],
+      ['Retiro y coordinación', 'Actualmente, la modalidad comercial comunicada es el retiro en planta o en el centro de acopio acordado. No debe asumirse que la imagen del camión significa que se ofrece envío a domicilio.'],
+      ['Cuidado del producto', 'Durante la manipulación, el almacenamiento y el traslado coordinado deben protegerse los empaques frente a golpes, humedad y condiciones que puedan afectar el producto. Para las papas prefritas, también debe preservarse la cadena de frío.']
+    ],
+    note: 'Las modalidades, tiempos y condiciones de entrega pueden cambiar. Antes de realizar un pedido, confirma con la empresa el punto de retiro, el plazo de alistamiento y las condiciones comerciales vigentes.'
+  }
+};
+function openQualityStep(key){
+  const stage = QUALITY_STAGE_DETAILS[key];
+  if(!stage) return;
+  closeMobileMenu();
+  closeProduct(); closeCart(); closeDonation(); closePaymentResult(); closeInfo();
+  const stageIndex = Object.keys(QUALITY_STAGE_DETAILS).indexOf(key) + 1;
+  const cards = stage.cards.map(([title, body]) => `<article class="info-card"><h4>${title}</h4><p>${body}</p></article>`).join('');
+  const tags = stage.tags.map(tag => `<span>${tag}</span>`).join('');
+  const isPackaging = key === 'empaque';
+  const imageClass = isPackaging ? 'quality-detail-photo photo-contain' : 'quality-detail-photo';
+  const body = `
+    <div class="quality-detail-top">
+      <figure class="${imageClass}"><img src="${stage.image}" alt="${stage.alt}" loading="eager"></figure>
+      <div class="quality-detail-copy">
+        <p class="quality-stage-label">${stage.stage || `Etapa ${stageIndex} de 5`}</p>
+        <h3>${stage.title}</h3>
+        <p class="info-lead">${stage.lead}</p>
+        <div class="quality-stage-tags">${tags}</div>
+      </div>
+    </div>
+    <div class="quality-detail-grid">${cards}</div>
+    <div class="quality-detail-note"><b>Importante:</b> ${stage.note}</div>`;
+  document.getElementById('infoModalTitle').textContent = stage.title;
+  document.getElementById('infoModalBody').innerHTML = body;
+  const dialog = document.querySelector('#infoOverlay .info-dialog');
+  if(dialog) dialog.classList.add('quality-wide');
+  const overlay = document.getElementById('infoOverlay');
+  overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+}
+
 function openInfo(which, preparationKey){
   closeMobileMenu();
   closeProduct();closeCart();closeDonation();closePaymentResult();
@@ -1187,7 +1356,7 @@ function openInfo(which, preparationKey){
     },{once:true});
   }
 }
-function closeInfo(){const o=document.getElementById('infoOverlay');if(o){o.classList.remove('open');o.setAttribute('aria-hidden','true')}const d=document.querySelector('#infoOverlay .info-dialog');if(d)d.classList.remove('prep-wide');document.body.classList.remove('modal-open')}
+function closeInfo(){const o=document.getElementById('infoOverlay');if(o){o.classList.remove('open');o.setAttribute('aria-hidden','true')}const d=document.querySelector('#infoOverlay .info-dialog');if(d)d.classList.remove('prep-wide','quality-wide');document.body.classList.remove('modal-open')}
 
 function openDonation(){closeMobileMenu();closeInfo();closeProduct();closeCart();closePaymentResult();document.getElementById('donationOverlay').classList.add('open');document.body.classList.add('modal-open');document.getElementById('donationInlineMessage').textContent='';document.getElementById('donationInlineMessage').classList.remove('show','error')}function closeDonation(){document.getElementById('donationOverlay').classList.remove('open');document.body.classList.remove('modal-open')}
 function toggleMenu(){const nav=document.querySelector('.nav');const button=document.getElementById('menuToggle');const open=nav.classList.toggle('menu-open');button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú')}
