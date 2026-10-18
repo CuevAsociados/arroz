@@ -1464,22 +1464,18 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeInfo();closePr
 </script>
 
 
+<!-- Catálogo compartido: los precios/disponibilidad publicados se leen de Supabase. -->
 <script>
-// Catálogo público: leer precios y disponibilidad compartidos desde Supabase.
-(async function loadPublicCatalogFromSupabase(){
+(async function loadSharedCatalog(){
   try {
     if (!window.supabase || !window.supabase.createClient) return;
-    const client = window.supabase.createClient(
-      'https://bcqqeayhfgugaolikeaz.supabase.co',
-      'sb_publishable_456tFnR5KuPH2tWy9VofJA_H5Gi9ZE_',
-      {auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}}
-    );
-    const {data,error}=await client.from('app_products').select('id,price,available').order('sort_order');
-    if(error || !Array.isArray(data) || !data.length) return;
-    const byProduct=new Map(data.map(row=>[row.id,row]));
-    products.forEach(product=>{
-      const row=byProduct.get(product.id);
-      if(!row) return;
+    const sb = window.supabase.createClient('https://bcqqeayhfgugaolikeaz.supabase.co','sb_publishable_456tFnR5KuPH2tWy9VofJA_H5Gi9ZE_', {auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+    const {data,error}=await sb.from('app_products').select('id,price,available');
+    if(error) throw error;
+    if(!Array.isArray(data)||!data.length) return; // no sobrescribir los valores de respaldo si aún no hay catálogo
+    data.forEach(row=>{
+      const product=products.find(p=>p.id===row.id);
+      if(!product) return;
       const price=Number(row.price);
       if(Number.isFinite(price)&&price>=0) product.price=price;
       product.available=Boolean(row.available);
@@ -1490,8 +1486,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeInfo();closePr
     });
     renderProducts();
     updateCart();
-  } catch (_) {
-    // Si la conexión no está disponible, la tienda conserva su catálogo base.
+  } catch(err) {
+    console.warn('No se pudo cargar el catálogo compartido de Supabase; se mantienen los datos de respaldo.',err);
   }
 })();
 </script>
