@@ -88,9 +88,9 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 'use strict';
-const SUPABASE_URL = 'https://TU-PROYECTO.supabase.co'; // Sustituir por Project URL de Supabase
-const SUPABASE_ANON_KEY = 'PEGA_AQUI_TU_CLAVE_PUBLICA_ANON'; // Nunca pegar la service_role key aquí
-const supabaseConfigured = /^https:\/\/[^/]+\.supabase\.co$/.test(SUPABASE_URL) && !SUPABASE_URL.includes('TU-PROYECTO') && SUPABASE_ANON_KEY.length > 30 && !SUPABASE_ANON_KEY.includes('PEGA_AQUI');
+const SUPABASE_URL = 'https://bcqqeayhfgugaolikeaz.supabase.co'; // URL pública del proyecto El Patriarca
+const SUPABASE_ANON_KEY = 'sb_publishable_456tFnR5KuPH2tWy9VofJA_H5Gi9ZE_'; // Clave publishable pública; nunca usar secret/service_role en el navegador
+const supabaseConfigured = /^https:\/\/[^/]+\.supabase\.co$/.test(SUPABASE_URL) && SUPABASE_ANON_KEY.startsWith('sb_publishable_') && SUPABASE_ANON_KEY.length > 30;
 const isRecoveryRedirect = new URLSearchParams(window.location.hash.slice(1)).get('type') === 'recovery';
 const supabaseClient = supabaseConfigured && window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}) : null;
 const KEYS={products:'elPatriarcaProductOverridesV1',orders:'elPatriarcaDemoOrdersV1',customers:'elPatriarcaDemoCustomersV1',expenses:'elPatriarcaDemoExpensesV1',bonus:'elPatriarcaDemoBonusSettingsV1'};
