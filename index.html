@@ -1385,4 +1385,82 @@ document.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeInfo();closeProduct();closeCart();closeDonation();closePaymentResult();const nav=document.querySelector('.nav');nav.classList.remove('menu-open');document.getElementById('menuToggle').setAttribute('aria-expanded','false')}});renderProducts();restorePendingCart();updateCart();confirmPayPhoneReturn();
 </script>
 
+<!-- Estadísticas propias de El Patriarca: Supabase registra solo ruta, fecha, ID aleatorio y dominio de referencia. -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function () {
+  'use strict';
+  const SB_URL = 'https://bcqqeayhfgugaolikeaz.supabase.co';
+  const SB_PUBLIC_KEY = 'sb_publishable_456tFnR5KuPH2tWy9VofJA_H5Gi9ZE_';
+  const VISITOR_KEY = 'elp_site_visitor_v1';
+  if (!window.supabase || !window.supabase.createClient) return;
+  // No contabilizar visitas administrativas ni páginas de cuentas.
+  const initialPath = window.location.pathname || '/';
+  if (/\/(admin|cuenta)(\.html)?\/?$/i.test(initialPath)) return;
+  function makeUuid() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 3 | 8)).toString(16); });
+  }
+  let visitorId = '';
+  try {
+    visitorId = localStorage.getItem(VISITOR_KEY) || '';
+    const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!uuidPattern.test(visitorId)) {
+      visitorId = makeUuid();
+      localStorage.setItem(VISITOR_KEY, visitorId);
+    }
+  } catch (_) {
+    // If browser storage is disabled, use an ephemeral ID for this page load.
+    visitorId = makeUuid();
+  }
+  const supabaseAnalytics = window.supabase.createClient(SB_URL, SB_PUBLIC_KEY, {
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+  });
+  function normalizedPagePath() {
+    let path = window.location.pathname || '/';
+    if (path === '/index.html') path = '/';
+    const hash = window.location.hash || '';
+    const safeHash = /^#[a-zA-Z0-9_-]{1,80}$/.test(hash) ? hash : '';
+    return (path + safeHash).slice(0, 120);
+  }
+  function externalReferrerHost() {
+    try {
+      if (!document.referrer) return null;
+      const host = new URL(document.referrer).hostname.toLowerCase();
+      if (!host || host === window.location.hostname.toLowerCase() || host.endsWith('.' + window.location.hostname.toLowerCase())) return null;
+      return /^[a-z0-9.-]{1,253}$/.test(host) ? host : null;
+    } catch (_) { return null; }
+  }
+  let lastRecorded = '';
+  let firstView = true;
+  async function recordView() {
+    const path = normalizedPagePath();
+    if (/\/(admin|cuenta)(\.html)?\/?$/i.test(window.location.pathname || '/')) return;
+    // Avoid duplicate events caused by the same navigation listener firing twice.
+    const key = path + '|' + Math.floor(Date.now() / 30000);
+    if (key === lastRecorded) return;
+    lastRecorded = key;
+    try {
+      await supabaseAnalytics.rpc('record_site_page_view', {
+        p_page_path: path,
+        p_visitor_id: visitorId,
+        p_referrer_host: firstView ? externalReferrerHost() : null
+      });
+      firstView = false;
+    } catch (_) {
+      // Analytics must never interrupt the public shopping experience.
+    }
+  }
+  recordView();
+  // Track one-page website sections when a visitor clicks an internal navigation link.
+  document.addEventListener('click', function (event) {
+    const link = event.target && event.target.closest ? event.target.closest('a[href^="#"]') : null;
+    if (link && link.getAttribute('href') && link.getAttribute('href') !== '#') {
+      window.setTimeout(recordView, 0);
+    }
+  });
+  window.addEventListener('hashchange', recordView);
+})();
+</script>
+
 </body></html>
