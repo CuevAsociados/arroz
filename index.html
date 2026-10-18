@@ -1463,4 +1463,37 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeInfo();closePr
 })();
 </script>
 
+
+<script>
+// Catálogo público: leer precios y disponibilidad compartidos desde Supabase.
+(async function loadPublicCatalogFromSupabase(){
+  try {
+    if (!window.supabase || !window.supabase.createClient) return;
+    const client = window.supabase.createClient(
+      'https://bcqqeayhfgugaolikeaz.supabase.co',
+      'sb_publishable_456tFnR5KuPH2tWy9VofJA_H5Gi9ZE_',
+      {auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}}
+    );
+    const {data,error}=await client.from('app_products').select('id,price,available').order('sort_order');
+    if(error || !Array.isArray(data) || !data.length) return;
+    const byProduct=new Map(data.map(row=>[row.id,row]));
+    products.forEach(product=>{
+      const row=byProduct.get(product.id);
+      if(!row) return;
+      const price=Number(row.price);
+      if(Number.isFinite(price)&&price>=0) product.price=price;
+      product.available=Boolean(row.available);
+      if(product.id.startsWith('papas')){
+        product.specs=product.specs.filter(x=>!/^Producto (disponible|agotado)$/i.test(x));
+        product.specs.push(product.available?'Producto disponible':'Producto agotado');
+      }
+    });
+    renderProducts();
+    updateCart();
+  } catch (_) {
+    // Si la conexión no está disponible, la tienda conserva su catálogo base.
+  }
+})();
+</script>
+
 </body></html>
