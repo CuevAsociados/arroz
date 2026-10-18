@@ -91,7 +91,18 @@
 const SUPABASE_URL = 'https://bcqqeayhfgugaolikeaz.supabase.co'; // URL pública del proyecto El Patriarca
 const SUPABASE_ANON_KEY = 'sb_publishable_456tFnR5KuPH2tWy9VofJA_H5Gi9ZE_'; // Clave publishable pública; nunca usar secret/service_role en el navegador
 const supabaseConfigured = /^https:\/\/[^/]+\.supabase\.co$/.test(SUPABASE_URL) && SUPABASE_ANON_KEY.startsWith('sb_publishable_') && SUPABASE_ANON_KEY.length > 30;
-const isRecoveryRedirect = new URLSearchParams(window.location.hash.slice(1)).get('type') === 'recovery';
+// Detecta recuperación tanto en fragmentos (#type=recovery) como en query strings (?code=...)
+// para tolerar las dos formas de redirección de Supabase Auth.
+const initialHashParams = new URLSearchParams(window.location.hash.slice(1));
+const initialQueryParams = new URLSearchParams(window.location.search);
+const isRecoveryRedirect =
+  initialHashParams.get('type') === 'recovery' ||
+  initialQueryParams.get('type') === 'recovery' ||
+  initialQueryParams.get('recovery') === '1' ||
+  initialQueryParams.has('code') ||
+  initialHashParams.has('error_code') ||
+  initialQueryParams.has('error_code');
+const hasRecoveryUrlError = initialHashParams.has('error') || initialHashParams.has('error_code') || initialQueryParams.has('error') || initialQueryParams.has('error_code');
 const supabaseClient = supabaseConfigured && window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}) : null;
 const KEYS={products:'elPatriarcaProductOverridesV1',orders:'elPatriarcaDemoOrdersV1',customers:'elPatriarcaDemoCustomersV1',expenses:'elPatriarcaDemoExpensesV1',bonus:'elPatriarcaDemoBonusSettingsV1'};
 const DEFAULT_PRODUCTS=[
@@ -114,6 +125,17 @@ function getProducts(){const over=read(KEYS.products,{});return DEFAULT_PRODUCTS
 function getBonus(){return {...{rate:0,minimum:0,enabled:false},...read(KEYS.bonus,{})};}
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3200)}
 function setLoginMessage(text,kind='error'){const el=$('loginError');el.textContent=text;el.classList.toggle('success-message',kind==='success');}
+function showPasswordRecoveryForm(message=''){
+  $('resetRequestPanel').classList.add('hidden');
+  $('newPasswordPanel').classList.remove('hidden');
+  $('loginForm').classList.add('recovery-mode');
+  $('newPasswordMessage').textContent=message;
+  $('newPasswordMessage').classList.remove('success-message');
+  setTimeout(()=>$('newPassword').focus(),120);
+}
+function clearRecoveryUrl(){
+  try{window.history.replaceState({},document.title,window.location.pathname);}catch(_){}
+}
 function showDashboard(){ $('loginScreen').classList.add('hidden');$('adminApp').classList.remove('hidden');$('adminEmail').value='';$('adminPassword').value='';renderAll(); }
 async function verifyAdminAccess(user){
   if(!supabaseClient) throw new Error('Falta configurar Supabase. Abre el archivo ADMIN_CONFIGURACION_SUPABASE.txt y sigue sus pasos.');
@@ -128,7 +150,17 @@ async function login(e){
  const email=$('adminEmail').value.trim().toLowerCase();const password=$('adminPassword').value;
  if(!email||!password){setLoginMessage('Escribe tu correo y contraseña.');return;}
  $('loginSubmit').disabled=true;$('loginSubmit').textContent='Verificando acceso…';setLoginMessage('');
- try{const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});if(error||!data.user)throw new Error('No se pudo iniciar sesión. Revisa los datos o usa “¿Olvidaste tu contraseña?”.');await verifyAdminAccess(data.user);setLoginMessage('');showDashboard();}
+ try{
+  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+  if(error){
+   const raw=String(error.message||'');
+   if(/invalid login credentials/i.test(raw)) throw new Error('El correo o la contraseña no coinciden. Usa “¿Olvidaste tu contraseña?” para crear una contraseña nueva.');
+   if(/email not confirmed/i.test(raw)) throw new Error('La cuenta aún no está confirmada. Revisa el correo o confirma el usuario desde Supabase > Authentication > Users.');
+   throw new Error('Supabase rechazó el acceso. Verifica el correo y la contraseña del usuario creado en Authentication > Users.');
+  }
+  if(!data.user) throw new Error('Supabase no devolvió un usuario. Vuelve a intentarlo.');
+  await verifyAdminAccess(data.user);setLoginMessage('');showDashboard();
+ }
  catch(err){try{await supabaseClient.auth.signOut();}catch(_){}setLoginMessage(err.message||'No se pudo verificar el acceso.');}
  finally{$('loginSubmit').disabled=false;$('loginSubmit').innerHTML='Ingresar al panel <span>→</span>';}
 }
@@ -143,7 +175,25 @@ async function sendResetEmail(){
  catch(err){msg.textContent='No se pudo solicitar el enlace. Verifica la configuración de correo SMTP y las URL permitidas en Supabase.';}
  finally{$('sendResetBtn').disabled=false;$('sendResetBtn').textContent='Enviar enlace de recuperación';}
 }
-async function saveRecoveredPassword(){const password=$('newPassword').value;const confirm=$('confirmNewPassword').value;const msg=$('newPasswordMessage');msg.textContent='';msg.classList.remove('success-message');if(password.length<12){msg.textContent='Usa al menos 12 caracteres.';return;}if(password!==confirm){msg.textContent='Las contraseñas no coinciden.';return;}if(!supabaseClient){msg.textContent='Supabase no está configurado.';return;}$('saveNewPasswordBtn').disabled=true;$('saveNewPasswordBtn').textContent='Guardando…';try{const {error}=await supabaseClient.auth.updateUser({password});if(error)throw error;msg.textContent='Contraseña actualizada. Vuelve a iniciar sesión con la nueva contraseña.';msg.classList.add('success-message');await supabaseClient.auth.signOut();$('newPassword').value='';$('confirmNewPassword').value='';setTimeout(()=>{$('newPasswordPanel').classList.add('hidden');$('loginForm').classList.remove('recovery-mode');$('adminEmail').focus();},1800);}catch(err){msg.textContent='No se pudo actualizar la contraseña. Abre de nuevo el enlace más reciente de tu correo.';}finally{$('saveNewPasswordBtn').disabled=false;$('saveNewPasswordBtn').textContent='Guardar contraseña nueva';}}
+async function saveRecoveredPassword(){
+ const password=$('newPassword').value;const confirm=$('confirmNewPassword').value;const msg=$('newPasswordMessage');msg.textContent='';msg.classList.remove('success-message');
+ if(password.length<12){msg.textContent='Usa al menos 12 caracteres.';return;}
+ if(password!==confirm){msg.textContent='Las contraseñas no coinciden.';return;}
+ if(!supabaseClient){msg.textContent='Supabase no está configurado.';return;}
+ $('saveNewPasswordBtn').disabled=true;$('saveNewPasswordBtn').textContent='Guardando…';
+ try{
+  const {data:sessionData,error:sessionError}=await supabaseClient.auth.getSession();
+  if(sessionError||!sessionData.session){throw new Error('RECOVERY_SESSION_MISSING');}
+  const {error}=await supabaseClient.auth.updateUser({password});if(error)throw error;
+  msg.textContent='Contraseña actualizada correctamente. Ya puedes iniciar sesión con la nueva contraseña.';msg.classList.add('success-message');
+  $('newPassword').value='';$('confirmNewPassword').value='';
+  await supabaseClient.auth.signOut();clearRecoveryUrl();
+  setTimeout(()=>{$('newPasswordPanel').classList.add('hidden');$('loginForm').classList.remove('recovery-mode');$('adminEmail').focus();},2500);
+ }catch(err){
+  msg.classList.remove('success-message');
+  msg.textContent=err.message==='RECOVERY_SESSION_MISSING'?'El enlace no abrió una sesión de recuperación válida o ya venció. Solicita un enlace nuevo y ábrelo desde el mismo navegador.':'No se pudo actualizar la contraseña. Solicita un enlace nuevo y ábrelo desde el mismo navegador.';
+ }finally{$('saveNewPasswordBtn').disabled=false;$('saveNewPasswordBtn').textContent='Guardar contraseña nueva';}
+}
 function setupPasswordToggle(buttonId,inputId){$(buttonId).addEventListener('click',()=>{const input=$(inputId);const visible=input.type==='password';input.type=visible?'text':'password';$(buttonId).textContent=visible?'Ocultar':'Mostrar';$(buttonId).setAttribute('aria-pressed',String(visible));});}
 function nav(view){if(!PAGE_TITLES[view])return;document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active',el.id==='view-'+view));document.querySelectorAll('.side-link[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===view));$('pageTitle').textContent=PAGE_TITLES[view][0];$('pageSubtitle').textContent=PAGE_TITLES[view][1];$('sidebar').classList.remove('mobile-open');if(view==='products')renderProductsTable();if(view==='orders')renderOrders();if(view==='customers')renderCustomers();if(view==='finance')renderFinance();if(view==='loyalty')renderLoyalty();}
 function getMonthKey(date=new Date()){return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}`;}
@@ -178,8 +228,31 @@ window.addEventListener('storage',e=>{if(Object.values(KEYS).includes(e.key)){re
 setupPasswordToggle('togglePassword','adminPassword');setupPasswordToggle('toggleNewPassword','newPassword');
 $('forgotPasswordBtn').addEventListener('click',openResetPanel);$('cancelResetBtn').addEventListener('click',()=>{$('resetRequestPanel').classList.add('hidden');$('resetMessage').textContent='';});$('sendResetBtn').addEventListener('click',sendResetEmail);$('saveNewPasswordBtn').addEventListener('click',saveRecoveredPassword);
 if(supabaseClient){
- supabaseClient.auth.onAuthStateChange((event,session)=>{if(event==='PASSWORD_RECOVERY'&&session){$('resetRequestPanel').classList.add('hidden');$('newPasswordPanel').classList.remove('hidden');$('loginForm').classList.add('recovery-mode');$('newPassword').focus();}});
- (async()=>{const {data,error}=await supabaseClient.auth.getSession();if(!isRecoveryRedirect && !window.location.hash.includes('type=recovery') && !error && data.session?.user){try{await verifyAdminAccess(data.session.user);showDashboard();}catch(_){await supabaseClient.auth.signOut();}}})();
+ supabaseClient.auth.onAuthStateChange((event,session)=>{
+  if(event==='PASSWORD_RECOVERY'){
+   showPasswordRecoveryForm();
+   return;
+  }
+  if(isRecoveryRedirect && (event==='INITIAL_SESSION'||event==='SIGNED_IN') && session){
+   showPasswordRecoveryForm();
+  }
+ });
+ (async()=>{
+  const {data,error}=await supabaseClient.auth.getSession();
+  if(isRecoveryRedirect){
+   if(hasRecoveryUrlError){
+    showPasswordRecoveryForm('El enlace de recuperación no es válido o ha vencido. Solicita uno nuevo desde “¿Olvidaste tu contraseña?”.');
+   }else if(data.session?.user){
+    showPasswordRecoveryForm();
+   }else{
+    // Muestra siempre el formulario de contraseña al regresar del enlace, aunque el evento de Auth tarde.
+    // Si no hay una sesión válida, al guardar se explicará que hay que abrir el enlace más reciente.
+    showPasswordRecoveryForm('Si no puedes guardar la contraseña, solicita un enlace nuevo y ábrelo desde este mismo navegador.');
+   }
+   return;
+  }
+  if(!error&&data.session?.user){try{await verifyAdminAccess(data.session.user);showDashboard();}catch(_){await supabaseClient.auth.signOut();}}
+ })();
 }
 </script>
 </body></html>
