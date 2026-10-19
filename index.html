@@ -948,7 +948,14 @@ html{scroll-padding-top:84px}section[id]{scroll-margin-top:84px}
 <div class="overlay" id="paymentResultOverlay" style="z-index:70" onclick="if(event.target===this)closePaymentResult()"><div class="dialog payment-screen"><div class="dialog-head" style="padding:0 0 15px;border-bottom:1px solid var(--line)"><span class="eyebrow" style="margin:0">EL PATRIARCA · PAGO EN LÍNEA</span><button class="close" onclick="closePaymentResult()" aria-label="Cerrar">×</button></div><div class="dialog-body" style="padding:20px 0 0"><div class="payment-symbol" id="paymentResultIcon">✓</div><h2 id="paymentResultTitle">Verificando tu pago</h2><p id="paymentResultText">Estamos comprobando el resultado de la transacción con PayPhone. No cierres esta ventana.</p><div class="payment-detail" id="paymentResultDetail" style="display:none"></div><div class="payment-instructions" id="paymentResultInstructions" style="display:none"></div><a class="btn btn-dark" id="paymentWhatsAppBtn" href="#" target="_blank" rel="noopener" style="display:none">Enviar detalle por WhatsApp →</a><a class="btn btn-dark" id="donationEmailBtn" href="#" style="display:none">Notificar donación por correo →</a><button class="btn btn-outline" id="paymentCloseBtn" onclick="closePaymentResult()" style="width:100%;display:none">Volver a la tienda</button></div></div></div>
 <button type="button" class="patriarca-floating-cart" aria-label="Abrir carrito de compras" title="Abrir carrito de compras" onclick="openCart()">🛒<span class="cart-count" id="floatingCartCount">0</span></button>
 <div class="toast" id="toast"></div>
-<script src="./payment-config.js"></script>
+<script>
+/* Configuración pública del checkout de El Patriarca.
+   No colocar aquí tokens privados de PayPhone ni claves secret/service_role. */
+window.EL_PATRIARCA_PAYMENT_CONFIG = {
+  functionsBaseUrl: 'https://bcqqeayhfgugaolikeaz.supabase.co/functions/v1',
+  supabaseAnonKey: 'sb_publishable_456tFnR5KuPH2tWy9VofJA_H5Gi9ZE_'
+};
+</script>
 <script>
 const products=[
 {id:'patriarca2',name:'El Patriarca',pres:'2 lb',price:3.50,img:'img/logo-arroz.png',description:'Arroz envejecido seleccionado electrónicamente, de grano largo fino. Su selección y envejecimiento buscan una cocción uniforme, granos definidos y buen rendimiento en cada preparación.',specs:['Producto de exportación','Grano largo fino (Clase 11)','Arroz envejecido','Selección electrónica'],available:true},
