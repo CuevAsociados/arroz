@@ -929,27 +929,29 @@ html{scroll-padding-top:84px}section[id]{scroll-margin-top:84px}
 }
 
 
-/* Ajuste fino del encabezado móvil: logo más discreto y equilibrado */
+/* Ajuste final móvil: logo más pequeño y desplazado suavemente a la izquierda */
 @media (max-width: 520px) {
   .site-header {
-    height: 100px !important;
-    min-height: 100px !important;
+    height: 92px !important;
+    min-height: 92px !important;
   }
   .site-header .nav {
-    width: calc(100% - 28px) !important;
-    gap: 10px !important;
+    width: calc(100% - 20px) !important;
+    gap: 8px !important;
   }
   .site-header .brand {
-    width: min(66vw, 270px) !important;
+    width: min(58vw, 238px) !important;
     max-width: calc(100% - 54px) !important;
     flex: 0 1 auto !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
   }
   .site-header .brand-logo {
+    display: block !important;
     width: 100% !important;
-    max-height: 76px !important;
+    max-height: 68px !important;
     object-fit: contain !important;
-    object-position: center center !important;
+    object-position: left center !important;
   }
   .site-header .menu-toggle {
     flex: 0 0 40px !important;
@@ -961,15 +963,15 @@ html{scroll-padding-top:84px}section[id]{scroll-margin-top:84px}
 }
 @media (max-width: 360px) {
   .site-header {
-    height: 88px !important;
-    min-height: 88px !important;
+    height: 84px !important;
+    min-height: 84px !important;
   }
   .site-header .brand {
-    width: min(64vw, 228px) !important;
-    max-width: calc(100% - 50px) !important;
+    width: min(55vw, 210px) !important;
+    max-width: calc(100% - 48px) !important;
   }
   .site-header .brand-logo {
-    max-height: 66px !important;
+    max-height: 62px !important;
   }
   .site-header .menu-toggle {
     flex-basis: 36px !important;
