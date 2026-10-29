@@ -981,7 +981,308 @@ html{scroll-padding-top:84px}section[id]{scroll-margin-top:84px}
     min-height: 36px !important;
   }
 }
+
+
+/* ==========================================================
+   RESPONSIVE FINAL — móvil, tablet, portátil, PC y pantallas
+   grandes. Solo presentación; no altera lógica ni integraciones.
+   ========================================================== */
+html { max-width: 100%; overflow-x: clip; -webkit-text-size-adjust: 100%; }
+body { width: 100%; max-width: 100%; overflow-x: clip; }
+img, video, canvas, iframe { max-width: 100%; }
+.container, .hero-inner, .story-copy, .business-copy { min-width: 0; }
+button, a, input, select, textarea { touch-action: manipulation; }
+:where(h1,h2,h3,h4,p,li,button,a,label,small,strong,span) { overflow-wrap: anywhere; }
+.product-grid > *, .footer-grid > *, .quality-grid > *, .nav > * { min-width: 0; }
+.product-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.footer-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 175px), 1fr)); }
+.hero-buttons { flex-wrap: wrap; }
+.hero-buttons .btn { max-width: 100%; }
+.features { flex-wrap: wrap; }
+input, select, textarea { max-width: 100%; }
+
+/* Escritorio amplio: navegación en una sola fila y logo contenido. */
+@media (min-width: 1101px) {
+  .site-header { height: 82px !important; min-height: 82px !important; }
+  .site-header .nav {
+    width: min(1400px, calc(100% - 64px)) !important;
+    height: 100% !important;
+    flex-wrap: nowrap !important;
+    gap: clamp(14px, 1.7vw, 28px) !important;
+  }
+  .site-header .brand {
+    flex: 0 1 260px !important;
+    width: clamp(190px, 22vw, 270px) !important;
+    max-width: 28% !important;
+    min-width: 0 !important;
+  }
+  .site-header .brand-logo {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 62px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+  }
+  .site-header .navlinks {
+    display: flex !important;
+    position: static !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-end !important;
+    gap: clamp(9px, 1.05vw, 17px) !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+  .site-header .navlinks a,
+  .site-header .navlinks button {
+    width: auto !important;
+    padding: 9px 0 !important;
+    font-size: clamp(9px, .68vw, 11px) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+  .site-header .nav-actions { display: none !important; }
+}
+
+/* Portátiles pequeños, iPad y tablets: menú desplegable para evitar solapamientos. */
+@media (min-width: 521px) and (max-width: 1100px) {
+  .site-header { height: 78px !important; min-height: 78px !important; }
+  .site-header .nav {
+    width: calc(100% - 40px) !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    flex-wrap: nowrap !important;
+    gap: 14px !important;
+  }
+  .site-header .brand {
+    flex: 0 1 auto !important;
+    width: clamp(185px, 28vw, 260px) !important;
+    max-width: calc(100% - 58px) !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+  .site-header .brand-logo {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 56px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+  }
+  .site-header .nav-actions {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+  }
+  .site-header .menu-toggle {
+    display: flex !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+  }
+  .site-header .navlinks { display: none !important; }
+  .site-header .nav.menu-open .navlinks {
+    display: grid !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: calc(100dvh - 90px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+    padding: 8px 14px !important;
+    background: var(--paper, #fefdf8) !important;
+    border: 1px solid var(--line, #e7dfce) !important;
+    box-shadow: 0 14px 22px #182d201a !important;
+    z-index: 110 !important;
+  }
+  .site-header .nav.menu-open .navlinks a,
+  .site-header .nav.menu-open .navlinks button {
+    display: flex !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    padding: 13px 10px !important;
+    font-size: 12px !important;
+    border-bottom: 1px solid var(--line, #e7dfce) !important;
+  }
+}
+
+/* Teléfonos: logo discreto a la izquierda y menú a la derecha. */
+@media (max-width: 520px) {
+  .site-header { height: 76px !important; min-height: 76px !important; }
+  .site-header .nav {
+    width: calc(100% - 28px) !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+  }
+  .site-header .brand {
+    display: flex !important;
+    flex: 0 1 auto !important;
+    width: min(56vw, 215px) !important;
+    max-width: calc(100% - 54px) !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: flex-start !important;
+    line-height: 0 !important;
+  }
+  .site-header .brand-logo {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 52px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+  }
+  .site-header .nav-actions {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    align-items: center !important;
+  }
+  .site-header .menu-toggle {
+    display: flex !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+  }
+  .site-header .navlinks { display: none !important; }
+  .site-header .nav.menu-open .navlinks {
+    display: grid !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: calc(100dvh - 84px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+    padding: 7px 10px !important;
+    background: var(--paper, #fefdf8) !important;
+    border: 1px solid var(--line, #e7dfce) !important;
+    box-shadow: 0 14px 22px #182d201a !important;
+    z-index: 110 !important;
+  }
+  .site-header .nav.menu-open .navlinks a,
+  .site-header .nav.menu-open .navlinks button {
+    display: flex !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    padding: 12px 8px !important;
+    font-size: 11px !important;
+    border-bottom: 1px solid var(--line, #e7dfce) !important;
+  }
+  .container { width: calc(100% - 28px) !important; }
+  .hero-inner, .story-copy, .business-copy { width: calc(100% - 32px) !important; }
+  .hero { background-position: 60% center; }
+  .hero h1 { font-size: clamp(34px, 9.5vw, 46px) !important; line-height: 1.04 !important; }
+  .hero h2 { font-size: clamp(23px, 6.2vw, 30px) !important; line-height: 1.18 !important; }
+  .hero-categories { font-size: clamp(11px, 3.2vw, 14px) !important; }
+  .hero-buttons { display: flex !important; gap: 10px !important; }
+  .hero-buttons .btn { flex: 1 1 145px !important; min-width: 0 !important; padding: 13px 12px !important; font-size: 11px !important; justify-content: center !important; }
+  .features { display: flex !important; justify-content: space-between !important; gap: 10px !important; }
+  .feature { min-width: 0 !important; flex: 1 1 0 !important; gap: 6px !important; }
+  .feature b { font-size: 10px !important; }
+  .feature small { font-size: 9px !important; }
+  .section-heading h2 { font-size: clamp(25px, 7.2vw, 34px) !important; }
+  .section-heading p { line-height: 1.45; }
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
+  .product-card { min-width: 0 !important; }
+  .product-card img { max-width: 100%; }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 16px !important; }
+  .overlay { padding: max(8px, env(safe-area-inset-top)) 8px max(8px, env(safe-area-inset-bottom)) !important; }
+  .dialog { width: 100% !important; max-width: 100% !important; max-height: calc(100dvh - 16px) !important; }
+  .drawer-panel { width: min(100%, 460px) !important; padding-left: 14px !important; padding-right: 14px !important; }
+}
+
+/* Móviles estrechos: conservar legibilidad sin desbordamientos. */
+@media (max-width: 360px) {
+  .site-header .nav { width: calc(100% - 20px) !important; }
+  .site-header .brand { width: min(54vw, 185px) !important; max-width: calc(100% - 48px) !important; }
+  .site-header .brand-logo { max-height: 46px !important; }
+  .site-header .menu-toggle { width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; }
+  .hero-buttons .btn { flex-basis: 125px !important; padding: 11px 8px !important; font-size: 10px !important; }
+  .features { gap: 6px !important; }
+  .feature-icon { width: 28px !important; height: 28px !important; }
+  .product-grid { gap: 7px !important; }
+  .footer-grid { grid-template-columns: minmax(0, 1fr) !important; }
+}
+
+/* Pantallas muy grandes y televisores: ancho legible, sin estirar todo el contenido. */
+@media (min-width: 1600px) {
+  .site-header .nav { width: min(1480px, calc(100% - 100px)) !important; }
+  .container, .hero-inner, .story-copy, .business-copy { max-width: 1400px; }
+  .hero h1 { font-size: clamp(58px, 4vw, 78px); }
+}
+
+/* Respeta las preferencias de movimiento del dispositivo. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+
+
+/* IDENTIDAD TIPOGRÁFICA EL PATRIARCA
+   Titulares: Cormorant Garamond.
+   Textos secundarios: Avenir cuando esté disponible; Nunito Sans como
+   alternativa web coherente en dispositivos que no incluyan Avenir. */
+:root {
+  --font-headings: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Avenir Next", Avenir, "Nunito Sans", "Segoe UI", Arial, sans-serif;
+}
+html, body,
+button, input, select, textarea,
+.navlinks, .navlinks a, .navlinks button,
+.btn, .cart, .cart *, .drawer-panel, .dialog, .overlay {
+  font-family: var(--font-body);
+}
+h1, h2, h3, h4, h5, h6,
+.hero h1, .hero h2,
+.section-heading h2,
+.story-copy h2, .business-copy h2,
+.product-card h3, .product-card .product-title,
+.site-title, .section-title,
+blockquote, .display, .heading-font {
+  font-family: var(--font-headings) !important;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+button, input, select, textarea {
+  font-family: var(--font-body);
+}
+
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="site-header">
