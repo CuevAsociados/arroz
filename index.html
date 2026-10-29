@@ -1545,6 +1545,45 @@ body.modal-open { overflow: hidden !important; }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cormorant Garamond', Georgia, serif;
 }
+
+/* Ajuste de alineación en escritorio: las etiquetas superiores siguen el mismo eje que el contenido */
+@media (min-width: 721px) {
+  #infoOverlay .info-modal-body .info-kicker,
+  #infoOverlay .info-modal-body .eyebrow {
+    width: min(1350px, 100%) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+  }
+}
+
+
+/* Texto general introductorio de políticas */
+.policy-v2-general-text{
+  margin: 0 0 20px;
+  padding: 0 4px;
+  color: #59645d;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.policy-v2-general-text p{
+  margin: 0;
+}
+.policy-v2-general-text p + p{
+  margin-top: 10px;
+}
+@media(max-width:760px){
+  .policy-v2-general-text{
+    margin: 0 0 16px;
+    padding: 0 2px;
+    font-size: 12px;
+    line-height: 1.75;
+  }
+  .policy-v2-general-text p + p{
+    margin-top: 9px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1854,6 +1893,11 @@ const INFO_COPY = {
    <div class="policy-v2-intro">
     <div class="policy-v2-intro-copy"><p class="info-kicker">Información clara antes de comprar</p><h3>Políticas</h3><p>Consulta las condiciones de venta, conservación, garantía y entrega. Selecciona un tema para ver sus detalles.</p></div>
     <img class="policy-v2-banner" src="img/politicas-banner.jpg" alt="Arroz y papas prefritas de El Patriarca" loading="lazy">
+   </div>
+   <div class="policy-v2-general-text">
+    <p>En El Patriarca queremos que cada compra sea clara, confiable y acorde con las necesidades de cada cliente. Por eso, ponemos a tu disposición nuestras políticas comerciales para que conozcas las condiciones que acompañan tu pedido antes de confirmarlo.</p>
+    <p>Aquí encontrarás información sobre las condiciones de venta y pago, la disponibilidad y conservación de nuestros productos, el alcance de la garantía y las modalidades de entrega o retiro. Te recomendamos revisar cada apartado según el producto que deseas adquirir y el tipo de pedido que necesitas realizar.</p>
+    <p>De esta manera, podrás tomar una decisión informada y resolver tus dudas con anticipación. Si necesitas confirmar algún detalle específico, nuestro equipo está disponible para orientarte antes de realizar el pago.</p>
    </div>
    <nav class="policy-v2-index policy-v2-index-buttons" aria-label="Secciones de políticas">
     <button type="button" onclick="openPolicyDetail('sales')"><span class="policy-number">01</span><span>Venta</span><i>↗</i></button>
