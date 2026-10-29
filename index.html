@@ -1334,6 +1334,209 @@ input, select, textarea { max-width: 100%; }
   }
 }
 
+
+
+/* ==========================================================
+   DEMO DE NAVEGACIÓN INTERNA A PANTALLA COMPLETA
+   Los apartados informativos ocupan la misma ventana del navegador.
+   El encabezado queda fijo y el contenido se desplaza por separado.
+   No modifica carrito, productos, donaciones ni PayPhone.
+   ========================================================== */
+#infoOverlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 120 !important;
+  display: none;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: var(--paper, #fefdf8) !important;
+}
+#infoOverlay.open {
+  display: flex !important;
+}
+#infoOverlay .info-dialog {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: 100% !important;
+  max-height: 100dvh !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: var(--paper, #fefdf8) !important;
+}
+#infoOverlay .info-page-head {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 5 !important;
+  flex: 0 0 auto !important;
+  display: grid !important;
+  grid-template-columns: minmax(72px, 1fr) minmax(0, 2fr) minmax(44px, 1fr) !important;
+  align-items: center !important;
+  gap: 12px !important;
+  min-height: 76px !important;
+  padding: 14px clamp(16px, 4vw, 42px) !important;
+  padding-top: max(14px, env(safe-area-inset-top)) !important;
+  background: var(--paper, #fefdf8) !important;
+  border-bottom: 1px solid var(--line, #e7dfce) !important;
+  box-shadow: 0 4px 16px #14261b08 !important;
+}
+#infoOverlay .info-page-head h2 {
+  min-width: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  font-size: clamp(19px, 2.4vw, 27px) !important;
+  line-height: 1.2 !important;
+  overflow-wrap: anywhere !important;
+}
+#infoOverlay .info-home {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-self: start !important;
+  gap: 7px !important;
+  min-height: 42px !important;
+  padding: 8px 10px !important;
+  color: var(--forest, #0c2b1c) !important;
+  background: transparent !important;
+  border: 1px solid var(--line, #e7dfce) !important;
+  border-radius: 24px !important;
+  font-size: 14px !important;
+  white-space: nowrap !important;
+}
+#infoOverlay .info-home:hover { background: #f4eee1 !important; }
+#infoOverlay .info-page-head .close {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  justify-self: end !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  border: 1px solid var(--line, #e7dfce) !important;
+  border-radius: 50% !important;
+  background: #fffdf8 !important;
+  font-size: 27px !important;
+  line-height: 1 !important;
+}
+#infoOverlay .info-modal-body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: clamp(20px, 4vw, 48px) clamp(18px, 5vw, 72px) max(32px, env(safe-area-inset-bottom)) !important;
+  scroll-padding-top: 18px !important;
+}
+#infoOverlay .info-modal-body > * {
+  width: min(1120px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+#infoOverlay .info-modal-body img {
+  max-width: 100%;
+  height: auto;
+}
+body.modal-open { overflow: hidden !important; }
+@media (max-width: 600px) {
+  #infoOverlay .info-page-head {
+    grid-template-columns: 76px minmax(0, 1fr) 40px !important;
+    gap: 8px !important;
+    min-height: 66px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  #infoOverlay .info-page-head h2 {
+    font-size: 19px !important;
+  }
+  #infoOverlay .info-home {
+    min-height: 38px !important;
+    padding: 6px 8px !important;
+    font-size: 12px !important;
+  }
+  #infoOverlay .info-page-head .close {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+  }
+  #infoOverlay .info-modal-body {
+    padding: 22px 18px max(28px, env(safe-area-inset-bottom)) !important;
+  }
+}
+@media (max-width: 360px) {
+  #infoOverlay .info-page-head {
+    grid-template-columns: 64px minmax(0, 1fr) 36px !important;
+    gap: 5px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  #infoOverlay .info-home { font-size: 11px !important; padding: 5px 6px !important; }
+  #infoOverlay .info-page-head h2 { font-size: 17px !important; }
+  #infoOverlay .info-page-head .close { width: 34px !important; height: 34px !important; min-width: 34px !important; }
+}
+@media (min-width: 1600px) {
+  #infoOverlay .info-modal-body { padding-left: max(72px, calc((100vw - 1260px)/2)) !important; padding-right: max(72px, calc((100vw - 1260px)/2)) !important; }
+}
+
+
+
+/* Navegación del apartado: el botón de tres rayas reemplaza a la X. */
+#infoOverlay .info-page-head {
+  grid-template-columns: minmax(44px, 1fr) minmax(0, 2fr) minmax(44px, 1fr) !important;
+}
+#infoOverlay .info-head-spacer { display:block; width:44px; height:44px; }
+#infoOverlay .info-menu-toggle {
+  display:flex !important; flex-direction:column !important; align-items:center !important;
+  justify-content:center !important; justify-self:end !important; gap:5px !important;
+  width:44px !important; height:44px !important; min-width:44px !important;
+  padding:10px !important; border:1px solid var(--line, #e7dfce) !important;
+  border-radius:14px !important; background:#fffdf8 !important; cursor:pointer;
+}
+#infoOverlay .info-menu-toggle span {
+  display:block !important; width:22px !important; height:2px !important; margin:0 !important;
+  border-radius:2px !important; background:var(--forest, #0c2b1c) !important; transform:none !important;
+}
+#infoOverlay .info-navigation-menu {
+  display:none; position:absolute; z-index:10; top:76px; right:clamp(12px, 3vw, 34px);
+  width:min(340px, calc(100% - 24px)); max-height:calc(100% - 90px); overflow-y:auto;
+  padding:10px; border:1px solid var(--line, #e7dfce); border-radius:18px;
+  background:var(--paper, #fefdf8); box-shadow:0 18px 48px #0b21172b;
+}
+#infoOverlay .info-navigation-menu.open { display:flex; flex-direction:column; }
+#infoOverlay .info-navigation-menu button {
+  display:block; width:100%; padding:15px 16px; text-align:left;
+  color:var(--forest, #0c2b1c); background:transparent; border:0; border-radius:10px;
+  font-family:inherit; font-size:14px; font-weight:600; letter-spacing:.06em; cursor:pointer;
+}
+#infoOverlay .info-navigation-menu button:hover,
+#infoOverlay .info-navigation-menu button:focus-visible { background:#f3eddf; outline:none; }
+@media(max-width:600px) {
+  #infoOverlay .info-page-head { grid-template-columns:minmax(16px,1fr) minmax(0,3fr) minmax(44px,1fr) !important; }
+  #infoOverlay .info-head-spacer { width:36px; height:36px; }
+  #infoOverlay .info-menu-toggle { width:40px !important; height:40px !important; min-width:40px !important; border-radius:12px !important; }
+  #infoOverlay .info-navigation-menu { top:66px; right:10px; }
+}
+
+
+/* Corrección funcional y visual del menú en todas las vistas informativas. */
+#infoOverlay .info-dialog { isolation: isolate !important; }
+#infoOverlay .info-navigation-menu {
+  position: absolute !important; top: 76px !important; right: clamp(12px, 3vw, 34px) !important;
+  z-index: 50 !important; max-height: min(70dvh, 560px) !important;
+  overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+}
+#infoOverlay .info-navigation-menu.open { display: flex !important; }
+#infoOverlay .info-navigation-menu button { min-height: 44px; }
+@media (max-width: 600px) {
+  #infoOverlay .info-navigation-menu { top: 66px !important; right: 10px !important; width: min(320px, calc(100% - 20px)) !important; max-height: calc(100dvh - 82px) !important; }
+}
 </style>
 </head>
 <body>
@@ -1399,7 +1602,17 @@ input, select, textarea { max-width: 100%; }
 <!-- Ventanas de información: se pueden cerrar con X, clic fuera o Escape -->
 <div class="overlay" id="infoOverlay" onclick="if(event.target===this)closeInfo()" aria-hidden="true">
  <div class="dialog info-dialog" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle">
-  <div class="dialog-head"><h2 id="infoModalTitle">Información</h2><button class="close" type="button" onclick="closeInfo()" aria-label="Cerrar">×</button></div>
+  <div class="dialog-head info-page-head"><span class="info-head-spacer" aria-hidden="true"></span><h2 id="infoModalTitle">Información</h2><button class="menu-toggle info-menu-toggle" id="infoMenuToggle" type="button" aria-label="Abrir menú de secciones" aria-controls="infoNavigationMenu" aria-expanded="false" onclick="toggleInfoMenu()"><span></span><span></span><span></span></button></div>
+  <nav class="info-navigation-menu" id="infoNavigationMenu" aria-label="Secciones de El Patriarca">
+   <button type="button" onclick="goInfoHome()">INICIO</button>
+   <button type="button" onclick="selectInfoMenuItem(() => openInfo('nosotros'))">NOSOTROS</button>
+   <button type="button" onclick="selectInfoMenuItem(() => openInfo('productos'))">PRODUCTOS</button>
+   <button type="button" onclick="selectInfoMenuItem(() => openInfo('calidad'))">CALIDAD</button>
+   <button type="button" onclick="selectInfoMenuItem(() => openInfo('preparacion'))">PREPARACIÓN</button>
+   <button type="button" onclick="selectInfoMenuItem(() => openInfo('negocios'))">NEGOCIOS</button>
+   <button type="button" onclick="selectInfoMenuItem(() => openInfo('politicas'))">POLÍTICAS</button>
+   <button type="button" onclick="selectInfoMenuItem(() => openDonation())">DONACIONES</button>
+  </nav>
   <div class="dialog-body info-modal-body" id="infoModalBody"></div>
  </div>
 </div>
@@ -1870,6 +2083,7 @@ function openQualityStep(key){
 }
 
 function openInfo(which, preparationKey){
+   closeInfoMenu();
   closeMobileMenu();
   closeProduct();closeCart();closeDonation();closePaymentResult();
   const labels={productos:'Nuestros productos',calidad:'Calidad y Compromiso',preparacion:'Preparación de productos',nosotros:'Quiénes somos',contacto:'Contacto',canales:'Canales oficiales',politicas:'Políticas',negocios:'Para Negocios y Distribuidores'};
@@ -1889,7 +2103,7 @@ function openInfo(which, preparationKey){
     },{once:true});
   }
 }
-function closeInfo(){const o=document.getElementById('infoOverlay');if(o){o.classList.remove('open');o.setAttribute('aria-hidden','true')}const d=document.querySelector('#infoOverlay .info-dialog');if(d)d.classList.remove('prep-wide','quality-wide');document.body.classList.remove('modal-open')}
+function closeInfo(){closeInfoMenu();const o=document.getElementById('infoOverlay');if(o){o.classList.remove('open');o.setAttribute('aria-hidden','true')}const d=document.querySelector('#infoOverlay .info-dialog');if(d)d.classList.remove('prep-wide','quality-wide');document.body.classList.remove('modal-open')}
 
 function openDonation(){closeMobileMenu();closeInfo();closeProduct();closeCart();closePaymentResult();document.getElementById('donationOverlay').classList.add('open');document.body.classList.add('modal-open');document.getElementById('donationInlineMessage').textContent='';document.getElementById('donationInlineMessage').classList.remove('show','error')}function closeDonation(){document.getElementById('donationOverlay').classList.remove('open');document.body.classList.remove('modal-open')}
 function toggleMenu(){const nav=document.querySelector('.nav');const button=document.getElementById('menuToggle');const open=nav.classList.toggle('menu-open');button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú')}
@@ -1983,6 +2197,47 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeInfo();closePr
   });
   window.addEventListener('hashchange', recordView);
 })();
+</script>
+
+<script>
+/* Menú de navegación disponible dentro de cada sección a pantalla completa. */
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    const info = document.getElementById('infoOverlay');
+    if (info && info.classList.contains('open')) {
+      closeInfoMenu();
+      closeInfo();
+    }
+  }
+});
+function closeInfoMenu(){
+  const panel = document.getElementById('infoNavigationMenu');
+  const toggle = document.getElementById('infoMenuToggle');
+  if (panel) panel.classList.remove('open');
+  if (toggle) {
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú de secciones');
+  }
+}
+function toggleInfoMenu(){
+  const panel = document.getElementById('infoNavigationMenu');
+  const toggle = document.getElementById('infoMenuToggle');
+  if (!panel || !toggle) return;
+  const opened = panel.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', String(opened));
+  toggle.setAttribute('aria-label', opened ? 'Cerrar menú de secciones' : 'Abrir menú de secciones');
+}
+function selectInfoMenuItem(action){
+  closeInfoMenu();
+  if (typeof action === 'function') action();
+}
+function goInfoHome(){
+  closeInfoMenu();
+  closeInfo();
+  closeMobileMenu();
+  history.replaceState(null, '', window.location.pathname + window.location.search + '#inicio');
+  window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+}
 </script>
 
 </body></html>
